@@ -68,7 +68,7 @@ function Login() {
             <Button
               text="Entrar"
               dataID="login-submit-btn"
-              disabled={ !verifyLogin() }
+              disabled={ verifyLogin() }
               onClick={ handleClick }
             />
           </Link>
