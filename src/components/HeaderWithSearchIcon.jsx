@@ -7,11 +7,6 @@ import searchIcon from '../images/searchIcon.svg';
 function Header({ title }) {
   const [showInput, setShowInput] = useState(false);
 
-  function clickToShow() {
-    if (showInput) setShowInput(false);
-    else setShowInput(true);
-  }
-
   function renderInput() {
     return (
       <input type="text" data-testid="search-input" placeholder="Buscar comida/bebida" />
@@ -29,14 +24,14 @@ function Header({ title }) {
           />
         </Link>
         <h1 data-testid="page-title">{title}</h1>
-        <button type="button" onClick={ clickToShow }>
+        <button type="button" onClick={ () => setShowInput(!showInput) }>
           <img
             src={ searchIcon }
             data-testid="search-top-btn"
             alt="Search Icon"
           />
         </button>
-        {showInput ? renderInput() : null}
+        {showInput && renderInput()}
       </nav>
     </header>
   );
