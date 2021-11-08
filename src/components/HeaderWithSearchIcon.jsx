@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
@@ -10,31 +10,35 @@ import {
   getDrinkIngrediente,
   getDrinkNome,
   getDrinkPrimeiraletra } from '../services/getDrink';
+import MyContext from '../context/MyContext';
 
 function Header({ title }) {
+  const { setRespostaDrink, setRespostaFood } = useContext(MyContext);
   const INGREDIENT_RADIO = 'ingredient-radio';
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [radioValue, setRadioValue] = useState(INGREDIENT_RADIO);
   const [searchValue, setSearchValue] = useState('');
 
-  const handleSearchInput = () => {
-    if (radioValue === INGREDIENT_RADIO) return getIngrediente(searchValue);
-    if (radioValue === 'name-radio') return getNome(searchValue);
-
-    if (searchValue.length > 1) {
+  const handleSearchInput = async () => {
+    if (radioValue === INGREDIENT_RADIO) {
+      setRespostaFood(await getIngrediente(searchValue));
+    } else if (radioValue === 'name-radio') {
+      setRespostaFood(await getNome(searchValue));
+    } else if (searchValue.length > 1) {
       return global.alert('Sua busca deve conter somente 1 (um) caracter');
     }
-    return getPrimeiraletra(searchValue);
+    setRespostaFood(await getPrimeiraletra(searchValue));
   };
 
-  const handleSearchInputDrink = () => {
-    if (radioValue === INGREDIENT_RADIO) return getDrinkIngrediente(searchValue);
-    if (radioValue === 'name-radio') return getDrinkNome(searchValue);
-
-    if (searchValue.length > 1) {
+  const handleSearchInputDrink = async () => {
+    if (radioValue === INGREDIENT_RADIO) {
+      await setRespostaDrink(await getDrinkIngrediente(searchValue));
+    } else if (radioValue === 'name-radio') {
+      setRespostaDrink(await getDrinkNome(searchValue));
+    } else if (searchValue.length > 1) {
       return global.alert('Sua busca deve conter somente 1 (um) caracter');
     }
-    return getDrinkPrimeiraletra(searchValue);
+    setRespostaDrink(await getDrinkPrimeiraletra(searchValue));
   };
 
   function renderInput() {
