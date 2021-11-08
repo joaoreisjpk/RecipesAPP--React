@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import HeaderWithSearchIcon from '../components/HeaderWithSearchIcon';
 import MyContext from '../context/MyContext';
 import Cards from '../components/Cards';
+import Footer from '../components/Footer';
 
 function Foods() {
   const { respostaFood } = useContext(MyContext);
@@ -25,6 +26,7 @@ function Foods() {
           index={ index }
         />
       )).slice(0, DOUZE)}
+      <Footer />
     </div>
   );
 }

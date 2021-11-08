@@ -16,7 +16,7 @@ function Drinks() {
   }
   return (
     <div>
-      <HeaderWithSearchIcon title="Comidas" />
+      <HeaderWithSearchIcon title="Bebidas" />
       { respostaDrink && respostaDrink.map((item, index) => (
         <Cards
           key={ index }
