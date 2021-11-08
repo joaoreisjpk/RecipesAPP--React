@@ -6,12 +6,14 @@ import Cards from '../components/Cards';
 
 function Foods() {
   const { respostaFood } = useContext(MyContext);
-  const TREZE = 12;
+  const DOUZE = 12;
 
   if (respostaFood && respostaFood.length === 1) {
     return <Redirect to={ `/comidas/${respostaFood[0].idMeal}` } />;
   }
-  // console.log(respostaFood);
+  if (respostaFood === null) {
+    global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+  }
   return (
     <div>
       <HeaderWithSearchIcon title="Comidas" />
@@ -22,7 +24,7 @@ function Foods() {
           thumbnail={ strMealThumb }
           index={ index }
         />
-      )).slice(0, TREZE)}
+      )).slice(0, DOUZE)}
     </div>
   );
 }

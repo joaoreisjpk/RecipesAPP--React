@@ -11,7 +11,9 @@ function Drinks() {
   if (respostaDrink && respostaDrink.length === 1) {
     return <Redirect to={ `/bebidas/${respostaDrink[0].idDrink}` } />;
   }
-  // console.log(respostaFood);
+  if (respostaDrink === null) {
+    global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+  }
   return (
     <div>
       <HeaderWithSearchIcon title="Comidas" />
