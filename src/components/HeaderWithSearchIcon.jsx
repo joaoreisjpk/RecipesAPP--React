@@ -26,8 +26,7 @@ function Header({ title }) {
       setRespostaFood(await getNome(searchValue));
     } else if (searchValue.length > 1) {
       return global.alert('Sua busca deve conter somente 1 (um) caracter');
-    }
-    setRespostaFood(await getPrimeiraletra(searchValue));
+    } else setRespostaFood(await getPrimeiraletra(searchValue));
   };
 
   const handleSearchInputDrink = async () => {
@@ -37,8 +36,7 @@ function Header({ title }) {
       setRespostaDrink(await getDrinkNome(searchValue));
     } else if (searchValue.length > 1) {
       return global.alert('Sua busca deve conter somente 1 (um) caracter');
-    }
-    setRespostaDrink(await getDrinkPrimeiraletra(searchValue));
+    } else setRespostaDrink(await getDrinkPrimeiraletra(searchValue));
   };
 
   function renderInput() {
