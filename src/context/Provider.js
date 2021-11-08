@@ -8,9 +8,16 @@ function Provider({ children }) {
     password: '',
   });
 
+  const [respostaDrink, setRespostaDrink] = useState(undefined);
+  const [respostaFood, setRespostaFood] = useState(undefined);
+
   const context = {
     login,
     setLogin,
+    respostaDrink,
+    setRespostaDrink,
+    respostaFood,
+    setRespostaFood,
   };
   return (
     <MyContext.Provider value={ context }>

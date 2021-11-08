@@ -1,7 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function Input({ placeholder, dataID, label, id, name, value, onChange, type }) {
+function Input({
+  placeholder,
+  dataID,
+  label,
+  id,
+  name,
+  value,
+  onChange,
+  type,
+  selected }) {
   return (
     <label htmlFor={ id }>
       {label}
@@ -13,6 +22,7 @@ function Input({ placeholder, dataID, label, id, name, value, onChange, type }) 
         name={ name }
         value={ value }
         onChange={ onChange }
+        selected={ selected }
       />
     </label>
   );
@@ -25,6 +35,7 @@ Input.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
+  selected: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
 };

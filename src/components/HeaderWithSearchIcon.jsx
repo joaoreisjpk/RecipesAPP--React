@@ -1,16 +1,105 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import Input from './Input';
+import Button from './Button';
+import { getIngrediente, getNome, getPrimeiraletra } from '../services/getFood';
+import {
+  getDrinkIngrediente,
+  getDrinkNome,
+  getDrinkPrimeiraletra } from '../services/getDrink';
+import MyContext from '../context/MyContext';
 
 function Header({ title }) {
-  const [showInput, setShowInput] = useState(false);
+  const { setRespostaDrink, setRespostaFood } = useContext(MyContext);
+  const INGREDIENT_RADIO = 'ingredient-radio';
+  const [showSearchBar, setShowSearchBar] = useState(false);
+  const [radioValue, setRadioValue] = useState(INGREDIENT_RADIO);
+  const [searchValue, setSearchValue] = useState('');
+
+  const handleSearchInput = async () => {
+    if (radioValue === INGREDIENT_RADIO) {
+      setRespostaFood(await getIngrediente(searchValue));
+    } else if (radioValue === 'name-radio') {
+      setRespostaFood(await getNome(searchValue));
+    } else if (searchValue.length > 1) {
+      return global.alert('Sua busca deve conter somente 1 (um) caracter');
+    } else setRespostaFood(await getPrimeiraletra(searchValue));
+  };
+
+  const handleSearchInputDrink = async () => {
+    if (radioValue === INGREDIENT_RADIO) {
+      await setRespostaDrink(await getDrinkIngrediente(searchValue));
+    } else if (radioValue === 'name-radio') {
+      setRespostaDrink(await getDrinkNome(searchValue));
+    } else if (searchValue.length > 1) {
+      return global.alert('Sua busca deve conter somente 1 (um) caracter');
+    } else setRespostaDrink(await getDrinkPrimeiraletra(searchValue));
+  };
 
   function renderInput() {
     return (
-      <input type="text" data-testid="search-input" placeholder="Buscar comida/bebida" />
+      <input
+        type="text"
+        data-testid="search-input"
+        placeholder="Buscar receita"
+        value={ searchValue }
+        onChange={ (e) => setSearchValue(e.target.value) }
+      />
     );
+  }
+
+  function renderRadioButtons() {
+    return (
+      <>
+        <Input
+          dataID="ingredient-search-radio"
+          type="radio"
+          label="Ingrediente"
+          selected="true"
+          id="ingredient-radio"
+          name="endpoint"
+          onChange={ (e) => setRadioValue(e.target.id) }
+        />
+        <Input
+          dataID="name-search-radio"
+          type="radio"
+          label="Nome"
+          name="endpoint"
+          id="name-radio"
+          onChange={ (e) => setRadioValue(e.target.id) }
+        />
+        <Input
+          dataID="first-letter-search-radio"
+          type="radio"
+          name="endpoint"
+          label="Primeira letra"
+          id="first-letter-radio"
+          onChange={ (e) => setRadioValue(e.target.id) }
+        />
+      </>
+    );
+  }
+  const location = useLocation();
+  const validatePage = location.pathname === '/comidas'
+    ? handleSearchInput
+    : handleSearchInputDrink;
+
+  function renderSearchButton() {
+    return (
+      <Button
+        type="button"
+        text="Buscar"
+        dataID="exec-search-btn"
+        onClick={ validatePage }
+      />
+    );
+  }
+
+  function renderSearchBar() {
+    return [renderInput(), renderRadioButtons(), renderSearchButton()];
   }
 
   return (
@@ -24,14 +113,14 @@ function Header({ title }) {
           />
         </Link>
         <h1 data-testid="page-title">{title}</h1>
-        <button type="button" onClick={ () => setShowInput(!showInput) }>
+        <button type="button" onClick={ () => setShowSearchBar(!showSearchBar) }>
           <img
             src={ searchIcon }
             data-testid="search-top-btn"
             alt="Search Icon"
           />
         </button>
-        {showInput && renderInput()}
+        {showSearchBar && renderSearchBar()}
       </nav>
     </header>
   );
