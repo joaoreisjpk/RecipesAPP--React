@@ -1,26 +1,40 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import Input from './Input';
 import Button from './Button';
 import { getIngrediente, getNome, getPrimeiraletra } from '../services/getFood';
+import {
+  getDrinkIngrediente,
+  getDrinkNome,
+  getDrinkPrimeiraletra } from '../services/getDrink';
 
 function Header({ title }) {
+  const INGREDIENT_RADIO = 'ingredient-radio';
   const [showSearchBar, setShowSearchBar] = useState(false);
-  const [radioValue, setRadioValue] = useState('ingredient-radio');
+  const [radioValue, setRadioValue] = useState(INGREDIENT_RADIO);
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearchInput = () => {
-    if (radioValue === 'ingredient-radio') getIngrediente(searchValue);
-    else if (radioValue === 'name-radio') getNome(searchValue);
-    else {
-      if (searchValue.length > 1) {
-        return global.alert('Sua busca deve conter somente 1 (um) caracter');
-      }
-      getPrimeiraletra(searchValue);
+    if (radioValue === INGREDIENT_RADIO) return getIngrediente(searchValue);
+    if (radioValue === 'name-radio') return getNome(searchValue);
+
+    if (searchValue.length > 1) {
+      return global.alert('Sua busca deve conter somente 1 (um) caracter');
     }
+    return getPrimeiraletra(searchValue);
+  };
+
+  const handleSearchInputDrink = () => {
+    if (radioValue === INGREDIENT_RADIO) return getDrinkIngrediente(searchValue);
+    if (radioValue === 'name-radio') return getDrinkNome(searchValue);
+
+    if (searchValue.length > 1) {
+      return global.alert('Sua busca deve conter somente 1 (um) caracter');
+    }
+    return getDrinkPrimeiraletra(searchValue);
   };
 
   function renderInput() {
@@ -42,6 +56,7 @@ function Header({ title }) {
           dataID="ingredient-search-radio"
           type="radio"
           label="Ingrediente"
+          selected="true"
           id="ingredient-radio"
           name="endpoint"
           onChange={ (e) => setRadioValue(e.target.id) }
@@ -65,6 +80,10 @@ function Header({ title }) {
       </>
     );
   }
+  const location = useLocation();
+  const validatePage = location.pathname === '/comidas'
+    ? handleSearchInput
+    : handleSearchInputDrink;
 
   function renderSearchButton() {
     return (
@@ -72,7 +91,7 @@ function Header({ title }) {
         type="button"
         text="Buscar"
         dataID="exec-search-btn"
-        onClick={ handleSearchInput }
+        onClick={ validatePage }
       />
     );
   }

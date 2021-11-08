@@ -3,7 +3,6 @@ const URL_INGREDIENTE = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
 export const getIngrediente = async (param) => {
   const response = await fetch(`${URL_INGREDIENTE}${param}`);
   const resolve = await response.json();
-  console.log(resolve);
   return resolve;
 };
 
