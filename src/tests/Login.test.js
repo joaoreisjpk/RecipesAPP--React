@@ -74,6 +74,6 @@ describe('Testa se a tela de Login funciona devidamente', () => {
     fireEvent.change(getPassword, { target: { value: '12345678' } });
     // userEvent.type(getPassword, '12345678');
     userEvent.click(getButton);
-    expect(history.location.pathname).toEqual('/');
+    expect(history.location.pathname).toEqual('/comidas');
   });
 });
