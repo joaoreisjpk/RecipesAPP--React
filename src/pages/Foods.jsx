@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import HeaderWithSearchIcon from '../components/HeaderWithSearchIcon';
 import MyContext from '../context/MyContext';
 import Cards from '../components/Cards';
@@ -56,13 +56,15 @@ function Foods() {
     <div>
       <HeaderWithSearchIcon title="Comidas" />
       { categories && fetchCategories() }
-      { respostaFood && respostaFood.map(({ strMeal, strMealThumb }, index) => (
-        <Cards
-          key={ index }
-          name={ strMeal }
-          thumbnail={ strMealThumb }
-          index={ index }
-        />
+      { respostaFood && respostaFood.map(({ strMeal, strMealThumb, idMeal }, index) => (
+        <Link key={ index } to={ `/comidas/${idMeal}` }>
+          <Cards
+            key={ index }
+            name={ strMeal }
+            thumbnail={ strMealThumb }
+            index={ index }
+          />
+        </Link>
       )).splice(0, DOZE)}
       <Footer />
     </div>
