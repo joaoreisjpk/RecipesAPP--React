@@ -5,6 +5,7 @@ import HeaderWithSearchIcon from '../components/HeaderWithSearchIcon';
 import MyContext from '../context/MyContext';
 import Cards from '../components/Cards';
 import { getNome, getFoodCategory, getCategorylist } from '../services/getFood';
+import Footer from '../components/Footer';
 
 function Foods() {
   const { respostaFood, setRespostaFood } = useContext(MyContext);
@@ -62,6 +63,7 @@ function Foods() {
           index={ index }
         />
       )).splice(0, DOZE)}
+      <Footer />
     </div>
   );
 }

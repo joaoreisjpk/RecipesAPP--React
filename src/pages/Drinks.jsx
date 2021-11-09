@@ -5,6 +5,7 @@ import HeaderWithSearchIcon from '../components/HeaderWithSearchIcon';
 import MyContext from '../context/MyContext';
 import Cards from '../components/Cards';
 import { getDrinkNome, getDrinksCategory, getCategorylist } from '../services/getDrink';
+import Footer from '../components/Footer';
 
 function Drinks() {
   const { respostaDrink, setRespostaDrink } = useContext(MyContext);
@@ -54,7 +55,7 @@ function Drinks() {
 
   return (
     <div>
-      <HeaderWithSearchIcon title="Comidas" />
+      <HeaderWithSearchIcon title="Bebidas" />
       { categories && fetchCategories() }
       { respostaDrink && respostaDrink.map(({ strDrink, strDrinkThumb }, index) => (
         <Cards
@@ -64,6 +65,7 @@ function Drinks() {
           index={ index }
         />
       )).splice(0, DOZE)}
+      <Footer />
     </div>
   );
 }
