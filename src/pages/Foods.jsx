@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import HeaderWithSearchIcon from '../components/HeaderWithSearchIcon';
 import MyContext from '../context/MyContext';
 import Cards from '../components/Cards';
@@ -12,7 +12,7 @@ function Foods() {
   const [categories, setCategories] = useState([]);
   const [selectCategory, setSelectCategory] = useState('');
   const DOZE = 12;
-  const FIVE = 5;
+  const SIX = 6;
 
   useEffect(() => {
     const callAPI = async () => setRespostaFood(await getNome(''));
@@ -23,7 +23,7 @@ function Foods() {
   }, []);
 
   const handleClick = async ({ target: { innerText } }) => {
-    if (innerText === selectCategory) {
+    if (innerText === selectCategory || innerText === 'All') {
       setRespostaFood(await getNome(''));
       setSelectCategory('');
     } else {
@@ -32,8 +32,9 @@ function Foods() {
     }
   };
 
-  const fetchCategories = () => (
-    categories.map((item, index) => (
+  const fetchCategories = () => {
+    const allCategories = [{ strCategory: 'All' }, ...categories];
+    return allCategories.map((item, index) => (
       <button
         key={ index }
         data-testid={ `${item.strCategory}-category-filter` }
@@ -41,8 +42,8 @@ function Foods() {
         onClick={ handleClick }
       >
         {item.strCategory}
-      </button>)).splice(0, FIVE)
-  );
+      </button>)).splice(0, SIX);
+  };
 
   if (respostaFood && respostaFood.length === 1 && !selectCategory) {
     return <Redirect to={ `/comidas/${respostaFood[0].idMeal}` } />;
@@ -55,13 +56,15 @@ function Foods() {
     <div>
       <HeaderWithSearchIcon title="Comidas" />
       { categories && fetchCategories() }
-      { respostaFood && respostaFood.map(({ strMeal, strMealThumb }, index) => (
-        <Cards
-          key={ index }
-          name={ strMeal }
-          thumbnail={ strMealThumb }
-          index={ index }
-        />
+      { respostaFood && respostaFood.map(({ strMeal, strMealThumb, idMeal }, index) => (
+        <Link key={ index } to={ `/comidas/${idMeal}` }>
+          <Cards
+            key={ index }
+            name={ strMeal }
+            thumbnail={ strMealThumb }
+            index={ index }
+          />
+        </Link>
       )).splice(0, DOZE)}
       <Footer />
     </div>

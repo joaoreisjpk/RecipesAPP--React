@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import HeaderWithSearchIcon from '../components/HeaderWithSearchIcon';
 import MyContext from '../context/MyContext';
 import Cards from '../components/Cards';
@@ -12,7 +12,7 @@ function Drinks() {
   const [categories, setCategories] = useState([]);
   const [selectCategory, setSelectCategory] = useState('');
   const DOZE = 12;
-  const FIVE = 5;
+  const SIX = 6;
 
   useEffect(() => {
     const callAPI = async () => {
@@ -24,7 +24,7 @@ function Drinks() {
   }, []);
 
   const handleClick = async ({ target: { innerText } }) => {
-    if (innerText === selectCategory) {
+    if (innerText === selectCategory || innerText === 'All') {
       setRespostaDrink(await getDrinkNome(''));
       setSelectCategory('');
     } else {
@@ -33,8 +33,9 @@ function Drinks() {
     }
   };
 
-  const fetchCategories = () => (
-    categories.map((item, index) => (
+  const fetchCategories = () => {
+    const allCategories = [{ strCategory: 'All' }, ...categories];
+    return allCategories.map((item, index) => (
       <button
         key={ index }
         data-testid={ `${item.strCategory}-category-filter` }
@@ -43,8 +44,8 @@ function Drinks() {
       >
         {item.strCategory}
       </button>
-    )).splice(0, FIVE)
-  );
+    )).splice(0, SIX);
+  };
 
   if (respostaDrink && respostaDrink.length === 1) {
     return <Redirect to={ `/bebidas/${respostaDrink[0].idDrink}` } />;
@@ -57,14 +58,17 @@ function Drinks() {
     <div>
       <HeaderWithSearchIcon title="Bebidas" />
       { categories && fetchCategories() }
-      { respostaDrink && respostaDrink.map(({ strDrink, strDrinkThumb }, index) => (
-        <Cards
-          key={ index }
-          name={ strDrink }
-          thumbnail={ strDrinkThumb }
-          index={ index }
-        />
-      )).splice(0, DOZE)}
+      { respostaDrink && respostaDrink
+        .map(({ strDrink, strDrinkThumb, idDrink }, index) => (
+          <Link key={ index } to={ `/bebidas/${idDrink}` }>
+            <Cards
+              key={ index }
+              name={ strDrink }
+              thumbnail={ strDrinkThumb }
+              index={ index }
+            />
+          </Link>
+        )).splice(0, DOZE)}
       <Footer />
     </div>
   );
