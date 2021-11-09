@@ -12,7 +12,7 @@ function Foods() {
   const [categories, setCategories] = useState([]);
   const [selectCategory, setSelectCategory] = useState('');
   const DOZE = 12;
-  const FIVE = 5;
+  const SIX = 6;
 
   useEffect(() => {
     const callAPI = async () => setRespostaFood(await getNome(''));
@@ -23,7 +23,7 @@ function Foods() {
   }, []);
 
   const handleClick = async ({ target: { innerText } }) => {
-    if (innerText === selectCategory) {
+    if (innerText === selectCategory || innerText === 'All') {
       setRespostaFood(await getNome(''));
       setSelectCategory('');
     } else {
@@ -32,8 +32,9 @@ function Foods() {
     }
   };
 
-  const fetchCategories = () => (
-    categories.map((item, index) => (
+  const fetchCategories = () => {
+    const allCategories = [{ strCategory: 'All' }, ...categories];
+    return allCategories.map((item, index) => (
       <button
         key={ index }
         data-testid={ `${item.strCategory}-category-filter` }
@@ -41,8 +42,8 @@ function Foods() {
         onClick={ handleClick }
       >
         {item.strCategory}
-      </button>)).splice(0, FIVE)
-  );
+      </button>)).splice(0, SIX);
+  };
 
   if (respostaFood && respostaFood.length === 1 && !selectCategory) {
     return <Redirect to={ `/comidas/${respostaFood[0].idMeal}` } />;
