@@ -1,21 +1,49 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import HeaderWithSearchIcon from '../components/HeaderWithSearchIcon';
 import MyContext from '../context/MyContext';
 import Cards from '../components/Cards';
-import { getDrinkNome } from '../services/getDrink';
+import { getDrinkNome, getDrinksCategory, getCategorylist } from '../services/getDrink';
 
 function Drinks() {
   const { respostaDrink, setRespostaDrink } = useContext(MyContext);
-  const TREZE = 12;
+  const [categories, setCategories] = useState([]);
+  const [selectCategory, setSelectCategory] = useState('');
+  const DOZE = 12;
+  const FIVE = 5;
 
   useEffect(() => {
     const callAPI = async () => {
       setRespostaDrink(await getDrinkNome(''));
     };
+    const categoryAPI = async () => setCategories(await getCategorylist());
     callAPI();
+    categoryAPI();
   }, []);
+
+  const handleClick = async ({ target: { innerText } }) => {
+    if (innerText === selectCategory) {
+      setRespostaDrink(await getDrinkNome(''));
+      setSelectCategory('');
+    } else {
+      setSelectCategory(innerText);
+      setRespostaDrink(await getDrinksCategory(innerText));
+    }
+  };
+
+  const fetchCategories = () => (
+    categories.map((item, index) => (
+      <button
+        key={ index }
+        data-testid={ `${item.strCategory}-category-filter` }
+        type="button"
+        onClick={ handleClick }
+      >
+        {item.strCategory}
+      </button>
+    )).splice(0, FIVE)
+  );
 
   if (respostaDrink && respostaDrink.length === 1) {
     return <Redirect to={ `/bebidas/${respostaDrink[0].idDrink}` } />;
@@ -27,14 +55,15 @@ function Drinks() {
   return (
     <div>
       <HeaderWithSearchIcon title="Comidas" />
-      { respostaDrink && respostaDrink.map((item, index) => (
+      { categories && fetchCategories() }
+      { respostaDrink && respostaDrink.map(({ strDrink, strDrinkThumb }, index) => (
         <Cards
           key={ index }
-          thumbnail={ item.strDrinkThumb }
+          name={ strDrink }
+          thumbnail={ strDrinkThumb }
           index={ index }
-          name={ item.strDrink }
         />
-      )).slice(0, TREZE)}
+      )).splice(0, DOZE)}
     </div>
   );
 }

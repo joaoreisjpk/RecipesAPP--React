@@ -21,3 +21,19 @@ export const getDrinkPrimeiraletra = async (param) => {
   const resolve = await response.json();
   return resolve.drinks;
 };
+
+const URL_CATEGORIES = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
+
+export const getCategorylist = async () => {
+  const response = await fetch(URL_CATEGORIES);
+  const resolve = await response.json();
+  return resolve.drinks;
+};
+
+const URL_DRINK_CATEGORY = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=';
+
+export const getDrinksCategory = async (param) => {
+  const response = await fetch(`${URL_DRINK_CATEGORY}${param}`)
+    .then((resolve) => resolve.json());
+  return response.drinks;
+};
