@@ -21,3 +21,18 @@ export const getPrimeiraletra = async (param) => {
   const resolve = await response.json();
   return resolve.meals;
 };
+
+const URL_CATEGORY = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
+
+export const getCategorylist = async () => {
+  const response = await fetch(URL_CATEGORY).then((resolve) => resolve.json());
+  return response.meals;
+};
+
+const URL_FOOD_CATEGORY = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=';
+
+export const getFoodCategory = async (param) => {
+  const response = await fetch(`${URL_FOOD_CATEGORY}${param}`)
+    .then((resolve) => resolve.json());
+  return response.meals;
+};
