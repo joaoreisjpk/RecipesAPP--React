@@ -44,3 +44,11 @@ export const getFoodById = async (id) => {
   const resolve = await response.json();
   return resolve.meals[0];
 };
+
+const URL_FOOD_RANDOM = 'https://www.themealdb.com/api/json/v1/1/random.php';
+
+export const getRandomFood = async () => {
+  const response = await fetch(URL_FOOD_RANDOM);
+  const resolve = await response.json();
+  return resolve.meals[0].idMeal;
+};

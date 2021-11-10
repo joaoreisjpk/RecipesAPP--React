@@ -45,3 +45,11 @@ export const getDrinksID = async (param) => {
     .then((resolve) => resolve.json());
   return response.drinks[0];
 };
+
+const URL_DRINK_RANDOM = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+
+export const getRandomDrink = async () => {
+  const response = await fetch(URL_DRINK_RANDOM);
+  const resolve = await response.json();
+  return resolve.drinks[0].idDrink;
+};
