@@ -12,7 +12,6 @@ const CardDetail = ({
   instructions,
   srcVideo,
   itemRecomendation,
-  itemId,
   object }) => {
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
@@ -31,7 +30,9 @@ const CardDetail = ({
         -
         {' '}
       </span>
-      <span style={ { fontSize: '40px' } } data-testid="recipe-category">{category}</span>
+      <span style={ { fontSize: '40px' } } data-testid="recipe-category">
+        {category}
+      </span>
       <div>
         <img src={ srcImg } alt={ title } data-testid="recipe-photo" />
       </div>
@@ -52,9 +53,6 @@ const CardDetail = ({
       { itemRecomendation && itemRecomendation.map((item, index) => (
         <RecommendationCard key={ index } recipe={ { ...item, index } } />
       )).slice(0, SEVEN) }
-
-      <button data-testid="start-recipe-btn" type="button">Iniciar Receita</button>
-
     </div>
   );
 };

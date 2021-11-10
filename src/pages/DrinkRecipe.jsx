@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getDrinksID } from '../services/getDrink';
 import { getNome } from '../services/getFood';
 import CardDetail from '../components/CardDetail';
@@ -27,11 +27,13 @@ function DrinkRecipe() {
         object={ itemDetail }
         srcImg={ itemDetail.strDrinkThumb }
         title={ itemDetail.strDrink }
-        category={ itemDetail.strCategory }
         instructions={ itemDetail.strInstructions }
+        category={ itemDetail.strAlcoholic }
         itemRecomendation={ itemRecomendation }
-        itemID={ idDrink }
       />
+      <Link to={ `/bebidas/${idDrink}/in-progress` }>
+        <button data-testid="start-recipe-btn" type="button">Iniciar Receita</button>
+      </Link>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getFoodById } from '../services/getFood';
 import { getDrinkNome } from '../services/getDrink';
 import CardDetail from '../components/CardDetail';
@@ -31,8 +31,10 @@ function FoodRecipe() {
         instructions={ itemDetail.strInstructions }
         srcVideo={ itemDetail.strYoutube }
         itemRecomendation={ itemRecomendation }
-        itemID={ idMeal }
       />
+      <Link to={ `/comidas/${idMeal}/in-progress` }>
+        <button data-testid="start-recipe-btn" type="button">Iniciar Receita</button>
+      </Link>
     </div>
   );
 }
