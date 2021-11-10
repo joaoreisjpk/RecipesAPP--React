@@ -26,6 +26,7 @@ const RecommendationCard = ({ recipe, counter }) => {
 };
 
 RecommendationCard.propTypes = {
+  counter: PropTypes.number.isRequired,
   recipe: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 

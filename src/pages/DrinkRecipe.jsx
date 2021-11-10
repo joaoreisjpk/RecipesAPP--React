@@ -32,7 +32,14 @@ function DrinkRecipe() {
         itemRecomendation={ itemRecomendation }
       />
       <Link to={ `/bebidas/${idDrink}/in-progress` }>
-        <button data-testid="start-recipe-btn" type="button">Iniciar Receita</button>
+        <button
+          style={ { position: 'fixed', bottom: '0px' } }
+          data-testid="start-recipe-btn"
+          type="button"
+        >
+          Iniciar Receita
+
+        </button>
       </Link>
     </div>
   );

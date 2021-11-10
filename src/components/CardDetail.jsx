@@ -56,7 +56,13 @@ const CardDetail = ({
         { !srcVideo ? null : <Video srcVideo={ srcVideo } />}
       </div>
       <h3>Recomendações</h3>
-      <button type="button" onClick={ () => handleClick(false) } disabled={ !counter }>{'<'}</button>
+      <button
+        type="button"
+        onClick={ () => handleClick(false) }
+        disabled={ !counter }
+      >
+        {'<'}
+      </button>
       <button
         type="button"
         onClick={ () => handleClick(true) }
@@ -71,7 +77,6 @@ const CardDetail = ({
           counter={ counter }
         />
       )).slice(0, SIX) }
-
     </div>
   );
 };

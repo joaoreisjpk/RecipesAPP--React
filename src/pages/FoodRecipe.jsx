@@ -33,7 +33,14 @@ function FoodRecipe() {
         itemRecomendation={ itemRecomendation }
       />
       <Link to={ `/comidas/${idMeal}/in-progress` }>
-        <button data-testid="start-recipe-btn" type="button">Iniciar Receita</button>
+        <button
+          style={ { position: 'fixed', bottom: '0px' } }
+          data-testid="start-recipe-btn"
+          type="button"
+        >
+          Iniciar Receita
+
+        </button>
       </Link>
     </div>
   );
