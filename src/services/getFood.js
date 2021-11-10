@@ -36,3 +36,11 @@ export const getFoodCategory = async (param) => {
     .then((resolve) => resolve.json());
   return response.meals;
 };
+
+const URL_FOOD_ID = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
+
+export const getFoodById = async (id) => {
+  const response = await fetch(`${URL_FOOD_ID}${id}`);
+  const resolve = await response.json();
+  return resolve.meals[0];
+};

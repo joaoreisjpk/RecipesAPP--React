@@ -37,3 +37,11 @@ export const getDrinksCategory = async (param) => {
     .then((resolve) => resolve.json());
   return response.drinks;
 };
+
+const URL_DRINK_ID = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=';
+
+export const getDrinksID = async (param) => {
+  const response = await fetch(`${URL_DRINK_ID}${param}`)
+    .then((resolve) => resolve.json());
+  return response.drinks[0];
+};
