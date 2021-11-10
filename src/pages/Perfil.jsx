@@ -1,12 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
-import MyContext from '../context/MyContext';
 
 function Perfil() {
-  const { login: { email } } = useContext(MyContext);
+  let email = '';
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  if (user) {
+    email = user.email;
+  }
 
   return (
     <>
