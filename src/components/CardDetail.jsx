@@ -15,7 +15,14 @@ const CardDetail = ({
   object }) => {
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
-  const SEVEN = 7;
+  const [counter, setCounter] = useState(0);
+  const SIX = 6;
+
+  const handleClick = (param) => {
+    if (param && (counter < 2 + 2 + 1)) {
+      setCounter(counter + 1);
+    } else setCounter(counter - 1);
+  };
 
   useEffect(() => {
     setMeasures(getMeasures(object));
@@ -49,10 +56,22 @@ const CardDetail = ({
         { !srcVideo ? null : <Video srcVideo={ srcVideo } />}
       </div>
       <h3>Recomendações</h3>
-
+      <button type="button" onClick={ () => handleClick(false) } disabled={ !counter }>{'<'}</button>
+      <button
+        type="button"
+        onClick={ () => handleClick(true) }
+        disabled={ counter === 2 + 2 + 1 }
+      >
+        {'>'}
+      </button>
       { itemRecomendation && itemRecomendation.map((item, index) => (
-        <RecommendationCard key={ index } recipe={ { ...item, index } } />
-      )).slice(0, SEVEN) }
+        <RecommendationCard
+          key={ index }
+          recipe={ { ...item, index } }
+          counter={ counter }
+        />
+      )).slice(0, SIX) }
+
     </div>
   );
 };
