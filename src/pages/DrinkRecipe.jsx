@@ -19,7 +19,6 @@ function DrinkRecipe() {
     callRecomendation();
   }, []);
 
-  console.log(itemRecomendation);
   if (!itemDetail) return <span>Carregando...</span>;
   return (
     <div>
@@ -28,8 +27,11 @@ function DrinkRecipe() {
         srcImg={ itemDetail.strDrinkThumb }
         title={ itemDetail.strDrink }
         instructions={ itemDetail.strInstructions }
-        category={ itemDetail.strAlcoholic }
+        category={ itemDetail.strCategory }
+        alcoholicOrNot={ itemDetail.strAlcoholic }
+        itemID={ idDrink }
         itemRecomendation={ itemRecomendation }
+        type="bebida"
       />
       <Link to={ `/bebidas/${idDrink}/in-progress` }>
         <button

@@ -20,7 +20,6 @@ function FoodRecipe() {
   }, []);
 
   if (!itemDetail) return <span>Carregando...</span>;
-  console.log(itemDetail);
   return (
     <div>
       <CardDetail
@@ -31,6 +30,8 @@ function FoodRecipe() {
         instructions={ itemDetail.strInstructions }
         srcVideo={ itemDetail.strYoutube }
         itemRecomendation={ itemRecomendation }
+        itemID={ idMeal }
+        type="comida"
       />
       <Link to={ `/comidas/${idMeal}/in-progress` }>
         <button
@@ -39,7 +40,6 @@ function FoodRecipe() {
           type="button"
         >
           Iniciar Receita
-
         </button>
       </Link>
     </div>
