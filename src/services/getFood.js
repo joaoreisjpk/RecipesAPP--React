@@ -60,3 +60,19 @@ export const getIngredientList = async () => {
   const resolve = await response.json();
   return resolve.meals;
 };
+
+const URL_FOOD_AREA = 'https://www.themealdb.com/api/json/v1/1/filter.php?a=';
+
+export const getFoodListByArea = async (area) => {
+  const response = await fetch(`${URL_FOOD_AREA}${area}`);
+  const resolve = await response.json();
+  return resolve.meals;
+};
+
+const URL_AREA_LIST = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
+
+export const getAreaList = async () => {
+  const response = await fetch(URL_AREA_LIST);
+  const resolve = await response.json();
+  return resolve.meals;
+};

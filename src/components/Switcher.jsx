@@ -16,6 +16,7 @@ import ExploreFoodsArea from '../pages/ExploreFoodsArea';
 import Perfil from '../pages/Perfil';
 import DoneRecipes from '../pages/DoneRecipes';
 import FavoriteRecipes from '../pages/FavoriteRecipes';
+import ExploreDrinksArea from '../pages/ExploreDrinksArea';
 
 class Switcher extends Component {
   render() {
@@ -35,6 +36,11 @@ class Switcher extends Component {
           exact
           path="/explorar/comidas/area"
           render={ (props) => <ExploreFoodsArea { ...props } /> }
+        />
+        <Route
+          exact
+          path="/explorar/bebidas/area"
+          render={ (props) => <ExploreDrinksArea { ...props } /> }
         />
         <Route
           exact
