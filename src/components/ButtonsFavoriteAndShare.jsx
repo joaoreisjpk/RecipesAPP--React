@@ -5,7 +5,7 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 import { isFavorite, handleFavorite } from '../helpers';
 
-const Buttons = ({ object, handleUpdate, idShare, idFavorite }) => {
+const ButtonsFavoriteAndShare = ({ object, handleUpdate, idShare, idFavorite }) => {
   const [copiado, setCopiado] = useState(false);
   const [favorited, setFavorited] = useState();
 
@@ -62,11 +62,11 @@ const Buttons = ({ object, handleUpdate, idShare, idFavorite }) => {
   );
 };
 
-Buttons.propTypes = {
+ButtonsFavoriteAndShare.propTypes = {
   object: PropTypes.objectOf(PropTypes.any).isRequired,
   handleUpdate: PropTypes.func.isRequired,
   idShare: PropTypes.string.isRequired,
   idFavorite: PropTypes.string.isRequired,
 };
 
-export default Buttons;
+export default ButtonsFavoriteAndShare;
