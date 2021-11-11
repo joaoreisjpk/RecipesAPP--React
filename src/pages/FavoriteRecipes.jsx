@@ -24,7 +24,7 @@ function FavoriteRecipes() {
   };
 
   const fetchFavoriteList = () => (
-    favoriteList.filter((item) => item.type !== filter)
+    favoriteList && favoriteList.filter((item) => item.type !== filter)
       .map((item, index) => {
         if (item.type === 'comida') {
           return (

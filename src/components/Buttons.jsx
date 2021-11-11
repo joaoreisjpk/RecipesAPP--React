@@ -23,7 +23,8 @@ const Buttons = ({ object, handleUpdate, idShare, idFavorite }) => {
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(`http://localhost:3000/${object.type}s/${id}`);
+    navigator.clipboard.writeText(`http://localhost:3000/${object.type}s/${id}`)
+      .catch((error) => `Doidera Manobrow${error}`);
     setCopiado(true);
   };
 
