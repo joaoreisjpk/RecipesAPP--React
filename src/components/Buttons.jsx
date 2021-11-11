@@ -1,27 +1,59 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
+import { isFavorite, handleFavorite } from '../helpers';
 
-const Buttons = ({ handleFavorite, isFavorite, title, type, id }) => {
+const Buttons = ({ object, handleUpdate, idShare, idFavorite }) => {
   const [copiado, setCopiado] = useState(false);
+  const [favorited, setFavorited] = useState();
+
+  const id = object.idMeal || object.idDrink || object.id;
+  const title = object.title || object.name;
+
+  useEffect(() => {
+    setFavorited(isFavorite(id));
+  }, []);
+
+  const handleClick = () => {
+    setFavorited(!favorited);
+    handleFavorite({ ...object });
+    if (handleUpdate) handleUpdate();
+  };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(`http://localhost:3000/${type}s/${id}`);
+    navigator.clipboard.writeText(`http://localhost:3000/${object.type}s/${id}`)
+      .catch((error) => `Doidera Manobrow${error}`);
     setCopiado(true);
   };
+
+  console.log(idFavorite, idShare);
 
   return (
     <div>
       <button type="button" onClick={ handleCopy }>
-        <img data-testid="share-btn" src={ shareIcon } alt={ title } />
+        <img
+          src={ shareIcon }
+          alt={ title }
+          data-testid={ idShare || 'share-btn' }
+        />
       </button>
 
-      <button type="button" onClick={ handleFavorite }>
-        { isFavorite
-          ? <img src={ blackHeartIcon } alt={ title } data-testid="favorite-btn" />
-          : <img src={ whiteHeartIcon } alt={ title } data-testid="favorite-btn" />}
+      <button type="button" onClick={ handleClick }>
+        { favorited
+          ? (
+            <img
+              src={ blackHeartIcon }
+              alt={ title }
+              data-testid={ idFavorite || 'favorite-btn' }
+            />)
+          : (
+            <img
+              src={ whiteHeartIcon }
+              alt={ title }
+              data-testid={ idFavorite || 'favorite-btn' }
+            />)}
       </button>
 
       { copiado && <p>Link copiado!</p>}
@@ -31,11 +63,10 @@ const Buttons = ({ handleFavorite, isFavorite, title, type, id }) => {
 };
 
 Buttons.propTypes = {
-  handleFavorite: PropTypes.func.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  object: PropTypes.objectOf(PropTypes.any).isRequired,
+  handleUpdate: PropTypes.func.isRequired,
+  idShare: PropTypes.string.isRequired,
+  idFavorite: PropTypes.string.isRequired,
 };
 
 export default Buttons;

@@ -4,11 +4,17 @@ import { Link, Redirect } from 'react-router-dom';
 import HeaderWithSearchIcon from '../components/HeaderWithSearchIcon';
 import MyContext from '../context/MyContext';
 import Cards from '../components/Cards';
-import { getDrinkNome, getDrinksCategory, getCategorylist } from '../services/getDrink';
+import {
+  getDrinkNome,
+  getDrinksCategory,
+  getCategorylist,
+  getDrinkIngrediente,
+} from '../services/getDrink';
 import Footer from '../components/Footer';
 
 function Drinks() {
   const { respostaDrink, setRespostaDrink } = useContext(MyContext);
+  const { ingredient } = useContext(MyContext);
   const [categories, setCategories] = useState([]);
   const [selectCategory, setSelectCategory] = useState('');
   const DOZE = 12;
@@ -16,9 +22,13 @@ function Drinks() {
 
   useEffect(() => {
     const callAPI = async () => {
-      setRespostaDrink(await getDrinkNome(''));
+      if (ingredient) {
+        setSelectCategory('Ingrediente');
+        setRespostaDrink(await getDrinkIngrediente(ingredient));
+      } else setRespostaDrink(await getDrinkNome(''));
     };
     const categoryAPI = async () => setCategories(await getCategorylist());
+
     callAPI();
     categoryAPI();
   }, []);

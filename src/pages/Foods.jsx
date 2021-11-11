@@ -4,18 +4,29 @@ import { Link, Redirect } from 'react-router-dom';
 import HeaderWithSearchIcon from '../components/HeaderWithSearchIcon';
 import MyContext from '../context/MyContext';
 import Cards from '../components/Cards';
-import { getNome, getFoodCategory, getCategorylist } from '../services/getFood';
+import {
+  getNome,
+  getFoodCategory,
+  getCategorylist,
+  getIngrediente,
+} from '../services/getFood';
 import Footer from '../components/Footer';
 
 function Foods() {
   const { respostaFood, setRespostaFood } = useContext(MyContext);
+  const { ingredient } = useContext(MyContext);
   const [categories, setCategories] = useState([]);
   const [selectCategory, setSelectCategory] = useState('');
   const DOZE = 12;
   const SIX = 6;
 
   useEffect(() => {
-    const callAPI = async () => setRespostaFood(await getNome(''));
+    const callAPI = async () => {
+      if (ingredient) {
+        setSelectCategory('Ingrediente');
+        setRespostaFood(await getIngrediente(ingredient));
+      } else setRespostaFood(await getNome(''));
+    };
     const categoryAPI = async () => setCategories(await getCategorylist());
 
     callAPI();

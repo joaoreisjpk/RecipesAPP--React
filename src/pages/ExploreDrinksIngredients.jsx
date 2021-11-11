@@ -1,14 +1,46 @@
-import React from 'react';
-import Footer from '../components/Footer';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import MyContext from '../context/MyContext';
+import Footer from '../components/Footer';
+import { getIngredientList } from '../services/getDrink';
 
-function ExploreDrinksIngredients() {
+function ExploreFoodsIngredients() {
+  const { setIngredient } = useContext(MyContext);
+  const [ingredientList, setIngredientList] = useState([]);
+  const DOZE = 12;
+
+  useEffect(() => {
+    const fetchAPI = async () => {
+      setIngredientList(await getIngredientList());
+    };
+    fetchAPI();
+  }, []);
+
+  const handleIngredient = (param) => {
+    setIngredient(param);
+  };
+
   return (
     <>
       <Header title="Explorar Ingredientes" />
+      {ingredientList.splice(0, DOZE).map(({ strIngredient1 }, index) => (
+        <Link to="/bebidas/" key={ index }>
+          <button type="button" onClick={ () => handleIngredient(strIngredient1) }>
+            <div data-testid={ `${index}-ingredient-card` }>
+              <h2 data-testid={ `${index}-card-name` }>{strIngredient1}</h2>
+              <img
+                src={ `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png` }
+                alt=""
+                data-testid={ `${index}-card-img` }
+              />
+            </div>
+          </button>
+        </Link>
+      ))}
       <Footer />
     </>
   );
 }
 
-export default ExploreDrinksIngredients;
+export default ExploreFoodsIngredients;
