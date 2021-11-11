@@ -52,3 +52,11 @@ export const getRandomFood = async () => {
   const resolve = await response.json();
   return resolve.meals[0].idMeal;
 };
+
+const URL_INGREDIENTS_LIST = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
+
+export const getIngredientList = async () => {
+  const response = await fetch(URL_INGREDIENTS_LIST);
+  const resolve = await response.json();
+  return resolve.meals;
+};

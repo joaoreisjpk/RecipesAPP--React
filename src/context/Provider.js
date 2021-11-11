@@ -10,6 +10,7 @@ function Provider({ children }) {
 
   const [respostaDrink, setRespostaDrink] = useState(undefined);
   const [respostaFood, setRespostaFood] = useState(undefined);
+  const [ingredient, setIngredient] = useState('');
 
   const context = {
     login,
@@ -18,6 +19,8 @@ function Provider({ children }) {
     setRespostaDrink,
     respostaFood,
     setRespostaFood,
+    ingredient,
+    setIngredient,
   };
   return (
     <MyContext.Provider value={ context }>
