@@ -6,7 +6,10 @@ function IngredientsInProgress({ index, ingrediente, measures }) {
 
   return (
     <div data-testid={ `${index}-ingredient-step` }>
-      <label className="completed" htmlFor={ ingrediente }>
+      <label
+        style={ checked ? { textDecoration: 'line-through' } : null }
+        htmlFor={ ingrediente }
+      >
         <input
           data-testid={ `${index}-ingredient-step` }
           type="checkbox"
