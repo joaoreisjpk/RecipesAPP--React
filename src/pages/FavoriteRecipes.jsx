@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Buttons from '../components/Buttons';
+import ButtonsFavoriteAndShare from '../components/ButtonsFavoriteAndShare';
 import Header from '../components/Header';
 import {
   getFavoriteList,
@@ -44,7 +44,7 @@ function FavoriteRecipes() {
               <div data-testid={ `${index}-horizontal-top-text` }>
                 {`${item.area} - ${item.category}`}
               </div>
-              <Buttons
+              <ButtonsFavoriteAndShare
                 object={ item }
                 handleUpdate={ handleClick }
                 idShare={ `${index}-horizontal-share-btn` }
@@ -69,7 +69,7 @@ function FavoriteRecipes() {
               {item.alcoholicOrNot}
             </div>
             <div>{item.alcoholicOrNot}</div>
-            <Buttons
+            <ButtonsFavoriteAndShare
               object={ item }
               handleUpdate={ handleClick }
               idShare={ `${index}-horizontal-share-btn` }

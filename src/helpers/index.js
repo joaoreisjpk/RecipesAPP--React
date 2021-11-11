@@ -26,9 +26,14 @@ export const setFavoriteList = (item) => (
   localStorage.setItem('favoriteRecipes', JSON.stringify(item))
 );
 
-export const isFavorite = (id) => (
-  getFavoriteList().some((item) => item.id === id)
-);
+export const isFavorite = (id) => {
+  console.log(getFavoriteList());
+  if (getFavoriteList()) {
+    return getFavoriteList().some((item) => item.id === id);
+  }
+  setFavoriteList([]);
+  return false;
+};
 
 export const handleFavorite = (object) => {
   const { idDrink, strArea, type, strAlcoholic, strDrink, strDrinkThumb } = object;

@@ -11,7 +11,6 @@ function IngredientsInProgress({ index, ingrediente, measures }) {
         htmlFor={ ingrediente }
       >
         <input
-          data-testid={ `${index}-ingredient-step` }
           type="checkbox"
           id={ ingrediente }
           checked={ checked }
