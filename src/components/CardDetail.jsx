@@ -9,7 +9,7 @@ import {
   setFavoriteList,
 } from '../helpers';
 import Video from './Video';
-import Buttons from './Buttons';
+import ButtonsFavoriteAndShare from './ButtonsFavoriteAndShare';
 
 const CardDetail = ({
   srcImg,
@@ -59,7 +59,7 @@ const CardDetail = ({
       </div>
       <p data-testid="instructions">{instructions}</p>
 
-      <Buttons
+      <ButtonsFavoriteAndShare
         object={ { ...object, type } }
       />
 

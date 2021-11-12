@@ -6,18 +6,20 @@ import Footer from '../components/Footer';
 import { getIngredientList } from '../services/getFood';
 
 function ExploreFoodsIngredients() {
-  const { setIngredient } = useContext(MyContext);
+  const { setIngredient, setRespostaFood } = useContext(MyContext);
   const [ingredientList, setIngredientList] = useState([]);
   const DOZE = 12;
 
   useEffect(() => {
     const fetchAPI = async () => {
+      setRespostaFood([]);
       setIngredientList(await getIngredientList());
     };
     fetchAPI();
-  }, []);
+  }, [setRespostaFood]);
 
   const handleIngredient = (param) => {
+    console.log('clicado');
     setIngredient(param);
   };
 

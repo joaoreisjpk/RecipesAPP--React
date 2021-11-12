@@ -10,6 +10,7 @@ import {
   getCategorylist,
   getDrinkIngrediente,
 } from '../services/getDrink';
+import drinksByIngredient from '../helpers/drinksByIngredient';
 import Footer from '../components/Footer';
 
 function Drinks() {
@@ -23,8 +24,10 @@ function Drinks() {
   useEffect(() => {
     const callAPI = async () => {
       if (ingredient) {
+        console.log(ingredient, await getDrinkIngrediente(ingredient));
         setSelectCategory('Ingrediente');
-        setRespostaDrink(await getDrinkIngrediente(ingredient));
+        // setRespostaDrink(await getDrinkIngrediente(ingredient));
+        setRespostaDrink(drinksByIngredient.drinks);
       } else setRespostaDrink(await getDrinkNome(''));
     };
     const categoryAPI = async () => setCategories(await getCategorylist());

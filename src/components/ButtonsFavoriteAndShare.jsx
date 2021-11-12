@@ -5,7 +5,7 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 import { isFavorite, handleFavorite } from '../helpers';
 
-const Buttons = ({ object, handleUpdate, idShare, idFavorite }) => {
+const ButtonsFavoriteAndShare = ({ object, handleUpdate, idShare, idFavorite }) => {
   const [copiado, setCopiado] = useState(false);
   const [favorited, setFavorited] = useState();
 
@@ -14,7 +14,7 @@ const Buttons = ({ object, handleUpdate, idShare, idFavorite }) => {
 
   useEffect(() => {
     setFavorited(isFavorite(id));
-  }, []);
+  }, [id]);
 
   const handleClick = () => {
     setFavorited(!favorited);
@@ -23,12 +23,10 @@ const Buttons = ({ object, handleUpdate, idShare, idFavorite }) => {
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(`http://localhost:3000/${object.type}s/${id}`)
+    window.navigator.clipboard.writeText(`http://localhost:3000/${object.type}s/${id}`)
       .catch((error) => `Doidera Manobrow${error}`);
     setCopiado(true);
   };
-
-  console.log(idFavorite, idShare);
 
   return (
     <div>
@@ -62,11 +60,11 @@ const Buttons = ({ object, handleUpdate, idShare, idFavorite }) => {
   );
 };
 
-Buttons.propTypes = {
+ButtonsFavoriteAndShare.propTypes = {
   object: PropTypes.objectOf(PropTypes.any).isRequired,
   handleUpdate: PropTypes.func.isRequired,
   idShare: PropTypes.string.isRequired,
   idFavorite: PropTypes.string.isRequired,
 };
 
-export default Buttons;
+export default ButtonsFavoriteAndShare;
