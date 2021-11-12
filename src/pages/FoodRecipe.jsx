@@ -24,13 +24,14 @@ function FoodRecipe() {
 
   useEffect(() => () => {
     const createIdKey = () => {
+      const arrayValue = keyInProgressRecipesFromLS.meals[idMeal];
       localStorage.setItem('inProgressRecipes', JSON.stringify({
-        cocktails: {
-          ...keyInProgressRecipesFromLS.cocktails,
-        },
         meals: {
           ...keyInProgressRecipesFromLS.meals,
-          [idMeal]: [...keyInProgressRecipesFromLS.meals[idMeal]],
+          [idMeal]: arrayValue ? [...keyInProgressRecipesFromLS.meals[idMeal]] : [],
+        },
+        cocktails: {
+          ...keyInProgressRecipesFromLS.cocktails,
         },
       }));
     };
@@ -40,6 +41,15 @@ function FoodRecipe() {
   function saveFoodIngredientsAtLocalStorage() {
     localStorage.setItem('foodIngredients', JSON.stringify(getIngredients(itemDetail)));
   }
+  /*
+  function handleButtonText() {
+    const getStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (!getStorage && !getStorage.meals) return false;
+    const mealKeys = Object.keys(getStorage.meals);
+    const validate = mealKeys.some((id) => id === idMeal);
+    console.log(validate);
+    return validate;
+  } */
 
   if (!itemDetail) return <span>Carregando...</span>;
   return (
@@ -62,6 +72,7 @@ function FoodRecipe() {
           type="button"
           onClick={ saveFoodIngredientsAtLocalStorage }
         >
+          {/* {handleButtonText() ? 'Continuar Receita' : 'Iniciar Receita'} */}
           Iniciar Receita
         </button>
       </Link>

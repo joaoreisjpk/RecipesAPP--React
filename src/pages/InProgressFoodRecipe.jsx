@@ -11,15 +11,24 @@ function InProgressFoodRecipe() {
   const [disabled, setDisabled] = useState();
   const { strMealThumb, strMeal, strInstructions, strCategory } = foodRecipeInProgress;
   const { idMeal } = useParams();
+  const arrayOfIngredientsChecked = JSON.parse(
+    localStorage.getItem('inProgressRecipes'),
+  ).meals[idMeal];
 
   function isAllFoodIngredientsChecked() {
     console.log('rodou');
-    const arrayOfIngredientsChecked = JSON.parse(
-      localStorage.getItem('inProgressRecipes'),
-    ).meals[idMeal];
     const allIngredients = JSON.parse(localStorage.getItem('foodIngredients'));
-    if (allIngredients.length === arrayOfIngredientsChecked.length) setDisabled(false);
+    if (arrayOfIngredientsChecked
+      && allIngredients.length === arrayOfIngredientsChecked.length) setDisabled(false);
     else setDisabled(true);
+  }
+
+  function handleButtonText() {
+    const mealKeys = Object.keys(JSON
+      .parse(localStorage.getItem('inProgressRecipes')).meals);
+    const validate = mealKeys.some((id) => id === idMeal);
+    console.log(validate);
+    return validate;
   }
 
   useEffect(async () => {
@@ -55,7 +64,7 @@ function InProgressFoodRecipe() {
             data-testid="finish-recipe-btn"
             type="button"
           >
-            Finalizar Receita
+            { handleButtonText() ? 'Continuar Receita' : 'Iniciar Receita'}
 
           </button>
         </Link>

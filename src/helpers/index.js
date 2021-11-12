@@ -59,3 +59,41 @@ export const handleFavorite = (object) => {
     setFavoriteList([...getFavoriteList(), list]);
   }
 };
+
+export const getDoneList = () => JSON.parse(localStorage.getItem('doneRecipes'));
+
+export const attDoneList = (item) => (
+  localStorage.setItem('doneRecipes', JSON.stringify(item))
+);
+
+export const isDone = (id) => (
+  getDoneList().some((item) => item.id === id)
+);
+
+export const handleDone = (object) => {
+  const { idDrink, strArea, type, strAlcoholic, strDrink, strDrinkThumb } = object;
+  const { idMeal, strCategory, strMeal, strMealThumb } = object;
+  const { id: itemID, area, category, name, image, alcoholicOrNot, tags } = object;
+
+  const id = idMeal || idDrink || itemID;
+
+  if (isDone(id)) {
+    const list = getDoneList()
+      .filter((item) => item.id !== id);
+
+    attDoneList(list);
+  } else {
+    const list = {
+      id,
+      type,
+      area: strArea || area || '',
+      category: strCategory || category,
+      alcoholicOrNot: strAlcoholic || alcoholicOrNot || '',
+      name: strDrink || name || strMeal,
+      image: strDrinkThumb || image || strMealThumb,
+      doneDate: new Date(),
+      tags: tags || [],
+    };
+    attDoneList([...getDoneList(), list]);
+  }
+};

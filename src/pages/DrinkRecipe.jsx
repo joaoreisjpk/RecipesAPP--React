@@ -24,13 +24,14 @@ function DrinkRecipe() {
 
   useEffect(() => () => {
     const createIdKey = () => {
+      const arrayValue = keyInProgressRecipesFromLS.cocktails[idDrink];
       localStorage.setItem('inProgressRecipes', JSON.stringify({
-        cocktails: {
-          ...keyInProgressRecipesFromLS.cocktails,
-          [idDrink]: [...keyInProgressRecipesFromLS.cocktails[idDrink]],
-        },
         meals: {
           ...keyInProgressRecipesFromLS.meals,
+        },
+        cocktails: {
+          ...keyInProgressRecipesFromLS.cocktails,
+          [idDrink]: arrayValue ? [...keyInProgressRecipesFromLS.cocktails[idDrink]] : [],
         },
       }));
     };
@@ -40,6 +41,16 @@ function DrinkRecipe() {
   function saveDrinkIngredientsAtLocalStorage() {
     localStorage.setItem('drinkIngredients', JSON.stringify(getIngredients(itemDetail)));
   }
+  /*
+  function handleButtonText() {
+    const getStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (!getStorage && !getStorage.cocktails) return false;
+    const drinkKeys = Object.keys(getStorage.cocktails);
+    const validate = drinkKeys.some((id) => id === idDrink);
+    console.log('drinkKeys:', drinkKeys);
+    console.log('validation:', validate);
+    return validate;
+  } */
 
   if (!itemDetail) return <span>Carregando...</span>;
   return (
@@ -62,8 +73,8 @@ function DrinkRecipe() {
           type="button"
           onClick={ saveDrinkIngredientsAtLocalStorage }
         >
+          {/* {handleButtonText() ? 'Continuar Receita' : 'Iniciar Receita'} */}
           Iniciar Receita
-
         </button>
       </Link>
     </div>
