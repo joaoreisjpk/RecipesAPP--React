@@ -4,11 +4,14 @@ import { useParams, Link } from 'react-router-dom';
 import { getFoodById } from '../services/getFood';
 import { getDrinkNome } from '../services/getDrink';
 import CardDetail from '../components/CardDetail';
+import { getIngredients } from '../helpers';
 
 function FoodRecipe() {
   const [itemDetail, setItemDetail] = useState();
   const [itemRecomendation, setItemRecomendation] = useState();
   const { idMeal } = useParams();
+  const keyInProgressRecipesFromLS = JSON
+    .parse(localStorage.getItem('inProgressRecipes'));
 
   useEffect(() => {
     const callAPI = async () => {
@@ -18,6 +21,25 @@ function FoodRecipe() {
     callAPI();
     callRecomendation();
   }, []);
+
+  useEffect(() => () => {
+    const createIdKey = () => {
+      localStorage.setItem('inProgressRecipes', JSON.stringify({
+        cocktails: {
+          ...keyInProgressRecipesFromLS.cocktails,
+        },
+        meals: {
+          ...keyInProgressRecipesFromLS.meals,
+          [idMeal]: [],
+        },
+      }));
+    };
+    createIdKey();
+  }, []);
+
+  function saveFoodIngredientsAtLocalStorage() {
+    localStorage.setItem('foodIngredients', JSON.stringify(getIngredients(itemDetail)));
+  }
 
   if (!itemDetail) return <span>Carregando...</span>;
   return (
@@ -38,6 +60,7 @@ function FoodRecipe() {
           style={ { position: 'fixed', bottom: '0px' } }
           data-testid="start-recipe-btn"
           type="button"
+          onClick={ saveFoodIngredientsAtLocalStorage }
         >
           Iniciar Receita
         </button>

@@ -2,28 +2,32 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ButtonsFavoriteAndShare from '../components/ButtonsFavoriteAndShare';
-import {
-  getMeasures,
-  getIngredients,
-  getFavoriteList,
-  setFavoriteList } from '../helpers';
+import { getMeasures, getIngredients } from '../helpers';
 import { getFoodById } from '../services/getFood';
 import IngredientsInProgress from '../components/IngredientsInProgress';
 
 function InProgressFoodRecipe() {
   const [foodRecipeInProgress, setFoodRecipeInProgress] = useState([]);
+  const [disabled, setDisabled] = useState();
   const { strMealThumb, strMeal, strInstructions, strCategory } = foodRecipeInProgress;
   const { idMeal } = useParams();
 
-  useEffect(() => {
+  function isAllFoodIngredientsChecked() {
+    console.log('rodou');
+    const arrayOfIngredientsChecked = JSON.parse(
+      localStorage.getItem('inProgressRecipes'),
+    ).meals[idMeal];
+    const allIngredients = JSON.parse(localStorage.getItem('foodIngredients'));
+    if (allIngredients.length === arrayOfIngredientsChecked.length) setDisabled(false);
+    else setDisabled(true);
+  }
+
+  useEffect(async () => {
     const getFoodFromAPI = async () => {
       setFoodRecipeInProgress(await getFoodById(idMeal));
     };
-
-    getFoodFromAPI();
-    if (!getFavoriteList()) {
-      setFavoriteList([]);
-    }
+    await getFoodFromAPI();
+    isAllFoodIngredientsChecked();
   }, []);
 
   function renderPage() {
@@ -40,11 +44,20 @@ function InProgressFoodRecipe() {
             index={ index }
             ingrediente={ ingrediente }
             measures={ getMeasures(foodRecipeInProgress) }
+            idMeal={ idMeal }
+            handleButton={ isAllFoodIngredientsChecked }
           />
         ))}
         <section data-testid="instructions">{ strInstructions }</section>
         <Link to="/receitas-feitas">
-          <button data-testid="finish-recipe-btn" type="button">Finalizar Receita</button>
+          <button
+            disabled={ disabled }
+            data-testid="finish-recipe-btn"
+            type="button"
+          >
+            Finalizar Receita
+
+          </button>
         </Link>
       </div>
     );

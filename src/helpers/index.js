@@ -27,7 +27,6 @@ export const setFavoriteList = (item) => (
 );
 
 export const isFavorite = (id) => {
-  console.log(getFavoriteList());
   if (getFavoriteList()) {
     return getFavoriteList().some((item) => item.id === id);
   }

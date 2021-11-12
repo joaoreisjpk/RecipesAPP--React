@@ -12,10 +12,7 @@ const ButtonsFavoriteAndShare = ({ object, handleUpdate, idShare, idFavorite }) 
   const id = object.idMeal || object.idDrink || object.id;
   const title = object.title || object.name;
 
-  console.log(isFavorite(id), id, favorited);
-
   useEffect(() => {
-    console.log('montou');
     setFavorited(isFavorite(id));
   }, [id]);
 

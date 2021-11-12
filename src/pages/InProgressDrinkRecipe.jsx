@@ -10,20 +10,37 @@ function InProgressDrinkRecipe() {
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
   const [drinkRecipeInProgress, setDrinkRecipeInProgress] = useState([]);
+  const [disabled, setDisabled] = useState();
   const { strDrinkThumb, strDrink, strInstructions, strCategory } = drinkRecipeInProgress;
   const { idDrink } = useParams();
+
+  function isAllDrinkIngredientsChecked() {
+    console.log('rodou');
+    const arrayOfIngredientsChecked = JSON.parse(
+      localStorage.getItem('inProgressRecipes'),
+    ).cocktails[idDrink];
+    const allIngredients = JSON.parse(localStorage.getItem('drinkIngredients'));
+    if (allIngredients.length === arrayOfIngredientsChecked.length) setDisabled(false);
+    else setDisabled(true);
+  }
 
   useEffect(() => {
     const getDrinkFromAPI = async () => {
       setDrinkRecipeInProgress(await getDrinksID(idDrink));
     };
     getDrinkFromAPI();
+    isAllDrinkIngredientsChecked();
   }, []);
 
   useEffect(() => {
     setMeasures(getMeasures(drinkRecipeInProgress));
     setIngredients(getIngredients(drinkRecipeInProgress));
   }, [drinkRecipeInProgress]);
+
+  // const validateIngredients = () => {
+  //  const ingredients = localstorage.getItem('inProgressRecipes');
+  //  ingredients.cocktails[idDrink].length === ingredients
+  // }
 
   function renderPage() {
     return (
@@ -41,11 +58,20 @@ function InProgressDrinkRecipe() {
             index={ index }
             ingrediente={ ingrediente }
             measures={ measures }
+            idDrink={ idDrink }
+            handleButton={ isAllDrinkIngredientsChecked }
           />
         ))}
         <section data-testid="instructions">{ strInstructions }</section>
         <Link to="/receitas-feitas">
-          <button data-testid="finish-recipe-btn" type="button">Finalizar Receita</button>
+          <button
+            disabled={ disabled }
+            data-testid="finish-recipe-btn"
+            type="button"
+          >
+            Finalizar Receita
+
+          </button>
         </Link>
       </div>
     );
