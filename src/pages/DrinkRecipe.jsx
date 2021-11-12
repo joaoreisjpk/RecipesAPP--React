@@ -27,7 +27,7 @@ function DrinkRecipe() {
       localStorage.setItem('inProgressRecipes', JSON.stringify({
         cocktails: {
           ...keyInProgressRecipesFromLS.cocktails,
-          [idDrink]: [],
+          [idDrink]: [...keyInProgressRecipesFromLS.cocktails[idDrink]],
         },
         meals: {
           ...keyInProgressRecipesFromLS.meals,

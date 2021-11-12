@@ -30,7 +30,7 @@ function FoodRecipe() {
         },
         meals: {
           ...keyInProgressRecipesFromLS.meals,
-          [idMeal]: [],
+          [idMeal]: [...keyInProgressRecipesFromLS.meals[idMeal]],
         },
       }));
     };
