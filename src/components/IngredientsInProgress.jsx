@@ -37,11 +37,11 @@ function IngredientsInProgress({
     }
   }, []);
 
-  useEffect(() => {
-    setChecked(idDrink
-      ? keyInProgress.cocktails[id].some((ingredient) => ingredient === index)
-      : keyInProgress.meals[id].some((ingredient) => ingredient === index));
-  }, []);
+  // useEffect(() => {
+  //   setChecked(idDrink
+  //     ? keyInProgress.cocktails[id].some((ingredient) => ingredient === index)
+  //     : keyInProgress.meals[id].some((ingredient) => ingredient === index));
+  // }, []);
 
   function addIngredientInLocalStorage() {
     const keyInProgress2 = JSON.parse(localStorage.getItem('inProgressRecipes'));
