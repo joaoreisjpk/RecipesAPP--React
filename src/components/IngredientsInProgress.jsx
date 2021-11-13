@@ -9,75 +9,52 @@ function IngredientsInProgress({
   idMeal,
   idDrink,
   handleButton }) {
-  const [checked, setChecked] = useState(false);
-  const keyInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  const [checked, setChecked] = useState(true);
   const id = idDrink || idMeal;
 
+  const keyInProgress = () => JSON.parse(localStorage.getItem('inProgressRecipes'));
+
   useEffect(() => {
-    if (idDrink) {
-      localStorage.setItem('inProgressRecipes', JSON.stringify({
-        cocktails: {
-          ...keyInProgress.cocktails,
-          [id]: [...keyInProgress.cocktails[id]],
-        },
-        meals: {
-          ...keyInProgress.meals,
-        },
-      }));
-    } else {
-      localStorage.setItem('inProgressRecipes', JSON.stringify({
-        cocktails: {
-          ...keyInProgress.cocktails,
-        },
-        meals: {
-          ...keyInProgress.meals,
-          [id]: [...keyInProgress.meals[id]],
-        },
-      }));
-    }
+    console.log(id, 'bebidaID:', idDrink, 'comidaID:', idDrink);
+    setChecked(idDrink
+      ? keyInProgress().cocktails[id].some((ingredient) => ingredient === index)
+      : keyInProgress().meals[id].some((ingredient) => ingredient === index));
   }, []);
 
-  // useEffect(() => {
-  //   setChecked(idDrink
-  //     ? keyInProgress.cocktails[id].some((ingredient) => ingredient === index)
-  //     : keyInProgress.meals[id].some((ingredient) => ingredient === index));
-  // }, []);
-
   function addIngredientInLocalStorage() {
-    const keyInProgress2 = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    console.log(checked, index);
     if (idDrink) {
       localStorage.setItem('inProgressRecipes', JSON.stringify({
         cocktails: {
-          ...keyInProgress2.cocktails,
+          ...keyInProgress().cocktails,
           [id]: !checked
-            ? [...keyInProgress2.cocktails[id], index]
-            : [...keyInProgress2.cocktails[id]
+            ? [...keyInProgress().cocktails[id], index]
+            : [...keyInProgress().cocktails[id]
               .filter((ingredient) => ingredient !== index)],
         },
         meals: {
-          ...keyInProgress2.meals,
+          ...keyInProgress().meals,
         },
       }));
     } else {
       localStorage.setItem('inProgressRecipes', JSON.stringify({
         meals: {
-          ...keyInProgress2.meals,
+          ...keyInProgress().meals,
           [id]: !checked
-            ? [...keyInProgress2.meals[id], index]
-            : [...keyInProgress2.meals[id].filter((ingredient) => ingredient !== index)],
+            ? [...keyInProgress().meals[id], index]
+            : [...keyInProgress().meals[id].filter((ingredient) => ingredient !== index)],
         },
         cocktails: {
-          ...keyInProgress2.cocktails,
+          ...keyInProgress().cocktails,
         },
       }));
     }
   }
 
-  // useEffect(() => {
-  //   addIngredientInLocalStorage();
-  //   console.log(checked);
-  // }, [checked]);
+  const handleChange = () => {
+    setChecked(!checked);
+    addIngredientInLocalStorage();
+    handleButton();
+  };
 
   return (
     <div data-testid={ `${index}-ingredient-step` }>
@@ -85,16 +62,21 @@ function IngredientsInProgress({
         style={ checked ? { textDecoration: 'line-through' } : null }
         htmlFor={ ingrediente }
       >
-        <input
-          type="checkbox"
-          id={ ingrediente }
-          checked={ checked }
-          onChange={ () => {
-            setChecked(!checked);
-            addIngredientInLocalStorage();
-            handleButton();
-          } }
-        />
+        { !checked ? (
+          <input
+            key="!checked"
+            type="checkbox"
+            id={ ingrediente }
+            onChange={ handleChange }
+          />)
+          : (
+            <input
+              key="checked"
+              type="checkbox"
+              checked
+              id={ ingrediente }
+              onChange={ handleChange }
+            />)}
         <span>{ `Ingrediente: ${ingrediente} - Medida: ${measures[index]}` }</span>
       </label>
     </div>
@@ -103,8 +85,8 @@ function IngredientsInProgress({
 
 IngredientsInProgress.propTypes = {
   handleButton: PropTypes.func.isRequired,
-  idDrink: PropTypes.number.isRequired,
-  idMeal: PropTypes.number.isRequired,
+  idDrink: PropTypes.string.isRequired,
+  idMeal: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   ingrediente: PropTypes.string.isRequired,
   measures: PropTypes.arrayOf(PropTypes.string).isRequired,
