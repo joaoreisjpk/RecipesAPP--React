@@ -1,46 +1,57 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ButtonsFavoriteAndShare from '../components/ButtonsFavoriteAndShare';
 import { getMeasures, getIngredients } from '../helpers';
 import { getDrinksID } from '../services/getDrink';
 import IngredientsInProgress from '../components/IngredientsInProgress';
 
 function InProgressDrinkRecipe() {
-  const [ingredients, setIngredients] = useState([]);
-  const [measures, setMeasures] = useState([]);
   const [drinkRecipeInProgress, setDrinkRecipeInProgress] = useState([]);
   const [disabled, setDisabled] = useState();
   const { strDrinkThumb, strDrink, strInstructions, strCategory } = drinkRecipeInProgress;
   const { idDrink } = useParams();
 
-  function isAllDrinkIngredientsChecked() {
-    console.log('rodou');
-    const arrayOfIngredientsChecked = JSON.parse(
-      localStorage.getItem('inProgressRecipes'),
-    ).cocktails[idDrink];
-    const allIngredients = JSON.parse(localStorage.getItem('drinkIngredients'));
-    if (allIngredients.length === arrayOfIngredientsChecked.length) setDisabled(false);
-    else setDisabled(true);
+  const getInProgressRecipes = () => JSON
+    .parse(localStorage.getItem('inProgressRecipes'));
+
+  const getCheckedIngredients = () => (JSON.parse(
+    localStorage.getItem('inProgressRecipes'),
+  )).cocktails;
+
+  async function saveDrinkIngredientsAtLocalStorage() {
+    localStorage.setItem('drinkIngredients', JSON.stringify(
+      getIngredients(await getDrinksID(idDrink)),
+    ));
   }
 
+  const setCheckedIngredients = () => localStorage.setItem('inProgressRecipes',
+    JSON.stringify({ ...getInProgressRecipes(),
+      cocktails: { ...getCheckedIngredients(), [idDrink]: [] } }));
+
+  const isDisabled = () => {
+    setDisabled(getIngredients(drinkRecipeInProgress)
+      .length === getCheckedIngredients()[idDrink].length);
+  };
+
   useEffect(() => {
+    if (!getInProgressRecipes()) {
+      localStorage.setItem('inProgressRecipes', JSON.stringify({
+        cocktails: {},
+        meals: {},
+      }));
+    }
     const getDrinkFromAPI = async () => {
+      saveDrinkIngredientsAtLocalStorage();
       setDrinkRecipeInProgress(await getDrinksID(idDrink));
     };
+    if (!getCheckedIngredients()[idDrink]) setCheckedIngredients();
     getDrinkFromAPI();
-    isAllDrinkIngredientsChecked();
   }, []);
 
   useEffect(() => {
-    setMeasures(getMeasures(drinkRecipeInProgress));
-    setIngredients(getIngredients(drinkRecipeInProgress));
+    isDisabled();
   }, [drinkRecipeInProgress]);
-
-  // const validateIngredients = () => {
-  //  const ingredients = localstorage.getItem('inProgressRecipes');
-  //  ingredients.cocktails[idDrink].length === ingredients
-  // }
 
   function renderPage() {
     return (
@@ -52,25 +63,24 @@ function InProgressDrinkRecipe() {
           object={ { ...drinkRecipeInProgress, type: 'bebida' } }
         />
         <h3>Ingredientes</h3>
-        { ingredients.map((ingrediente, index) => (
+        { getIngredients(drinkRecipeInProgress).map((ingrediente, index) => (
           <IngredientsInProgress
             key={ index }
             index={ index }
             ingrediente={ ingrediente }
-            measures={ measures }
+            measures={ getMeasures(drinkRecipeInProgress) }
             idDrink={ idDrink }
-            handleButton={ isAllDrinkIngredientsChecked }
+            handleButton={ () => isDisabled() }
           />
         ))}
         <section data-testid="instructions">{ strInstructions }</section>
         <Link to="/receitas-feitas">
           <button
-            disabled={ disabled }
+            disabled={ !disabled }
             data-testid="finish-recipe-btn"
             type="button"
           >
             Finalizar Receita
-
           </button>
         </Link>
       </div>

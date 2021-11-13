@@ -61,6 +61,7 @@ function Foods() {
   if (respostaFood && respostaFood.length === 1 && !selectCategory) {
     return <Redirect to={ `/comidas/${respostaFood[0].idMeal}` } />;
   }
+
   if (respostaFood === null) {
     global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
   }

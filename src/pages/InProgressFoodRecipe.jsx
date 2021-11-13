@@ -11,33 +11,42 @@ function InProgressFoodRecipe() {
   const [disabled, setDisabled] = useState();
   const { strMealThumb, strMeal, strInstructions, strCategory } = foodRecipeInProgress;
   const { idMeal } = useParams();
-  const arrayOfIngredientsChecked = JSON.parse(
+
+  const getInProgressRecipes = () => JSON
+    .parse(localStorage.getItem('inProgressRecipes'));
+
+  const getCheckedIngredients = () => (JSON.parse(
     localStorage.getItem('inProgressRecipes'),
-  ).meals[idMeal];
+  )).meals;
 
-  function isAllFoodIngredientsChecked() {
-    console.log('rodou');
-    const allIngredients = JSON.parse(localStorage.getItem('foodIngredients'));
-    if (arrayOfIngredientsChecked
-      && allIngredients.length === arrayOfIngredientsChecked.length) setDisabled(false);
-    else setDisabled(true);
-  }
+  const setCheckedIngredients = () => localStorage.setItem('inProgressRecipes',
+    JSON.stringify({ ...getInProgressRecipes(),
+      meals: { ...getCheckedIngredients(), [idMeal]: [] } }));
 
-  function handleButtonText() {
-    const mealKeys = Object.keys(JSON
-      .parse(localStorage.getItem('inProgressRecipes')).meals);
-    const validate = mealKeys.some((id) => id === idMeal);
-    console.log(validate);
-    return validate;
-  }
+  const isDisabled = () => (
+    setDisabled(getIngredients(foodRecipeInProgress)
+      .length === getCheckedIngredients()[idMeal].length)
+  );
 
-  useEffect(async () => {
+  useEffect(() => {
+    if (!getInProgressRecipes()) {
+      localStorage.setItem('inProgressRecipes', JSON.stringify({
+        cocktails: {},
+        meals: {},
+      }));
+    }
+
+    if (!getCheckedIngredients()[idMeal]) setCheckedIngredients();
+
     const getFoodFromAPI = async () => {
       setFoodRecipeInProgress(await getFoodById(idMeal));
     };
-    await getFoodFromAPI();
-    isAllFoodIngredientsChecked();
+    getFoodFromAPI();
   }, []);
+
+  useEffect(() => {
+    isDisabled();
+  }, [foodRecipeInProgress]);
 
   function renderPage() {
     return (
@@ -54,18 +63,17 @@ function InProgressFoodRecipe() {
             ingrediente={ ingrediente }
             measures={ getMeasures(foodRecipeInProgress) }
             idMeal={ idMeal }
-            handleButton={ isAllFoodIngredientsChecked }
+            handleButton={ () => isDisabled() }
           />
         ))}
         <section data-testid="instructions">{ strInstructions }</section>
         <Link to="/receitas-feitas">
           <button
-            disabled={ disabled }
+            disabled={ !disabled }
             data-testid="finish-recipe-btn"
             type="button"
           >
-            { handleButtonText() ? 'Continuar Receita' : 'Iniciar Receita'}
-
+            Finalizar Receita
           </button>
         </Link>
       </div>
