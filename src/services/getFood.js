@@ -1,5 +1,8 @@
 const renamingLargeNumberOfKeys = (list) => {
-  if (!list) return [];
+  if (!list) {
+    global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    return [];
+  }
   return list.map((item) => {
     const { idMeal, strMeal, strMealThumb, strArea } = item;
     const { strCategory, strYoutube, strInstructions } = item;
@@ -20,7 +23,10 @@ const renamingLargeNumberOfKeys = (list) => {
 };
 
 const renamingSmallNumberOfKeys = (list) => {
-  if (!list) return [];
+  if (!list) {
+    global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    return [];
+  }
   return list.map(({ strMeal, idMeal, strMealThumb }) => (
     {
       id: idMeal,

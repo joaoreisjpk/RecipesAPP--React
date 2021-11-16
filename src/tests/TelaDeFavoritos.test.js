@@ -5,6 +5,8 @@ import { act } from 'react-dom/test-utils';
 import App from '../App';
 import renderWithRouter from './helper/renderWithRouter';
 
+const TRES = 3;
+
 const mockFavorites = [{
   id: '15997',
   type: 'bebida',
@@ -115,12 +117,12 @@ describe('Testando a tela de favoritos', () => {
     act(() => {
       userEvent.click(getCardFavoriteBtn(0));
     });
-    expect(getCardImage(2 + 1)).toBeNull();
-    expect(getCardText(2 + 1)).toBeNull();
-    expect(getCardName(2 + 1)).toBeNull();
-    expect(getCardShareBtn(2 + 1)).toBeNull();
-    expect(getCardFavoriteBtn(2 + 1)).toBeNull();
-    expect(JSON.parse(localStorage.getItem(ReceitasFavoritasPath))).toHaveLength(2 + 1);
+    expect(getCardImage(TRES)).toBeNull();
+    expect(getCardText(TRES)).toBeNull();
+    expect(getCardName(TRES)).toBeNull();
+    expect(getCardShareBtn(TRES)).toBeNull();
+    expect(getCardFavoriteBtn(TRES)).toBeNull();
+    expect(JSON.parse(localStorage.getItem('favoriteRecipes'))).toHaveLength(TRES);
   });
 
   test('64 - Testa se os botões de filtragem funcionam devidamente', () => {

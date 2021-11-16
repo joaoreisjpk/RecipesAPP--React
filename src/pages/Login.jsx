@@ -35,10 +35,10 @@ function Login() {
     localStorage.setItem('user', JSON.stringify({ email: login.email }));
   }
 
-  const handleClick = () => {
+  function handleClick() {
     saveTokens();
     saveUser();
-  };
+  }
 
   return (
     <section>
@@ -52,7 +52,7 @@ function Login() {
             id="email-input"
             name="email"
             value={ login.email }
-            onChange={ () => handleLogin }
+            onChange={ handleLogin }
           />
           <Input
             placeholder="Digite sua senha"
@@ -61,7 +61,7 @@ function Login() {
             label="Senha"
             id="password-input"
             name="password"
-            onChange={ () => handleLogin }
+            onChange={ handleLogin }
             value={ login.password }
           />
           <Link to="/comidas">
