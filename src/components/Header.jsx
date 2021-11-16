@@ -6,7 +6,7 @@ import profileIcon from '../images/profileIcon.svg';
 function Header({ title }) {
   return (
     <header>
-      <Link to="/perfil">
+      <Link key="2927128" to="/perfil">
         <img
           src={ profileIcon }
           data-testid="profile-top-btn"

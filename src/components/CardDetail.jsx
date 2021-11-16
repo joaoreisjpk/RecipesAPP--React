@@ -11,19 +11,12 @@ import {
 import Video from './Video';
 import ButtonsFavoriteAndShare from './ButtonsFavoriteAndShare';
 
-const CardDetail = ({
-  srcImg,
-  title,
-  category,
-  instructions,
-  srcVideo,
-  itemRecomendation,
-  object,
-  type,
-  alcoholicOrNot = '' }) => {
+const CardDetail = ({ itemRecomendation, object }) => {
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
   const [counter, setCounter] = useState(0);
+
+  const { alcoholicOrNot, image, video, instruction, category, name } = object;
 
   const SIX = 6;
 
@@ -46,7 +39,7 @@ const CardDetail = ({
   return (
     <div>
       <span style={ { fontSize: '40px' } } data-testid="recipe-title">
-        {title}
+        {name}
         {' '}
         -
         {' '}
@@ -55,12 +48,12 @@ const CardDetail = ({
         {alcoholicOrNot || category}
       </span>
       <div>
-        <img src={ srcImg } alt={ title } data-testid="recipe-photo" />
+        <img src={ image } alt={ name } data-testid="recipe-photo" />
       </div>
-      <p data-testid="instructions">{instructions}</p>
+      <p data-testid="instructions">{instruction}</p>
 
       <ButtonsFavoriteAndShare
-        object={ { ...object, type } }
+        object={ object }
       />
 
       <h3>Ingredientes</h3>
@@ -70,7 +63,7 @@ const CardDetail = ({
         </div>
       ))}
       <div>
-        { !srcVideo ? null : <Video srcVideo={ srcVideo } />}
+        { !video ? null : <Video srcVideo={ video } />}
       </div>
       <h3>Recomendações</h3>
       <button
@@ -87,7 +80,7 @@ const CardDetail = ({
       >
         {'>'}
       </button>
-      { itemRecomendation && itemRecomendation.map((item, index) => (
+      { itemRecomendation.map((item, index) => (
         <RecommendationCard
           key={ index }
           recipe={ { ...item, index } }
@@ -99,17 +92,8 @@ const CardDetail = ({
 };
 
 CardDetail.propTypes = {
-  category: PropTypes.string.isRequired,
-  instructions: PropTypes.string.isRequired,
-  itemRecomendation: PropTypes.shape({
-    map: PropTypes.func,
-  }).isRequired,
-  type: PropTypes.string.isRequired,
-  alcoholicOrNot: PropTypes.string.isRequired,
-  object: PropTypes.objectOf(PropTypes.any).isRequired,
-  srcImg: PropTypes.string.isRequired,
-  srcVideo: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  itemRecomendation: PropTypes.arrayOf(PropTypes.any).isRequired,
+  object: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default CardDetail;

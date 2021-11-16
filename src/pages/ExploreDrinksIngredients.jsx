@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
 import MyContext from '../context/MyContext';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { getIngredientList } from '../services/getDrink';
 
@@ -16,12 +16,9 @@ function ExploreFoodsIngredients() {
       setIngredientList(await getIngredientList());
     };
     fetchAPI();
-
-    return () => fetchAPI;
   }, [setRespostaDrink]);
 
   const handleIngredient = (param) => {
-    console.log('clicked');
     setIngredient(param);
   };
 

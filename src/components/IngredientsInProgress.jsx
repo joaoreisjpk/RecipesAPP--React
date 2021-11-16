@@ -6,23 +6,21 @@ function IngredientsInProgress({
   index,
   ingrediente,
   measures,
-  idMeal,
-  idDrink,
+  id,
+  type,
   handleButton }) {
   const [checked, setChecked] = useState(true);
-  const id = idDrink || idMeal;
 
   const keyInProgress = () => JSON.parse(localStorage.getItem('inProgressRecipes'));
 
   useEffect(() => {
-    console.log(id, 'bebidaID:', idDrink, 'comidaID:', idDrink);
-    setChecked(idDrink
+    setChecked(type === 'bebida'
       ? keyInProgress().cocktails[id].some((ingredient) => ingredient === index)
       : keyInProgress().meals[id].some((ingredient) => ingredient === index));
   }, []);
 
   function addIngredientInLocalStorage() {
-    if (idDrink) {
+    if (type === 'bebida') {
       localStorage.setItem('inProgressRecipes', JSON.stringify({
         cocktails: {
           ...keyInProgress().cocktails,
@@ -85,8 +83,8 @@ function IngredientsInProgress({
 
 IngredientsInProgress.propTypes = {
   handleButton: PropTypes.func.isRequired,
-  idDrink: PropTypes.string.isRequired,
-  idMeal: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   ingrediente: PropTypes.string.isRequired,
   measures: PropTypes.arrayOf(PropTypes.string).isRequired,

@@ -7,7 +7,7 @@ import CardDetail from '../components/CardDetail';
 
 function FoodRecipe() {
   const [itemDetail, setItemDetail] = useState();
-  const [itemRecomendation, setItemRecomendation] = useState();
+  const [itemRecomendation, setItemRecomendation] = useState([]);
   const { idMeal } = useParams();
 
   const keyInProgressRecipesFromLS = () => JSON
@@ -22,10 +22,9 @@ function FoodRecipe() {
     }
     const callAPI = async () => {
       setItemDetail(await getFoodById(idMeal));
+      setItemRecomendation(await getDrinkNome(''));
     };
-    const callRecomendation = async () => setItemRecomendation(await getDrinkNome(''));
     callAPI();
-    callRecomendation();
   }, []);
 
   function handleButtonText() {
@@ -41,14 +40,7 @@ function FoodRecipe() {
     <div>
       <CardDetail
         object={ itemDetail }
-        srcImg={ itemDetail.strMealThumb }
-        title={ itemDetail.strMeal }
-        category={ itemDetail.strCategory }
-        instructions={ itemDetail.strInstructions }
-        srcVideo={ itemDetail.strYoutube }
         itemRecomendation={ itemRecomendation }
-        itemID={ idMeal }
-        type="comida"
       />
       <Link to={ `/comidas/${idMeal}/in-progress` }>
         <button

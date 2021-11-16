@@ -30,7 +30,7 @@ function DoneRecipes() {
       .map((item, index) => {
         if (item.type === 'comida') {
           return (
-            <>
+            <React.Fragment key={ index }>
               <Link to={ `/comidas/${item.id}` }>
                 <img
                   width="200px"
@@ -49,10 +49,10 @@ function DoneRecipes() {
               <div data-testid={ `${index}-horizontal-done-date` }>{item.doneDate}</div>
               { handleTags(item.tags, index) }
               <CopyButton type={ item.type } index={ index } id={ item.id } />
-            </>
+            </React.Fragment>
           );
         } return (
-          <>
+          <React.Fragment key={ index }>
             <Link to={ `/bebidas/${item.id}` }>
               <img
                 width="200px"
@@ -71,7 +71,7 @@ function DoneRecipes() {
             <div data-testid={ `${index}-horizontal-done-date` }>{item.doneDate}</div>
             { handleTags(item.tags, index) }
             <CopyButton type={ item.type } index={ index } id={ item.id } />
-          </>
+          </React.Fragment>
         );
       })
   );

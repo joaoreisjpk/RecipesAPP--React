@@ -8,7 +8,7 @@ import {
   getDrinkNome,
   getDrinksCategory,
   getCategorylist,
-  getDrinkIngrediente,
+  // getDrinkIngrediente,
 } from '../services/getDrink';
 import drinksByIngredient from '../helpers/drinksByIngredient';
 import Footer from '../components/Footer';
@@ -24,10 +24,9 @@ function Drinks() {
   useEffect(() => {
     const callAPI = async () => {
       if (ingredient) {
-        console.log(ingredient, await getDrinkIngrediente(ingredient));
         setSelectCategory('Ingrediente');
         // setRespostaDrink(await getDrinkIngrediente(ingredient));
-        setRespostaDrink(drinksByIngredient.drinks);
+        setRespostaDrink(drinksByIngredient);
       } else setRespostaDrink(await getDrinkNome(''));
     };
     const categoryAPI = async () => setCategories(await getCategorylist());
@@ -47,22 +46,23 @@ function Drinks() {
   };
 
   const fetchCategories = () => {
-    const allCategories = [{ strCategory: 'All' }, ...categories];
+    const allCategories = [{ category: 'All' }, ...categories];
     return allCategories.map((item, index) => (
       <button
         key={ index }
-        data-testid={ `${item.strCategory}-category-filter` }
+        data-testid={ `${item.category}-category-filter` }
         type="button"
         onClick={ handleClick }
       >
-        {item.strCategory}
+        {item.category}
       </button>
     )).splice(0, SIX);
   };
 
   if (respostaDrink && respostaDrink.length === 1) {
-    return <Redirect to={ `/bebidas/${respostaDrink[0].idDrink}` } />;
+    return <Redirect to={ `/bebidas/${respostaDrink[0].id}` } />;
   }
+
   if (respostaDrink === null) {
     global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
   }
@@ -72,12 +72,12 @@ function Drinks() {
       <HeaderWithSearchIcon title="Bebidas" />
       { categories && fetchCategories() }
       { respostaDrink && respostaDrink
-        .map(({ strDrink, strDrinkThumb, idDrink }, index) => (
-          <Link key={ index } to={ `/bebidas/${idDrink}` }>
+        .map(({ name, image, id }, index) => (
+          <Link key={ index } to={ `/bebidas/${id}` }>
             <Cards
               key={ index }
-              name={ strDrink }
-              thumbnail={ strDrinkThumb }
+              name={ name }
+              thumbnail={ image }
               index={ index }
             />
           </Link>
