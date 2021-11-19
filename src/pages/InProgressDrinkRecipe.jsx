@@ -9,7 +9,7 @@ import IngredientsInProgress from '../components/IngredientsInProgress';
 function InProgressDrinkRecipe() {
   const [drinkRecipeInProgress, setDrinkRecipeInProgress] = useState([]);
   const [disabled, setDisabled] = useState();
-  const { strDrinkThumb, strDrink, strInstructions, strCategory } = drinkRecipeInProgress;
+  const { image, name, instruction, category, type } = drinkRecipeInProgress;
   const { idDrink } = useParams();
 
   const getInProgressRecipes = () => JSON
@@ -56,9 +56,9 @@ function InProgressDrinkRecipe() {
   function renderPage() {
     return (
       <div>
-        <img data-testid="recipe-photo" src={ strDrinkThumb } alt={ strDrink } />
-        <h3 data-testid="recipe-title">{ strDrink }</h3>
-        <h3 data-testid="recipe-category">{ strCategory }</h3>
+        <img data-testid="recipe-photo" src={ image } alt={ name } />
+        <h3 data-testid="recipe-title">{ name }</h3>
+        <h3 data-testid="recipe-category">{ category }</h3>
         <ButtonsFavoriteAndShare
           object={ { ...drinkRecipeInProgress, type: 'bebida' } }
         />
@@ -69,11 +69,12 @@ function InProgressDrinkRecipe() {
             index={ index }
             ingrediente={ ingrediente }
             measures={ getMeasures(drinkRecipeInProgress) }
-            idDrink={ idDrink }
+            id={ idDrink }
+            type={ type }
             handleButton={ () => isDisabled() }
           />
         ))}
-        <section data-testid="instructions">{ strInstructions }</section>
+        <section data-testid="instructions">{ instruction }</section>
         <Link to="/receitas-feitas">
           <button
             disabled={ !disabled }

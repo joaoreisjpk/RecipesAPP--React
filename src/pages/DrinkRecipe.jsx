@@ -7,7 +7,7 @@ import CardDetail from '../components/CardDetail';
 
 function DrinkRecipe() {
   const [itemDetail, setItemDetail] = useState();
-  const [itemRecomendation, setItemRecomendation] = useState();
+  const [itemRecomendation, setItemRecomendation] = useState([]);
   const { idDrink } = useParams();
 
   const keyInProgressRecipesFromLS = () => JSON
@@ -22,10 +22,9 @@ function DrinkRecipe() {
     }
     const callAPI = async () => {
       setItemDetail(await getDrinksID(idDrink));
+      setItemRecomendation(await getNome(''));
     };
-    const callRecomendation = async () => setItemRecomendation(await getNome(''));
     callAPI();
-    callRecomendation();
   }, []);
 
   function handleButtonText() {
@@ -41,14 +40,7 @@ function DrinkRecipe() {
     <div>
       <CardDetail
         object={ itemDetail }
-        srcImg={ itemDetail.strDrinkThumb }
-        title={ itemDetail.strDrink }
-        instructions={ itemDetail.strInstructions }
-        category={ itemDetail.strCategory }
-        alcoholicOrNot={ itemDetail.strAlcoholic }
-        itemID={ idDrink }
         itemRecomendation={ itemRecomendation }
-        type="bebida"
       />
       <Link to={ `/bebidas/${idDrink}/in-progress` }>
         <button

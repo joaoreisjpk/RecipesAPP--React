@@ -2,24 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const RecommendationCard = ({ recipe, counter }) => {
+  const { image, index, name } = recipe;
+
   const handleVisibility = () => {
-    if (counter === recipe.index || counter + 1 === recipe.index) return 'visible';
+    if (counter === index || counter + 1 === index) return 'visible';
     return 'hidden';
   };
 
   return (
     <section
       style={ { visibility: handleVisibility() } }
-      data-testid={ `${recipe.index}-recomendation-card` }
+      data-testid={ `${index}-recomendation-card` }
       className="recomendation-card"
     >
       <img
-        src={ recipe.strMealThumb || recipe.strDrinkThumb }
+        src={ image }
         alt="food thumb"
         width="200px"
       />
-      <h4 data-testid={ `${recipe.index}-recomendation-title` }>
-        {recipe.strMeal || recipe.strDrink}
+      <h4 data-testid={ `${index}-recomendation-title` }>
+        {name}
       </h4>
     </section>
   );
@@ -27,7 +29,7 @@ const RecommendationCard = ({ recipe, counter }) => {
 
 RecommendationCard.propTypes = {
   counter: PropTypes.number.isRequired,
-  recipe: PropTypes.objectOf(PropTypes.string).isRequired,
+  recipe: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default RecommendationCard;

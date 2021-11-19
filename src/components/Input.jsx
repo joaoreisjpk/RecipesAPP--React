@@ -22,7 +22,7 @@ function Input({
         name={ name }
         value={ value }
         onChange={ onChange }
-        selected={ selected }
+        selected={ selected === 'true' }
       />
     </label>
   );
@@ -34,10 +34,16 @@ Input.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string.isRequired,
-  selected: PropTypes.bool.isRequired,
+  placeholder: PropTypes.string,
+  selected: PropTypes.string,
   type: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
+};
+
+Input.defaultProps = {
+  selected: 'false',
+  placeholder: '',
+  value: '',
 };
 
 export default Input;

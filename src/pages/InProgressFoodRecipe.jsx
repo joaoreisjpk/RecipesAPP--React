@@ -9,7 +9,7 @@ import IngredientsInProgress from '../components/IngredientsInProgress';
 function InProgressFoodRecipe() {
   const [foodRecipeInProgress, setFoodRecipeInProgress] = useState([]);
   const [disabled, setDisabled] = useState();
-  const { strMealThumb, strMeal, strInstructions, strCategory } = foodRecipeInProgress;
+  const { image, name, instruction, category, type } = foodRecipeInProgress;
   const { idMeal } = useParams();
 
   const getInProgressRecipes = () => JSON
@@ -51,9 +51,9 @@ function InProgressFoodRecipe() {
   function renderPage() {
     return (
       <div>
-        <img data-testid="recipe-photo" src={ strMealThumb } alt={ strMeal } />
-        <h3 data-testid="recipe-title">{ strMeal }</h3>
-        <h3 data-testid="recipe-category">{ strCategory }</h3>
+        <img data-testid="recipe-photo" src={ image } alt={ name } />
+        <h3 data-testid="recipe-title">{ name }</h3>
+        <h3 data-testid="recipe-category">{ category }</h3>
         <ButtonsFavoriteAndShare object={ { ...foodRecipeInProgress, type: 'comida' } } />
         <h3>Ingredientes</h3>
         { getIngredients(foodRecipeInProgress).map((ingrediente, index) => (
@@ -62,11 +62,12 @@ function InProgressFoodRecipe() {
             index={ index }
             ingrediente={ ingrediente }
             measures={ getMeasures(foodRecipeInProgress) }
-            idMeal={ idMeal }
+            id={ idMeal }
+            type={ type }
             handleButton={ () => isDisabled() }
           />
         ))}
-        <section data-testid="instructions">{ strInstructions }</section>
+        <section data-testid="instructions">{ instruction }</section>
         <Link to="/receitas-feitas">
           <button
             disabled={ !disabled }

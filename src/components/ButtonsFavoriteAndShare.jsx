@@ -9,8 +9,7 @@ const ButtonsFavoriteAndShare = ({ object, handleUpdate, idShare, idFavorite }) 
   const [copiado, setCopiado] = useState(false);
   const [favorited, setFavorited] = useState();
 
-  const id = object.idMeal || object.idDrink || object.id;
-  const title = object.title || object.name;
+  const { id, title, type } = object;
 
   useEffect(() => {
     setFavorited(isFavorite(id));
@@ -23,7 +22,7 @@ const ButtonsFavoriteAndShare = ({ object, handleUpdate, idShare, idFavorite }) 
   };
 
   const handleCopy = () => {
-    window.navigator.clipboard.writeText(`http://localhost:3000/${object.type}s/${id}`)
+    window.navigator.clipboard.writeText(`http://localhost:3000/${type}s/${id}`)
       .catch((error) => `Doidera Manobrow${error}`);
     setCopiado(true);
   };
@@ -62,9 +61,15 @@ const ButtonsFavoriteAndShare = ({ object, handleUpdate, idShare, idFavorite }) 
 
 ButtonsFavoriteAndShare.propTypes = {
   object: PropTypes.objectOf(PropTypes.any).isRequired,
-  handleUpdate: PropTypes.func.isRequired,
-  idShare: PropTypes.string.isRequired,
-  idFavorite: PropTypes.string.isRequired,
+  idShare: PropTypes.string,
+  handleUpdate: PropTypes.func,
+  idFavorite: PropTypes.string,
+};
+
+ButtonsFavoriteAndShare.defaultProps = {
+  handleUpdate: () => null,
+  idShare: '',
+  idFavorite: '',
 };
 
 export default ButtonsFavoriteAndShare;

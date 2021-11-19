@@ -8,8 +8,8 @@ function Provider({ children }) {
     password: '',
   });
 
-  const [respostaDrink, setRespostaDrink] = useState(undefined);
-  const [respostaFood, setRespostaFood] = useState(undefined);
+  const [respostaDrink, setRespostaDrink] = useState([]);
+  const [respostaFood, setRespostaFood] = useState([]);
   const [ingredient, setIngredient] = useState('');
 
   const context = {

@@ -46,20 +46,20 @@ function Foods() {
   };
 
   const fetchCategories = () => {
-    const allCategories = [{ strCategory: 'All' }, ...categories];
+    const allCategories = [{ category: 'All' }, ...categories];
     return allCategories.map((item, index) => (
       <button
         key={ index }
-        data-testid={ `${item.strCategory}-category-filter` }
+        data-testid={ `${item.category}-category-filter` }
         type="button"
         onClick={ handleClick }
       >
-        {item.strCategory}
+        {item.category}
       </button>)).splice(0, SIX);
   };
 
   if (respostaFood && respostaFood.length === 1 && !selectCategory) {
-    return <Redirect to={ `/comidas/${respostaFood[0].idMeal}` } />;
+    return <Redirect to={ `/comidas/${respostaFood[0].id}` } />;
   }
 
   if (respostaFood === null) {
@@ -70,12 +70,12 @@ function Foods() {
     <div>
       <HeaderWithSearchIcon title="Comidas" />
       { categories && fetchCategories() }
-      { respostaFood && respostaFood.map(({ strMeal, strMealThumb, idMeal }, index) => (
-        <Link key={ index } to={ `/comidas/${idMeal}` }>
+      { respostaFood && respostaFood.map(({ name, image, id }, index) => (
+        <Link key={ index } to={ `/comidas/${id}` }>
           <Cards
             key={ index }
-            name={ strMeal }
-            thumbnail={ strMealThumb }
+            name={ name }
+            thumbnail={ image }
             index={ index }
           />
         </Link>

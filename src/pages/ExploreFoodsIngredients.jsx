@@ -19,7 +19,6 @@ function ExploreFoodsIngredients() {
   }, [setRespostaFood]);
 
   const handleIngredient = (param) => {
-    console.log('clicado');
     setIngredient(param);
   };
 

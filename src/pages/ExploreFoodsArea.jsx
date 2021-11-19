@@ -33,13 +33,13 @@ function ExploreFoodsArea() {
       onChange={ (e) => handleChange(e.target.value) }
     >
       <option value="All" data-testid="All-option">All</option>
-      { areas.map(({ strArea }, index) => (
+      { areas.map(({ area }, index) => (
         <option
           key={ index }
-          value={ strArea }
-          data-testid={ `${strArea}-option` }
+          value={ area }
+          data-testid={ `${area}-option` }
         >
-          { strArea }
+          { area }
         </option>
       ))}
     </select>
@@ -52,12 +52,12 @@ function ExploreFoodsArea() {
 
       {fetchAreaSelection()}
 
-      { foodList.map(({ strMeal, strMealThumb, idMeal }, index) => (
-        <Link key={ index } to={ `/comidas/${idMeal}` }>
+      { foodList.map(({ name, image, id }, index) => (
+        <Link key={ index } to={ `/comidas/${id}` }>
           <Cards
             key={ index }
-            name={ strMeal }
-            thumbnail={ strMealThumb }
+            name={ name }
+            thumbnail={ image }
             index={ index }
           />
         </Link>

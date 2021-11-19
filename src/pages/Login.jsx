@@ -35,17 +35,9 @@ function Login() {
     localStorage.setItem('user', JSON.stringify({ email: login.email }));
   }
 
-  function createMealsAndCocktailsKeysInLocalStorage() {
-    localStorage.setItem('inProgressRecipes', JSON.stringify({
-      cocktails: {},
-      meals: {},
-    }));
-  }
-
   function handleClick() {
     saveTokens();
     saveUser();
-    createMealsAndCocktailsKeysInLocalStorage();
   }
 
   return (

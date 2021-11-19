@@ -31,7 +31,7 @@ function Header({ title }) {
 
   const handleSearchInputDrink = async () => {
     if (radioValue === INGREDIENT_RADIO) {
-      await setRespostaDrink(await getDrinkIngrediente(searchValue));
+      setRespostaDrink(await getDrinkIngrediente(searchValue));
     } else if (radioValue === 'name-radio') {
       setRespostaDrink(await getDrinkNome(searchValue));
     } else if (searchValue.length > 1) {
@@ -98,10 +98,6 @@ function Header({ title }) {
     );
   }
 
-  function renderSearchBar() {
-    return [renderInput(), renderRadioButtons(), renderSearchButton()];
-  }
-
   return (
     <header>
       <nav>
@@ -120,7 +116,9 @@ function Header({ title }) {
             alt="Search Icon"
           />
         </button>
-        {showSearchBar && renderSearchBar()}
+        {showSearchBar && renderInput()}
+        {showSearchBar && renderRadioButtons()}
+        {showSearchBar && renderSearchButton()}
       </nav>
     </header>
   );
