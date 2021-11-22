@@ -67,19 +67,21 @@ function Foods() {
   }
 
   return (
-    <div>
-      <HeaderWithSearchIcon title="Comidas" />
+    <div className="main-page">
+      <HeaderWithSearchIcon title="Foods" />
       { categories && fetchCategories() }
-      { respostaFood && respostaFood.map(({ name, image, id }, index) => (
-        <Link key={ index } to={ `/comidas/${id}` }>
-          <Cards
-            key={ index }
-            name={ name }
-            thumbnail={ image }
-            index={ index }
-          />
-        </Link>
-      )).splice(0, DOZE)}
+      <div id="card-container">
+        { respostaFood && respostaFood.map(({ name, image, id }, index) => (
+          <Link key={ index } to={ `/comidas/${id}` }>
+            <Cards
+              key={ index }
+              name={ name }
+              thumbnail={ image }
+              index={ index }
+            />
+          </Link>
+        )).splice(0, DOZE)}
+      </div>
       <Footer />
     </div>
   );

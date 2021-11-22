@@ -1,68 +1,191 @@
+.loginScreen {
+  position: relative;
+  width: 360px;
+  height: 640px;
+  background: #FFF9F0;
+}
+
 .meals {
-  align-items: center;
-  background: #0fa36b;
-  color: #464646;
+  position: absolute;
+  width: 260px;
+  height: 460px;
+  left: 50px;
+  top: 90px;
+}
+
+#password-input {
+  position: absolute;
+  width: 230px;
+  height: 40px;
+  left: 18px;
+  top: 240px;
+  background: #FFFFFF;
+  border: 1px solid #121214;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+#email-input {
+  position: absolute;
+  width: 230px;
+  height: 40px;
+  left: 18px;
+  top: 160px;
+  background: #FFFFFF;
+  border: 1px solid #121214;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.logo {
+  position: absolute;
+  width: 87px;
+  height: 35px;
+  left: 90px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 35px;
+  color: #121214;
+}
+
+#login-submit-btn {
+  position: absolute;
+  width: 260px;
+  height: 40px;
+  top: 340px;
+  background: #FBB86B;
+  border-radius: 10px;
+  color: #FFF9F0;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+}
+
+.main-page {
+  position: relative;
+  width: 360px;
+  height: 640px;
+  background: #FFF9F0;
+}
+
+#card-container {
+  width: 90%;
+  gap: 10px;
+  margin: 20px auto;
   display: flex;
-  flex-direction: column;
-  font-family: sans-serif;
-  height: 100vh;
-  justify-content: center;
-  width: 100%;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
-.rocksGlass {
-  animation: shake 1s infinite ease;
-  max-height: 80vh;
+#card-name {
+  background-color: #FEC98C;
+  border-radius: 0px 0px 15px 15px;
+  text-align: center;
+  color: #121214;
+  font-weight: 500;
+  font-size: 21px;
 }
 
-/*
-#iceLeft {
-  animation: clink .8s infinite ease;
-  opacity: 0.6;
-  transform-origin: 36px 66px;
+#card-img {
+  width: 150px;
+  border-radius: 10px 10px 0 0;
 }
 
-#iceRight {
-  animation: clink .8s .2s infinite ease;
-  opacity: 0.6;
-  transform-origin: 60px 78px;
-}
-*/
-
-.meals > .logo {
-  animation: shake 1.5s infinite ease;
-  color: aliceblue;
-  font-family: Montserrat , sans-serif;
-  font-size: 3em;
-  font-weight: 900;
+#profile-top-btn {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  left: 40px;
+  top: 12px;
+  background-color: transparent;
 }
 
-@keyframes shake {
-
-  0% {
-    transform: rotate(5deg);
-  }
-
-  50% {
-    transform: rotate(-5deg);
-  }
-
-  100% {
-    transform: rotate(5deg);
-  }
+#exec-search-btn {
+  width: 30px;
+  height: 30px;
+  left: 290px;
+  top: 12px;
+  color: transparent;
 }
 
-@keyframes clink {
+#search-top-btn {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  left: 290px;
+  top: 12px;
+  border: 0;
+  background-color: transparent;
+}
 
-  0% {
-    transform: rotate(-10deg);
-  }
+#search-top-btn:active {
+  border: 0;
+}
 
-  50% {
-    transform: rotate(20deg);
-  }
+header {
+  position: absolute;
+  width: 360px;
+  height: 58px;
+  left: 0px;
+  top: 0px;
+  background: #FEC98C;
+}
 
-  100% {
-    transform: rotate(-10deg);
-  }
+h1 {
+  position: absolute;
+  width: 83px;
+  height: 35px;
+  left: 120px;
+  top: 12px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 35px;
+  display: flex;
+  align-items: flex-end;
+  color: #121214;
+}
+
+footer {
+  position: absolute;
+  width: 360px;
+  height: 58px;
+  left: 0px;
+  top: 582px;
+  background: #FEC98C;
+  display: flex !important;
+  justify-content: space-between;
+}
+
+#drinks-bottom-btn {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 0;
+}
+
+#explore-bottom-btn {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 0;
+}
+
+#food-bottom-btn {
+  width: 60px;
+  height: 40px;
+  background-color: transparent;
+  border: 0;
+}
+
+#container {
+  width: 90%;
+  margin: auto;
+  display: flex !important;
+  justify-content: space-between;
 }

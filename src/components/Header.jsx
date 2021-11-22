@@ -8,6 +8,7 @@ function Header({ title }) {
     <header>
       <Link key="2927128" to="/perfil">
         <img
+          id="profile-top-btn"
           src={ profileIcon }
           data-testid="profile-top-btn"
           alt="Profile Icon"
