@@ -6,23 +6,40 @@ import exploreIcon from '../images/exploreIcon.svg';
 
 function Footer() {
   return (
-    <footer style={ { position: 'fixed', bottom: '0px' } } data-testid="footer">
-      <Link to="/bebidas">
-        <button type="button" data-testid="drinks-bottom-btn" src={ drinkIcon }>
-          <img src={ drinkIcon } alt="Drink Icon" />
+    <footer style={{ position: 'fixed', bottom: '0px' }} data-testid="footer">
+      <section id="container">
+        <button
+          type="button"
+          data-testid="drinks-bottom-btn"
+          id="drinks-bottom-btn"
+          src={drinkIcon}
+        >
+          <Link to="/bebidas">
+            <img src={drinkIcon} alt="Drink Icon" />
+          </Link>
         </button>
-      </Link>
-      <Link to="/explorar">
-        <button type="button" data-testid="explore-bottom-btn" src={ exploreIcon }>
-          <img src={ exploreIcon } alt="Explore Icon" />
+        <button
+          type="button"
+          data-testid="explore-bottom-btn"
+          id="explore-bottom-btn"
+          src={exploreIcon}
+        >
+          <Link to="/explorar">
+            <img src={exploreIcon} alt="Explore Icon" />
+          </Link>
         </button>
-      </Link>
-      <Link to="/comidas">
-        <button type="button" data-testid="food-bottom-btn" src={ mealIcon }>
-          <img src={ mealIcon } alt="Meal Icon" />
-        </button>
-      </Link>
-    </footer>
+        <button
+          type="button"
+          data-testid="food-bottom-btn"
+          id="food-bottom-btn"
+          src={mealIcon}
+        >
+          <Link to="/comidas">
+            <img src={mealIcon} alt="Meal Icon" />
+          </Link>
+        </button >
+      </section>
+    </footer >
   );
 }
 

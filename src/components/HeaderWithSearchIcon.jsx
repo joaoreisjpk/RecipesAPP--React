@@ -11,6 +11,7 @@ import {
   getDrinkNome,
   getDrinkPrimeiraletra } from '../services/getDrink';
 import MyContext from '../context/MyContext';
+import '../App.css';
 
 function Header({ title }) {
   const { setRespostaDrink, setRespostaFood } = useContext(MyContext);
@@ -93,6 +94,7 @@ function Header({ title }) {
         type="button"
         text="Buscar"
         dataID="exec-search-btn"
+        id="exec-search-btn"
         onClick={ validatePage }
       />
     );
@@ -105,11 +107,16 @@ function Header({ title }) {
           <img
             src={ profileIcon }
             data-testid="profile-top-btn"
+            id="profile-top-btn"
             alt="Profile Icon"
           />
         </Link>
         <h1 data-testid="page-title">{title}</h1>
-        <button type="button" onClick={ () => setShowSearchBar(!showSearchBar) }>
+        <button
+          type="button"
+          onClick={ () => setShowSearchBar(!showSearchBar) }
+          id="search-top-btn"
+        >
           <img
             src={ searchIcon }
             data-testid="search-top-btn"

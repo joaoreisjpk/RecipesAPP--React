@@ -71,17 +71,19 @@ function Drinks() {
     <div>
       <HeaderWithSearchIcon title="Bebidas" />
       { categories && fetchCategories() }
-      { respostaDrink && respostaDrink
-        .map(({ name, image, id }, index) => (
-          <Link key={ index } to={ `/bebidas/${id}` }>
-            <Cards
-              key={ index }
-              name={ name }
-              thumbnail={ image }
-              index={ index }
-            />
-          </Link>
-        )).splice(0, DOZE)}
+      <div id="card-container">
+        { respostaDrink && respostaDrink
+          .map(({ name, image, id }, index) => (
+            <Link key={ index } to={ `/bebidas/${id}` }>
+              <Cards
+                key={ index }
+                name={ name }
+                thumbnail={ image }
+                index={ index }
+              />
+            </Link>
+          )).splice(0, DOZE)}
+      </div>
       <Footer />
     </div>
   );
