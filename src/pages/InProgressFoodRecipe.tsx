@@ -15,8 +15,6 @@ function InProgressFoodRecipe() {
   const { image, name, instruction, category, type } = foodRecipeInProgress;
   const { idMeal } = useParams<{idMeal: string}>();
 
-  console.log(foodRecipeInProgress);
-
   const getInProgressRecipes = () => JSON
     .parse(localStorage.getItem('inProgressRecipes') || '');
 

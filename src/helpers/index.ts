@@ -37,9 +37,6 @@ export const isFavorite = (id: string | null | undefined) => {
 };
 
 export const handleFavorite = (object: FoodObject | DrinkObject) => {
-  console.log(object);/* 
-  const { idDrink, strArea, strAlcoholic, strDrink, strDrinkThumb } = object;
-  const { idMeal, strCategory, strMeal, strMealThumb } = object; */
   const { id, area, category, name, image, alcoholicOrNot, type } = object;
 
   if (isFavorite(id)) {
@@ -61,7 +58,7 @@ export const handleFavorite = (object: FoodObject | DrinkObject) => {
   }
 };
 
-export const getDoneList = () => JSON.parse(localStorage.getItem('doneRecipes') || '');
+export const getDoneList = () => JSON.parse(localStorage.getItem('doneRecipes') || '[]');
 
 export const attDoneList = (item: FoodObject[] | DrinkObject[]) => (
   localStorage.setItem('doneRecipes', JSON.stringify(item))

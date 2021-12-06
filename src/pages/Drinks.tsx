@@ -7,9 +7,8 @@ import Cards from '../components/Cards';
 import {
   drinkAPI,
   getCategorylist,
-  // getDrinkIngrediente,
+  drinkSmallAPI,
 } from '../services/getDrink';
-import drinksByIngredient from '../helpers/drinksByIngredient';
 import Footer from '../components/Footer';
 
 interface innerTextProps extends EventTarget {
@@ -32,8 +31,7 @@ function Drinks() {
     const callAPI = async () => {
       if (ingredient) {
         setSelectCategory('Ingrediente');
-        // setRespostaDrink(await getSmallAPI(`/filter.php?i=${ingredient}`));
-        setRespostaDrink(drinksByIngredient);
+        setRespostaDrink(await drinkSmallAPI(`/filter.php?i=${ingredient}`));
       } else setRespostaDrink(await drinkAPI('/search.php?s='));
     };
     const categoryAPI = async () => setCategories(await getCategorylist());
@@ -48,7 +46,7 @@ function Drinks() {
       setSelectCategory('');
     } else {
       setSelectCategory(innerText);
-      setRespostaDrink(await drinkAPI(`/filter.php?c=${innerText}`));
+      setRespostaDrink(await drinkSmallAPI(`/filter.php?c=${innerText}`));
     }
   };
 

@@ -23,7 +23,6 @@ function ExploreFoodsArea() {
   const handleChange = async (param: string) => {
     if (param === 'All') return setFoodList(await foodAPI('/search.php?s='));
     setFoodList(await foodSmallAPi(`/filter.php?a=${param}`));
-    console.log(param);
   };
 
   const fetchAreaSelection = () => (

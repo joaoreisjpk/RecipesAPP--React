@@ -4,12 +4,10 @@ import { Link, Redirect } from 'react-router-dom';
 import HeaderWithSearchIcon from '../components/HeaderWithSearchIcon';
 import MyContext from '../context/MyContext';
 import Cards from '../components/Cards';
-import mealsByIngredient from '../helpers/mealsByIngredient';
 import {
   foodAPI,
   getCategorylist,
   foodSmallAPi,
-  // getIngrediente,
 } from '../services/getFood';
 import Footer from '../components/Footer';
 
@@ -34,8 +32,7 @@ function Foods() {
     const callAPI = async () => {
       if (ingredient) {
         setSelectCategory('Ingrediente');
-        // setRespostaFood(await getIngrediente(ingredient));
-        setRespostaFood(mealsByIngredient);
+        setRespostaFood(await foodSmallAPi(`/filter.php?i=${ingredient}`));
       } else setRespostaFood(await foodAPI('/search.php?s='));
     };
     const categoryAPI = async () => setCategories(await getCategorylist());

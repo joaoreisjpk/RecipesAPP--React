@@ -76,8 +76,6 @@ export const getCategorylist = async () => {
 export const getRandomFood = async () => {
   const response = await api('/random.php');
 
-  console.log(response);
-
   return renamingLargeNumberOfKeys(response.data.meals)[0].id;
 };
 
