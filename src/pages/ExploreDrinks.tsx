@@ -6,7 +6,7 @@ import { getRandomDrink } from '../services/getDrink';
 import Button from '../components/Button';
 
 function ExploreDrinks() {
-  const [idDrink, setIdDrink] = useState('');
+  const [idDrink, setIdDrink] = useState<string>();
   useEffect(() => {
     const getIdFromRandomDrink = async () => {
       setIdDrink(await getRandomDrink());

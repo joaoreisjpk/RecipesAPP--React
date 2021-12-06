@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import Cards from '../components/Cards';
 import Footer from '../components/Footer';
 import HeaderWithSearchIcon from '../components/HeaderWithSearchIcon';
+import { FoodObject } from '../interfaces';
 import { getAreaList, foodSmallAPi, foodAPI } from '../services/getFood';
 
 function ExploreFoodsArea() {
   const [areas, setAreas] = useState([]);
-  const [foodList, setFoodList] = useState([]);
+  const [foodList, setFoodList] = useState([] as FoodObject[]);
 
   const DOZE = 12;
 
@@ -19,7 +20,7 @@ function ExploreFoodsArea() {
     callAPI();
   }, []);
 
-  const handleChange = async (param) => {
+  const handleChange = async (param: string) => {
     if (param === 'All') return setFoodList(await foodAPI('/search.php?s='));
     setFoodList(await foodSmallAPi(`/filter.php?a=${param}`));
     console.log(param);

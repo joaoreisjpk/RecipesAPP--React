@@ -6,7 +6,7 @@ import { getRandomFood } from '../services/getFood';
 import Button from '../components/Button';
 
 function ExploreFoods() {
-  const [idMeal, setIdMeal] = useState('');
+  const [idMeal, setIdMeal] = useState<string>();
   useEffect(() => {
     const getIdFromRandomFood = async () => {
       setIdMeal(await getRandomFood());

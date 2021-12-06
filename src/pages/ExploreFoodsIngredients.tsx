@@ -18,7 +18,7 @@ function ExploreFoodsIngredients() {
     fetchAPI();
   }, [setRespostaFood]);
 
-  const handleIngredient = (param) => {
+  const handleIngredient = (param: string) => {
     setIngredient(param);
   };
 
