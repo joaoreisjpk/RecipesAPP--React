@@ -1,14 +1,25 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Input from '../components/Input';
 import Button from '../components/Button';
 import MyContext from '../context/MyContext';
 import '../App.css';
+import { InputHTMLAttributes } from 'react-router/node_modules/@types/react';
+
+
+interface innerTextProps extends EventTarget {
+  name: string;
+  value: string;
+}
+
+interface handleLoginProps extends React.DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+  target: innerTextProps;
+}
+
 
 function Login() {
   const { login, setLogin } = useContext(MyContext);
 
-  function handleLogin({ target: { name, value } }) {
+  function handleLogin({ target: { name, value } }: handleLoginProps) {
     setLogin({ ...login, [name]: value });
   }
 
@@ -27,8 +38,8 @@ function Login() {
   }
 
   function saveTokens() {
-    localStorage.setItem('mealsToken', 1);
-    localStorage.setItem('cocktailsToken', 1);
+    localStorage.setItem('mealsToken', '1');
+    localStorage.setItem('cocktailsToken', '1');
   }
 
   function saveUser() {
@@ -44,23 +55,23 @@ function Login() {
     <section className="loginScreen">
       <div className="meals">
         <span className="logo">LOGIN</span>
-        <Input
-          label="e-mail"
+        <label>E-mail</label>
+        <input
           placeholder="Email"
           type="email"
-          dataID="email-input"
+          data-testid="email-input"
           id="email-input"
           name="email"
           value={ login.email }
           onChange={ handleLogin }
         />
-        <Input
+        <label>Senha</label>
+        <input
           placeholder="Password"
           type="password"
-          dataID="password-input"
+          data-testid="password-input"
           id="password-input"
           name="password"
-          label="senha"
           value={ login.password }
           onChange={ handleLogin }
         />

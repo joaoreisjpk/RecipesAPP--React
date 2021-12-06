@@ -13,6 +13,15 @@ import {
 } from '../services/getFood';
 import Footer from '../components/Footer';
 
+
+interface innerTextProps extends EventTarget {
+  innerText: string;
+}
+
+interface handleClickProps extends React.MouseEvent<HTMLButtonElement> {
+  target: innerTextProps;
+}
+
 function Foods() {
   const { respostaFood, setRespostaFood } = useContext(MyContext);
   const { ingredient } = useContext(MyContext);
@@ -35,7 +44,7 @@ function Foods() {
     categoryAPI();
   }, []);
 
-  const handleClick = async ({ target: { innerText } }) => {
+  const handleClick = async ({ target: { innerText } }: handleClickProps) => {
     if (innerText === selectCategory || innerText === 'All') {
       setRespostaFood(await foodAPI('/search.php?s='));
       setSelectCategory('');

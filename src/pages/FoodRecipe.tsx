@@ -4,14 +4,15 @@ import { useParams, Link } from 'react-router-dom';
 import { foodAPI } from '../services/getFood';
 import { drinkAPI } from '../services/getDrink';
 import CardDetail from '../components/CardDetail';
+import { DrinkObject, FoodObject } from '../interfaces';
 
 function FoodRecipe() {
-  const [itemDetail, setItemDetail] = useState();
-  const [itemRecomendation, setItemRecomendation] = useState([]);
-  const { idMeal } = useParams();
+  const [itemDetail, setItemDetail] = useState<FoodObject>();
+  const [itemRecomendation, setItemRecomendation] = useState([] as DrinkObject[]);
+  const { idMeal } = useParams<{idMeal?: string}>();
 
   const keyInProgressRecipesFromLS = () => JSON
-    .parse(localStorage.getItem('inProgressRecipes'));
+    .parse(localStorage.getItem('inProgressRecipes') || '');
 
   useEffect(() => {
     if (!keyInProgressRecipesFromLS()) {
@@ -28,7 +29,7 @@ function FoodRecipe() {
   }, []);
 
   function handleButtonText() {
-    const getStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    const getStorage = JSON.parse(localStorage.getItem('inProgressRecipes') || '');
     if (!getStorage && !getStorage.meals) return false;
     const mealKeys = Object.keys(getStorage.meals);
     const validate = mealKeys.some((id) => id === idMeal);

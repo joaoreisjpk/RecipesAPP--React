@@ -12,6 +12,14 @@ import {
 import drinksByIngredient from '../helpers/drinksByIngredient';
 import Footer from '../components/Footer';
 
+interface innerTextProps extends EventTarget {
+  innerText: string;
+}
+
+interface handleClickProps extends React.MouseEvent<HTMLButtonElement> {
+  target: innerTextProps;
+}
+
 function Drinks() {
   const { respostaDrink, setRespostaDrink } = useContext(MyContext);
   const { ingredient } = useContext(MyContext);
@@ -34,7 +42,7 @@ function Drinks() {
     categoryAPI();
   }, []);
 
-  const handleClick = async ({ target: { innerText } }) => {
+  const handleClick = async ({ target: { innerText } }: handleClickProps) => {
     if (innerText === selectCategory || innerText === 'All') {
       setRespostaDrink(await drinkAPI('/search.php?s='));
       setSelectCategory('');

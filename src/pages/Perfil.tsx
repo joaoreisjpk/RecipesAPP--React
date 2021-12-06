@@ -6,7 +6,7 @@ import Button from '../components/Button';
 
 function Perfil() {
   let email = '';
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem('user') || '');
 
   if (user) {
     email = user.email;
