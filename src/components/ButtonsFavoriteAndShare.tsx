@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import shareIcon from '../images/shareIcon.svg';
 import { isFavorite, handleFavorite } from '../helpers';
 
-const ButtonsFavoriteAndShare = ({ object, handleUpdate, idShare, idFavorite }) => {
-  const [copiado, setCopiado] = useState(false);
-  const [favorited, setFavorited] = useState();
+import shareIcon from '../images/shareIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 
+interface ButtonsProps {
+  object: any;
+  handleUpdate?: () => void;
+  idShare?: string;
+  idFavorite?: string;
+}
+
+const ButtonsFavoriteAndShare = ({ object, handleUpdate, idShare, idFavorite }: ButtonsProps): JSX.Element => {
   const { id, title, type } = object;
+  
+  const [copiado, setCopiado] = useState(false);
+  const [favorited, setFavorited] = useState(isFavorite(id));
 
   useEffect(() => {
     setFavorited(isFavorite(id));
@@ -57,19 +64,6 @@ const ButtonsFavoriteAndShare = ({ object, handleUpdate, idShare, idFavorite }) 
 
     </div>
   );
-};
-
-ButtonsFavoriteAndShare.propTypes = {
-  object: PropTypes.objectOf(PropTypes.any).isRequired,
-  idShare: PropTypes.string,
-  handleUpdate: PropTypes.func,
-  idFavorite: PropTypes.string,
-};
-
-ButtonsFavoriteAndShare.defaultProps = {
-  handleUpdate: () => null,
-  idShare: '',
-  idFavorite: '',
 };
 
 export default ButtonsFavoriteAndShare;

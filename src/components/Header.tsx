@@ -1,9 +1,13 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import profileIcon from '../images/profileIcon.svg';
 
-function Header({ title }) {
+interface HeaderProps {
+  title: string;
+}
+
+function Header({ title }: HeaderProps) {
   return (
     <header>
       <Link key="2927128" to="/perfil">
@@ -18,9 +22,5 @@ function Header({ title }) {
     </header>
   );
 }
-
-Header.propTypes = {
-  title: PropTypes.string.isRequired,
-};
 
 export default Header;

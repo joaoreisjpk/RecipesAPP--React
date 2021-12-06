@@ -1,7 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-function Video({ srcVideo }) {
+interface VideoProps {
+  srcVideo: string;
+}
+
+function Video({ srcVideo }: VideoProps) {
   const videoURL = srcVideo.replace('watch?v=', 'embed/');
   return (
     <iframe
@@ -15,9 +18,5 @@ function Video({ srcVideo }) {
     />
   );
 }
-
-Video.propTypes = {
-  srcVideo: PropTypes.string.isRequired,
-};
 
 export default Video;

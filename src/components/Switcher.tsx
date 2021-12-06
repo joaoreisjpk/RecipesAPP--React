@@ -19,74 +19,74 @@ import FavoriteRecipes from '../pages/FavoriteRecipes';
 import ExploreDrinksArea from '../pages/ExploreDrinksArea';
 
 class Switcher extends Component {
-  render() {
+  render(): JSX.Element {
     return (
       <Switch>
         <Route
           exact
           path="/explorar/comidas/ingredientes"
-          render={ (props) => <ExploreFoodsIngredients { ...props } /> }
+          component={ExploreFoodsIngredients}
         />
         <Route
           exact
           path="/explorar/bebidas/ingredientes"
-          render={ (props) => <ExploreDrinksIngredients { ...props } /> }
+          component={ExploreDrinksIngredients}
         />
         <Route
           exact
           path="/explorar/comidas/area"
-          render={ (props) => <ExploreFoodsArea { ...props } /> }
+          component={ ExploreFoodsArea }
         />
         <Route
           exact
           path="/explorar/bebidas/area"
-          render={ (props) => <ExploreDrinksArea { ...props } /> }
+          component={ ExploreDrinksArea }
         />
         <Route
           exact
           path="/explorar/comidas"
-          render={ (props) => <ExploreFoods { ...props } /> }
+          component={ ExploreFoods }
         />
         <Route
           exact
           path="/explorar/bebidas"
-          render={ (props) => <ExploreDrinks { ...props } /> }
+          component={ ExploreDrinks }
         />
-        <Route exact path="/explorar" render={ (props) => <Explore { ...props } /> } />
+        <Route exact path="/explorar" component={ Explore } />
         <Route
           exact
           path="/comidas/:idMeal/in-progress"
-          render={ (props) => <InProgressFoodRecipe { ...props } /> }
+          component={InProgressFoodRecipe}
         />
         <Route
           exact
           path="/bebidas/:idDrink/in-progress"
-          render={ (props) => <InProgressDrinkRecipe { ...props } /> }
+          component={InProgressDrinkRecipe}
         />
         <Route
           exact
           path="/comidas/:idMeal"
-          render={ (props) => <FoodRecipe { ...props } /> }
+          component={FoodRecipe}
         />
         <Route
           exact
           path="/bebidas/:idDrink"
-          render={ (props) => <DrinkRecipe { ...props } /> }
+          component={DrinkRecipe}
         />
-        <Route exact path="/comidas" render={ (props) => <Foods { ...props } /> } />
-        <Route exact path="/bebidas" render={ (props) => <Drinks { ...props } /> } />
+        <Route exact path="/comidas" component={Foods} />
+        <Route exact path="/bebidas" component={Drinks} />
         <Route
           exact
           path="/receitas-feitas"
-          render={ (props) => <DoneRecipes { ...props } /> }
+          component={DoneRecipes}
         />
         <Route
           exact
           path="/receitas-favoritas"
-          render={ (props) => <FavoriteRecipes { ...props } /> }
+          component={FavoriteRecipes}
         />
-        <Route exact path="/perfil" render={ (props) => <Perfil { ...props } /> } />
-        <Route exact path="/" render={ (props) => <Login { ...props } /> } />
+        <Route exact path="/perfil" component={Perfil} />
+        <Route exact path="/" component={Login} />
       </Switch>
     );
   }

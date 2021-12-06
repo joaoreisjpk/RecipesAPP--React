@@ -1,7 +1,12 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
-function Cards({ thumbnail, name, index }) {
+interface CardsProps {
+  thumbnail?: string,
+  name?: string,
+  index: number,
+}
+
+function Cards({ thumbnail, name, index }: CardsProps): JSX.Element {
   return (
     <div data-testid={ `${index}-recipe-card` } id="card-div">
       <img
@@ -21,11 +26,5 @@ function Cards({ thumbnail, name, index }) {
     </div>
   );
 }
-
-Cards.propTypes = {
-  index: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  thumbnail: PropTypes.string.isRequired,
-};
 
 export default Cards;

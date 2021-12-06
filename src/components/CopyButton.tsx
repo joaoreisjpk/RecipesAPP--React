@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+
 import shareIcon from '../images/shareIcon.svg';
 
-const CopyButton = ({ type, id, index }) => {
+interface CopyButtonProps {
+  type?: string,
+  id?: string,
+  index: number,
+}
+
+const CopyButton = ({ type, id, index }: CopyButtonProps): JSX.Element => {
   const [copiado, setCopiado] = useState(false);
 
   const handleCopy = () => {
@@ -23,12 +29,6 @@ const CopyButton = ({ type, id, index }) => {
       { copiado && <p>Link copiado!</p>}
     </>
   );
-};
-
-CopyButton.propTypes = {
-  type: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired,
 };
 
 export default CopyButton;

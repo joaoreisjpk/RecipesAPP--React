@@ -1,16 +1,20 @@
-import PropTypes from 'prop-types';
 import React, { useState, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import profileIcon from '../images/profileIcon.svg';
-import searchIcon from '../images/searchIcon.svg';
-import Input from './Input';
-import Button from './Button';
 import { foodSmallAPi, foodAPI } from '../services/getFood';
 import { drinkSmallAPI, drinkAPI } from '../services/getDrink';
 import MyContext from '../context/MyContext';
-import '../App.css';
 
-function Header({ title }) {
+import Button from './Button';
+
+import '../App.css';
+import searchIcon from '../images/searchIcon.svg';
+import profileIcon from '../images/profileIcon.svg';
+
+interface HeaderProps {
+  title: string;
+}
+
+function Header({ title }: HeaderProps) {
   const { setRespostaDrink, setRespostaFood } = useContext(MyContext);
   const INGREDIENT_RADIO = 'ingredient-radio';
   const [showSearchBar, setShowSearchBar] = useState(false);
@@ -52,28 +56,28 @@ function Header({ title }) {
   function renderRadioButtons() {
     return (
       <>
-        <Input
-          dataID="ingredient-search-radio"
+        <label htmlFor="ingredient-radio">Ingrediente</label>
+        <input
+          data-testid="ingredient-search-radio"
           type="radio"
-          label="Ingrediente"
-          selected="true"
+          checked
           id="ingredient-radio"
           name="endpoint"
           onChange={ (e) => setRadioValue(e.target.id) }
         />
-        <Input
-          dataID="name-search-radio"
+        <label htmlFor="name-radio">Nome</label>
+        <input
+          data-testid="name-search-radio"
           type="radio"
-          label="Nome"
           name="endpoint"
           id="name-radio"
           onChange={ (e) => setRadioValue(e.target.id) }
         />
-        <Input
-          dataID="first-letter-search-radio"
+        <label htmlFor="first-letter-radio">Primeira letra"</label>
+        <input
+          data-testid="first-letter-search-radio"
           type="radio"
           name="endpoint"
-          label="Primeira letra"
           id="first-letter-radio"
           onChange={ (e) => setRadioValue(e.target.id) }
         />
@@ -88,7 +92,6 @@ function Header({ title }) {
   function renderSearchButton() {
     return (
       <Button
-        type="button"
         text="Buscar"
         dataID="exec-search-btn"
         id="exec-search-btn"
@@ -127,9 +130,5 @@ function Header({ title }) {
     </header>
   );
 }
-
-Header.propTypes = {
-  title: PropTypes.string.isRequired,
-};
 
 export default Header;

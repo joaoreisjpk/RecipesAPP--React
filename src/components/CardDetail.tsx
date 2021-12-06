@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import RecommendationCard from './RecommendationCard';
 import {
@@ -10,17 +9,23 @@ import {
 } from '../helpers';
 import Video from './Video';
 import ButtonsFavoriteAndShare from './ButtonsFavoriteAndShare';
+import { DrinkObject, FoodObject } from '../interfaces';
 
-const CardDetail = ({ itemRecomendation, object }) => {
-  const [ingredients, setIngredients] = useState([]);
-  const [measures, setMeasures] = useState([]);
+interface CardDetailProps {
+  itemRecomendation: FoodObject[] | DrinkObject[],
+  object: DrinkObject | FoodObject,
+}
+
+const CardDetail = ({ itemRecomendation, object }: CardDetailProps): JSX.Element => {
+  const [ingredients, setIngredients] = useState([] as string[]);
+  const [measures, setMeasures] = useState([] as string[]);
   const [counter, setCounter] = useState(0);
 
   const { alcoholicOrNot, image, video, instruction, category, name } = object;
 
   const SIX = 6;
 
-  const handleClick = (param) => {
+  const handleClick = (param: Boolean) => {
     if (param && (counter < 2 + 2 + 1)) {
       setCounter(counter + 1);
     } else setCounter(counter - 1);
@@ -83,17 +88,13 @@ const CardDetail = ({ itemRecomendation, object }) => {
       { itemRecomendation.map((item, index) => (
         <RecommendationCard
           key={ index }
-          recipe={ { ...item, index } }
+          recipe={ item }
+          index={ index }
           counter={ counter }
         />
       )).slice(0, SIX) }
     </div>
   );
-};
-
-CardDetail.propTypes = {
-  itemRecomendation: PropTypes.arrayOf(PropTypes.any).isRequired,
-  object: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default CardDetail;

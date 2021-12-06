@@ -1,6 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
+
+interface IngredientsInProgressProps {
+  index: number;
+  ingrediente: string,
+  measures: string[],
+  id: string;
+  type?: string;
+  handleButton: () => void;
+}
 
 function IngredientsInProgress({
   index,
@@ -8,15 +16,15 @@ function IngredientsInProgress({
   measures,
   id,
   type,
-  handleButton }) {
+  handleButton }: IngredientsInProgressProps) {
   const [checked, setChecked] = useState(true);
 
-  const keyInProgress = () => JSON.parse(localStorage.getItem('inProgressRecipes'));
+  const keyInProgress = (): any => JSON.parse(localStorage.getItem('inProgressRecipes') || '{}');
 
   useEffect(() => {
     setChecked(type === 'bebida'
-      ? keyInProgress().cocktails[id].some((ingredient) => ingredient === index)
-      : keyInProgress().meals[id].some((ingredient) => ingredient === index));
+      ? keyInProgress().cocktails[id].some((ingredient: number) => ingredient === index)
+      : keyInProgress().meals[id].some((ingredient: number) => ingredient === index));
   }, []);
 
   function addIngredientInLocalStorage() {
@@ -27,7 +35,7 @@ function IngredientsInProgress({
           [id]: !checked
             ? [...keyInProgress().cocktails[id], index]
             : [...keyInProgress().cocktails[id]
-              .filter((ingredient) => ingredient !== index)],
+              .filter((ingredient: number) => ingredient !== index)],
         },
         meals: {
           ...keyInProgress().meals,
@@ -39,7 +47,7 @@ function IngredientsInProgress({
           ...keyInProgress().meals,
           [id]: !checked
             ? [...keyInProgress().meals[id], index]
-            : [...keyInProgress().meals[id].filter((ingredient) => ingredient !== index)],
+            : [...keyInProgress().meals[id].filter((ingredient: number) => ingredient !== index)],
         },
         cocktails: {
           ...keyInProgress().cocktails,
@@ -57,7 +65,7 @@ function IngredientsInProgress({
   return (
     <div data-testid={ `${index}-ingredient-step` }>
       <label
-        style={ checked ? { textDecoration: 'line-through' } : null }
+        style={ checked ? { textDecoration: 'line-through' } : undefined }
         htmlFor={ ingrediente }
       >
         { !checked ? (
@@ -80,14 +88,5 @@ function IngredientsInProgress({
     </div>
   );
 }
-
-IngredientsInProgress.propTypes = {
-  handleButton: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired,
-  ingrediente: PropTypes.string.isRequired,
-  measures: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
 
 export default IngredientsInProgress;

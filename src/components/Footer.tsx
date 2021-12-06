@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import drinkIcon from '../images/drinkIcon.svg';
-import mealIcon from '../images/mealIcon.svg';
-import exploreIcon from '../images/exploreIcon.svg';
 
-function Footer() {
+import drinkIcon from '../images/drinkIcon.svg';
+import exploreIcon from '../images/exploreIcon.svg';
+import mealIcon from '../images/mealIcon.svg';
+
+function Footer(): JSX.Element {
   return (
     <footer style={ { position: 'fixed', bottom: '0px' } } data-testid="footer">
       <section id="container">
@@ -12,7 +13,6 @@ function Footer() {
           type="button"
           data-testid="drinks-bottom-btn"
           id="drinks-bottom-btn"
-          src={ drinkIcon }
         >
           <Link to="/bebidas">
             <img src={ drinkIcon } alt="Drink Icon" />
@@ -22,7 +22,6 @@ function Footer() {
           type="button"
           data-testid="explore-bottom-btn"
           id="explore-bottom-btn"
-          src={ exploreIcon }
         >
           <Link to="/explorar">
             <img src={ exploreIcon } alt="Explore Icon" />
@@ -32,7 +31,6 @@ function Footer() {
           type="button"
           data-testid="food-bottom-btn"
           id="food-bottom-btn"
-          src={ mealIcon }
         >
           <Link to="/comidas">
             <img src={ mealIcon } alt="Meal Icon" />

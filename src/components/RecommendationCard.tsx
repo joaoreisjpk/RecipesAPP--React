@@ -1,8 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const RecommendationCard = ({ recipe, counter }) => {
-  const { image, index, name } = recipe;
+import { FoodObject, DrinkObject } from '../interfaces'
+
+interface RecommendationCardProps {
+  recipe: FoodObject | DrinkObject;
+  counter: number;
+  index: number;
+}
+
+const RecommendationCard = ({ recipe, index, counter }: RecommendationCardProps) => {
+  const { image, name } = recipe;
 
   const handleVisibility = () => {
     if (counter === index || counter + 1 === index) return 'visible';
@@ -25,11 +32,6 @@ const RecommendationCard = ({ recipe, counter }) => {
       </h4>
     </section>
   );
-};
-
-RecommendationCard.propTypes = {
-  counter: PropTypes.number.isRequired,
-  recipe: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default RecommendationCard;
