@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ButtonsFavoriteAndShare from '../components/ButtonsFavoriteAndShare';
 import { getMeasures, getIngredients } from '../helpers';
-import { getDrinksID } from '../services/getDrink';
+import { drinkAPI } from '../services/getDrink';
 import IngredientsInProgress from '../components/IngredientsInProgress';
 
 function InProgressDrinkRecipe() {
@@ -11,6 +11,8 @@ function InProgressDrinkRecipe() {
   const [disabled, setDisabled] = useState();
   const { image, name, instruction, category, type } = drinkRecipeInProgress;
   const { idDrink } = useParams();
+
+  console.log('detail:', drinkRecipeInProgress);
 
   const getInProgressRecipes = () => JSON
     .parse(localStorage.getItem('inProgressRecipes'));
@@ -21,7 +23,7 @@ function InProgressDrinkRecipe() {
 
   async function saveDrinkIngredientsAtLocalStorage() {
     localStorage.setItem('drinkIngredients', JSON.stringify(
-      getIngredients(await getDrinksID(idDrink)),
+      getIngredients((await drinkAPI(`/lookup.php?i=${idDrink}`))[0]),
     ));
   }
 
@@ -43,7 +45,7 @@ function InProgressDrinkRecipe() {
     }
     const getDrinkFromAPI = async () => {
       saveDrinkIngredientsAtLocalStorage();
-      setDrinkRecipeInProgress(await getDrinksID(idDrink));
+      setDrinkRecipeInProgress((await drinkAPI(`/lookup.php?i=${idDrink}`))[0]);
     };
     if (!getCheckedIngredients()[idDrink]) setCheckedIngredients();
     getDrinkFromAPI();

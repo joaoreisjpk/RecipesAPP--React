@@ -2,31 +2,17 @@ const fetchGetDrinkID = {
   drinks: [
     {
       type: 'bebida',
-      idDrink: '12730',
       id: '12730',
       area: '',
-      strDrink: 'Castillian Hot Chocolate',
       name: 'Castillian Hot Chocolate',
       strDrinkAlternate: null,
       strTags: null,
       tags: null,
-      strVideo: null,
       video: null,
-      strCategory: 'Cocoa',
       category: 'Cocoa',
       strIBA: null,
-      strAlcoholic: 'Non alcoholic',
       alcoholicOrNot: 'Non alcoholic',
       strGlass: 'Coffee mug',
-      strInstructions:
-        `Shift the cocoa and sugar together into a medium-sized saucepan.
-        Dissolve the cornstarch in the water, and stir into the cocoa and
-        sugar until it is a smooth paste. Begin heating the mixture, stirring
-        it with a whisk, and gradually pour in the milk. Continue stirring
-        with the whisk as you bring the liquid to a simmer. Allow the
-        chocolate to simmer for about 10 minutes, stirring often, until it
-        is thick, glossy and completely smooth. Serve steaming hot in coffee
-        mug. Serves six.`,
       image:
         'https://www.thecocktaildb.com/images/media/drink/3nbu4a1487603196.jpg',
       instruction:
@@ -38,8 +24,6 @@ const fetchGetDrinkID = {
         chocolate to simmer for about 10 minutes, stirring often, until it
         is thick, glossy and completely smooth. Serve steaming hot in coffee
         mug. Serves six.`,
-      strDrinkThumb:
-        'https://www.thecocktaildb.com/images/media/drink/3nbu4a1487603196.jpg',
       strIngredient1: 'Cocoa powder',
       strIngredient2: 'Sugar',
       strIngredient3: 'Cornstarch',

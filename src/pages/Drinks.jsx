@@ -5,8 +5,7 @@ import HeaderWithSearchIcon from '../components/HeaderWithSearchIcon';
 import MyContext from '../context/MyContext';
 import Cards from '../components/Cards';
 import {
-  getDrinkNome,
-  getDrinksCategory,
+  drinkAPI,
   getCategorylist,
   // getDrinkIngrediente,
 } from '../services/getDrink';
@@ -25,9 +24,9 @@ function Drinks() {
     const callAPI = async () => {
       if (ingredient) {
         setSelectCategory('Ingrediente');
-        // setRespostaDrink(await getDrinkIngrediente(ingredient));
+        // setRespostaDrink(await getSmallAPI(`/filter.php?i=${ingredient}`));
         setRespostaDrink(drinksByIngredient);
-      } else setRespostaDrink(await getDrinkNome(''));
+      } else setRespostaDrink(await drinkAPI('/search.php?s='));
     };
     const categoryAPI = async () => setCategories(await getCategorylist());
 
@@ -37,11 +36,11 @@ function Drinks() {
 
   const handleClick = async ({ target: { innerText } }) => {
     if (innerText === selectCategory || innerText === 'All') {
-      setRespostaDrink(await getDrinkNome(''));
+      setRespostaDrink(await drinkAPI('/search.php?s='));
       setSelectCategory('');
     } else {
       setSelectCategory(innerText);
-      setRespostaDrink(await getDrinksCategory(innerText));
+      setRespostaDrink(await drinkAPI(`/filter.php?c=${innerText}`));
     }
   };
 
@@ -61,10 +60,6 @@ function Drinks() {
 
   if (respostaDrink && respostaDrink.length === 1) {
     return <Redirect to={ `/bebidas/${respostaDrink[0].id}` } />;
-  }
-
-  if (respostaDrink === null) {
-    global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
   }
 
   return (

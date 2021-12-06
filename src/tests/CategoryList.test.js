@@ -128,7 +128,7 @@ describe('Testa os botões de filtrar por categoria', () => {
     history.push('/comidas');
 
     await screen.findByTestId('All-category-filter');
-    screen.getByTestId('Beef-category-filter');
+    await screen.findByTestId('Beef-category-filter');
     screen.getByTestId('Breakfast-category-filter');
     screen.getByTestId('Chicken-category-filter');
     screen.getByTestId('Dessert-category-filter');
@@ -163,7 +163,7 @@ describe('Testa os botões de filtrar por categoria', () => {
       userEvent.click(await screen.findByTestId('Beef-category-filter'));
     });
 
-    expect(global.fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/filter.php?c=undefined');
+    expect(global.fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/filter.php?c=Beef');
     await screen.findByTestId(zeroCard);
     expect(screen.getByTestId(zeroImg).src)
       .toBe(fetchGetCategory.meals[0].strMealThumb);

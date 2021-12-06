@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Cards from '../components/Cards';
 import Footer from '../components/Footer';
 import HeaderWithSearchIcon from '../components/HeaderWithSearchIcon';
-import { getAreaList, getFoodListByArea, getNome } from '../services/getFood';
+import { getAreaList, foodSmallAPi, foodAPI } from '../services/getFood';
 
 function ExploreFoodsArea() {
   const [areas, setAreas] = useState([]);
@@ -14,14 +14,14 @@ function ExploreFoodsArea() {
   useEffect(() => {
     const callAPI = async () => {
       setAreas(await getAreaList());
-      setFoodList(await getNome(''));
+      setFoodList(await foodAPI('/search.php?s='));
     };
     callAPI();
   }, []);
 
   const handleChange = async (param) => {
-    if (param === 'All') return setFoodList(await getNome(''));
-    setFoodList(await getFoodListByArea(param));
+    if (param === 'All') return setFoodList(await foodAPI('/search.php?s='));
+    setFoodList(await foodSmallAPi(`/filter.php?a=${param}`));
     console.log(param);
   };
 

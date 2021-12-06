@@ -3,34 +3,17 @@ const fetchGetByName = {
     {
       type: 'bebida',
       area: '',
-      idDrink: '178358',
       id: '178358',
-      strDrink: 'Mango Mojito',
       name: 'Mango Mojito',
       strDrinkAlternate: null,
       strTags: 'Fruity',
       tags: 'Fruity',
       videos: null,
       video: '',
-      strCategory: 'Cocktail',
       category: 'Cocktail',
       strIBA: null,
-      strAlcoholic: 'Alcoholic',
       alcoholicOrNot: 'Alcoholic',
       strGlass: 'Jar',
-      strInstructions:
-        `Squeeze the juice from 1½ limes and blend with the mango to
-        give a smooth purée. Cut the rest of the limes into quarters,
-        and then cut each wedge in half again. Put 2 pieces of lime in
-        a highball glass for each person and add 1 teaspoon of caster
-        sugar and 5-6 mint leaves to each glass. Squish everything together
-        with a muddler or the end of a rolling pin to release all the
-        flavours from the lime and mint. Divide the mango purée between the
-        glasses and add 30ml white rum and a handful of crushed ice to each
-        one, stirring well to mix everything together. Top up with soda water
-        to serve and garnish with extra mint, if you like.`,
-      strDrinkThumb:
-        'https://www.thecocktaildb.com/images/media/drink/wfqmgm1630406820.jpg',
       instruction:
         `Squeeze the juice from 1½ limes and blend with the mango to
         give a smooth purée. Cut the rest of the limes into quarters,
@@ -82,26 +65,16 @@ const fetchGetByName = {
     {
       area: '',
       type: 'bebida',
-      idDrink: '12698',
       id: '12698',
-      strDrink: 'Lassi - Mango',
       name: 'Lassi - Mango',
       strDrinkAlternate: null,
       strTags: null,
       tags: null,
-      strVideo: null,
       video: '',
-      strCategory: 'Other/Unknown',
       category: 'Other/Unknown',
       strIBA: null,
       alcoholicOrNot: 'Non alcoholic',
-      strAlcoholic: 'Non alcoholic',
       strGlass: 'Highball glass',
-      strInstructions:
-        `Put it all in a blender and pour over crushed ice.
-        You can also use other fruits like strawberries and bananas.`,
-      strDrinkThumb:
-        'https://www.thecocktaildb.com/images/media/drink/1bw6sd1487603816.jpg',
       instruction:
         `Put it all in a blender and pour over crushed ice.
         You can also use other fruits like strawberries and bananas.`,

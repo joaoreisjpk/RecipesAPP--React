@@ -5,11 +5,8 @@ import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import Input from './Input';
 import Button from './Button';
-import { getIngrediente, getNome, getPrimeiraletra } from '../services/getFood';
-import {
-  getDrinkIngrediente,
-  getDrinkNome,
-  getDrinkPrimeiraletra } from '../services/getDrink';
+import { foodSmallAPi, foodAPI } from '../services/getFood';
+import { drinkSmallAPI, drinkAPI } from '../services/getDrink';
 import MyContext from '../context/MyContext';
 import '../App.css';
 
@@ -22,22 +19,22 @@ function Header({ title }) {
 
   const handleSearchInput = async () => {
     if (radioValue === INGREDIENT_RADIO) {
-      setRespostaFood(await getIngrediente(searchValue));
+      setRespostaFood(await foodSmallAPi(`/filter.php?i=${searchValue}`));
     } else if (radioValue === 'name-radio') {
-      setRespostaFood(await getNome(searchValue));
+      setRespostaFood(await foodAPI(`/search.php?s=${searchValue}`));
     } else if (searchValue.length > 1) {
       return global.alert('Sua busca deve conter somente 1 (um) caracter');
-    } else setRespostaFood(await getPrimeiraletra(searchValue));
+    } else setRespostaFood(await foodAPI(`/search.php?f=${searchValue}`));
   };
 
   const handleSearchInputDrink = async () => {
     if (radioValue === INGREDIENT_RADIO) {
-      setRespostaDrink(await getDrinkIngrediente(searchValue));
+      setRespostaDrink(await drinkSmallAPI(`/filter.php?i=${searchValue}`));
     } else if (radioValue === 'name-radio') {
-      setRespostaDrink(await getDrinkNome(searchValue));
+      setRespostaDrink(await drinkAPI(`/search.php?s=${searchValue}`));
     } else if (searchValue.length > 1) {
       return global.alert('Sua busca deve conter somente 1 (um) caracter');
-    } else setRespostaDrink(await getDrinkPrimeiraletra(searchValue));
+    } else setRespostaDrink(await drinkAPI(`/search.php?f=${searchValue}`));
   };
 
   function renderInput() {

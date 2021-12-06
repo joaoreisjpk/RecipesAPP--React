@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getDrinksID } from '../services/getDrink';
-import { getNome } from '../services/getFood';
+import { drinkAPI } from '../services/getDrink';
+import { foodAPI } from '../services/getFood';
 import CardDetail from '../components/CardDetail';
 
 function DrinkRecipe() {
@@ -21,8 +21,8 @@ function DrinkRecipe() {
       }));
     }
     const callAPI = async () => {
-      setItemDetail(await getDrinksID(idDrink));
-      setItemRecomendation(await getNome(''));
+      setItemDetail((await drinkAPI(`/lookup.php?i=${idDrink}`))[0]);
+      setItemRecomendation(await foodAPI('/search.php?s='));
     };
     callAPI();
   }, []);

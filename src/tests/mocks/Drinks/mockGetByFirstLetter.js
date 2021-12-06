@@ -3,25 +3,17 @@ const mockItensFilterByFirstLetter = {
     {
       area: '',
       type: 'bebida',
-      idDrink: '17219',
       id: '17219',
-      strDrink: 'Yellow Bird',
       name: 'Yellow Bird',
       strDrinkAlternate: null,
       strTags: 'IBA,NewEra',
       tags: 'IBA,NewEra',
-      strVideo: null,
       video: '',
-      strCategory: 'Cocktail',
       category: 'Cocktail',
       strIBA: 'New Era Drinks',
-      strAlcoholic: 'Alcoholic',
       alcoholicOrNot: 'Alcoholic',
       strGlass: 'Cocktail glass',
       instruction: 'Shake and strain into a chilled cocktail glass',
-      strInstructions: 'Shake and strain into a chilled cocktail glass',
-      strDrinkThumb:
-        'https://www.thecocktaildb.com/images/media/drink/2t9r6w1504374811.jpg',
       image:
         'https://www.thecocktaildb.com/images/media/drink/2t9r6w1504374811.jpg',
       strIngredient1: 'White Rum',
@@ -62,19 +54,14 @@ const mockItensFilterByFirstLetter = {
     {
       area: '',
       type: 'bebida',
-      idDrink: '12728',
       id: '12728',
-      strDrink: 'Yoghurt Cooler',
       name: 'Yoghurt Cooler',
       strDrinkAlternate: null,
       strTags: null,
       tags: null,
-      strVideo: null,
       video: '',
-      strCategory: 'Other/Unknown',
       category: 'Other/Unknown',
       strIBA: null,
-      strAlcoholic: 'Non alcoholic',
       alcoholicOrNot: 'Non alcoholic',
       strGlass: 'Highball Glass',
       instruction: `
@@ -84,14 +71,6 @@ const mockItensFilterByFirstLetter = {
       Remove the center of the cover while the blender
       is on - drop 3 or 4 ice cubs and blend until they're completely crushed.`,
       image:
-        'https://www.thecocktaildb.com/images/media/drink/trttrv1441254466.jpg',
-      strInstructions: `
-      Place all ingredients in the blender jar - cover and whiz on medium
-      speed until well blended. Pour in one tall, 2 medium or 3 small glasses and
-      drink up. Note: Use lots of ice in this one - great on hot days! To add ice:
-      Remove the center of the cover while the blender
-      is on - drop 3 or 4 ice cubs and blend until they're completely crushed.`,
-      strDrinkThumb:
         'https://www.thecocktaildb.com/images/media/drink/trttrv1441254466.jpg',
       strIngredient1: 'Yoghurt',
       strIngredient2: 'Fruit',

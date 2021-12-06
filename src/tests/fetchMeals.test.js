@@ -1,13 +1,9 @@
 import {
-  getPrimeiraletra,
-  getIngrediente,
-  getNome,
+  foodAPI,
+  foodSmallAPi,
   getCategorylist,
-  getFoodCategory,
-  getFoodById,
   getRandomFood,
   getIngredientList,
-  getFoodListByArea,
   getAreaList,
 } from '../services/getFood';
 
@@ -66,24 +62,24 @@ describe('Testa as APIs do getFood', () => {
     global.fetch = jest.fn(mockFetch);
   });
 
-  test('1 - Testa se getIngrediente funciona devidamente', () => {
-    expect(getIngrediente('rice'))
+  test('1 - Testa se foodSmallAPi funciona devidamente', () => {
+    expect(foodSmallAPi('/filter.php?i=rice'))
       .resolves.toEqual(resultFetchGetByIngredients.meals);
   });
 
-  test('2 - Testa se o getPrimeiraLetra funciona devidamente', () => {
-    expect(getPrimeiraletra('a'))
+  test('2 - Testa se o foodAPI funciona devidamente com a primeira letra', () => {
+    expect(foodAPI('/search.php?f=a'))
       .resolves.toEqual(fetchGetByFirstLetter.meals);
   });
 
-  test('3 - Testa se o getNome funciona devidamente', () => {
-    expect(getNome('Corba'))
+  test('3 - Testa se o foodAPI funciona devidamente com o nome', () => {
+    expect(foodAPI('/search.php?s=Corba'))
       .resolves.toEqual(fetchGetByName.meals);
   });
 
   test('4 - Testa se o fetchNome retorna uma array vazia caso nada seja encontrado',
     async () => {
-      const fetchAPI = await getNome('Xablau');
+      const fetchAPI = await foodAPI('/search.php?s=Xablau');
       expect(fetchAPI).toEqual([]);
     });
 
@@ -91,12 +87,13 @@ describe('Testa as APIs do getFood', () => {
     const fetchAPI = await getCategorylist();
     expect(fetchAPI).toEqual(resultCategorylist.meals);
   });
-  test('6 - Testa se o getFoodCategory funciona devidamente', async () => {
-    const fetchAPI = await getFoodCategory('goat');
+
+  test('6 - Testa se o getFoodCategory funciona devidamente com categorias', async () => {
+    const fetchAPI = await foodSmallAPi('/filter.php?c=goat');
     expect(fetchAPI).toEqual(resultGetCategory);
   });
-  test('7 - Testa se o getFoodById funciona devidamente', async () => {
-    const fetchAPI = await getFoodById('52968');
+  test('7 - Testa se o getFoodById funciona devidamente com id', async () => {
+    const fetchAPI = await foodAPI('/lookup.php?i=52968');
     expect(fetchAPI).toEqual(fetchGetFoodByID.meals[0]);
   });
   test('8 - Testa se o getRandomFood funciona devidamente', async () => {
@@ -123,7 +120,7 @@ describe('Continua os testes das APIs do getFood', () => {
     expect(fetchAPI).toEqual(resultAreaList);
   });
   test('11 - Testa se o getAreaList funciona devidamente', async () => {
-    const fetchAPI = await getFoodListByArea('Canadian');
+    const fetchAPI = await foodSmallAPi('/filter.php?a=Canadian');
     expect(fetchAPI).toEqual(resultGetFoodByArea);
   });
 });
