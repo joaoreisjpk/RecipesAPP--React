@@ -5,9 +5,10 @@ import Header from '../components/Header';
 import {
   getFavoriteList,
 } from '../helpers';
+import { DrinkObject } from '../interfaces';
 
 function FavoriteRecipes() {
-  const [favoriteList, setFavoriteList] = useState([]);
+  const [favoriteList, setFavoriteList] = useState([] as DrinkObject[]);
   const [filter, setFilter] = useState('');
 
   useEffect(() => {

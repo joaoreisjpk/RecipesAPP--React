@@ -1,24 +1,27 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import ButtonsFavoriteAndShare from '../components/ButtonsFavoriteAndShare';
+
 import { getMeasures, getIngredients } from '../helpers';
 import { foodAPI } from '../services/getFood';
+import { FoodObject } from '../interfaces';
+
+import ButtonsFavoriteAndShare from '../components/ButtonsFavoriteAndShare';
 import IngredientsInProgress from '../components/IngredientsInProgress';
 
 function InProgressFoodRecipe() {
-  const [foodRecipeInProgress, setFoodRecipeInProgress] = useState([]);
-  const [disabled, setDisabled] = useState();
+  const [foodRecipeInProgress, setFoodRecipeInProgress] = useState({} as FoodObject);
+  const [disabled, setDisabled] = useState<Boolean>();
   const { image, name, instruction, category, type } = foodRecipeInProgress;
-  const { idMeal } = useParams();
+  const { idMeal } = useParams<{idMeal: string}>();
 
   console.log(foodRecipeInProgress);
 
   const getInProgressRecipes = () => JSON
-    .parse(localStorage.getItem('inProgressRecipes'));
+    .parse(localStorage.getItem('inProgressRecipes') || '');
 
   const getCheckedIngredients = () => (JSON.parse(
-    localStorage.getItem('inProgressRecipes'),
+    localStorage.getItem('inProgressRecipes') || '',
   )).meals;
 
   const setCheckedIngredients = () => localStorage.setItem('inProgressRecipes',

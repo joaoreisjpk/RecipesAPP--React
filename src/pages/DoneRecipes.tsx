@@ -5,22 +5,23 @@ import Header from '../components/Header';
 import {
   getDoneList,
 } from '../helpers';
+import { DrinkObject } from '../interfaces';
 
 function DoneRecipes() {
-  const [doneList, setDoneList] = useState([]);
+  const [doneList, setDoneList] = useState([] as DrinkObject[]);
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
     setDoneList(getDoneList());
   }, []);
 
-  const handleFilter = (param) => {
+  const handleFilter = (param: string) => {
     setFilter(param);
     setDoneList(getDoneList());
   };
 
-  const handleTags = (param, index) => (
-    param.map((tag) => (
+  const handleTags = (index: number, param: string[] | undefined) => (
+    param && param.map((tag) => (
       <div key={ tag } data-testid={ `${index}-${tag}-horizontal-tag` }>{tag}</div>
     ))
   );
@@ -47,7 +48,7 @@ function DoneRecipes() {
                 {`${item.area} - ${item.category}`}
               </div>
               <div data-testid={ `${index}-horizontal-done-date` }>{item.doneDate}</div>
-              { handleTags(item.tags, index) }
+              { handleTags(index, item.tags) }
               <CopyButton type={ item.type } index={ index } id={ item.id } />
             </React.Fragment>
           );
@@ -69,7 +70,7 @@ function DoneRecipes() {
             </div>
             <div>{item.alcoholicOrNot}</div>
             <div data-testid={ `${index}-horizontal-done-date` }>{item.doneDate}</div>
-            { handleTags(item.tags, index) }
+            { handleTags(index, item.tags) }
             <CopyButton type={ item.type } index={ index } id={ item.id } />
           </React.Fragment>
         );

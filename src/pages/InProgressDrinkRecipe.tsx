@@ -5,20 +5,19 @@ import ButtonsFavoriteAndShare from '../components/ButtonsFavoriteAndShare';
 import { getMeasures, getIngredients } from '../helpers';
 import { drinkAPI } from '../services/getDrink';
 import IngredientsInProgress from '../components/IngredientsInProgress';
+import { DrinkObject } from '../interfaces';
 
 function InProgressDrinkRecipe() {
-  const [drinkRecipeInProgress, setDrinkRecipeInProgress] = useState([]);
-  const [disabled, setDisabled] = useState();
+  const [drinkRecipeInProgress, setDrinkRecipeInProgress] = useState({} as DrinkObject);
+  const [disabled, setDisabled] = useState<Boolean>();
   const { image, name, instruction, category, type } = drinkRecipeInProgress;
-  const { idDrink } = useParams();
-
-  console.log('detail:', drinkRecipeInProgress);
+  const { idDrink } = useParams<{idDrink?: string | any}>();
 
   const getInProgressRecipes = () => JSON
-    .parse(localStorage.getItem('inProgressRecipes'));
+    .parse(localStorage.getItem('inProgressRecipes') || '{}');
 
   const getCheckedIngredients = () => (JSON.parse(
-    localStorage.getItem('inProgressRecipes'),
+    localStorage.getItem('inProgressRecipes') || '{}',
   )).cocktails;
 
   async function saveDrinkIngredientsAtLocalStorage() {
