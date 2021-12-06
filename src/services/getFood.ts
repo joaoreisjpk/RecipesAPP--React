@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { FoodAPIProps, FoodObject } from '../interfaces';
 
-export const renamingLargeNumberOfKeys = (list) => {
+export const renamingLargeNumberOfKeys = (list: FoodAPIProps[]): FoodObject[] => {
   if (!list) {
     global.alert(
       'Sinto muito, não encontramos nenhuma receita para esses filtros.',
@@ -34,7 +35,7 @@ export const renamingLargeNumberOfKeys = (list) => {
   return retorno;
 };
 
-const renamingSmallNumberOfKeys = (list) => {
+const renamingSmallNumberOfKeys = (list: FoodAPIProps[]): FoodObject[] => {
   if (!list) {
     global.alert(
       'Sinto muito, não encontramos nenhuma receita para esses filtros.',
@@ -53,13 +54,13 @@ export const api = axios.create({
   baseURL: 'https://www.themealdb.com/api/json/v1/1',
 });
 
-export const foodSmallAPi = async (param) => {
+export const foodSmallAPi = async (param: string) => {
   const response = await api.get(param);
 
   return renamingSmallNumberOfKeys(response.data.meals);
 };
 
-export const foodAPI = async (param) => {
+export const foodAPI = async (param: string) => {
   const response = await api.get(param);
   return renamingLargeNumberOfKeys(response.data.meals);
 };
@@ -67,7 +68,7 @@ export const foodAPI = async (param) => {
 export const getCategorylist = async () => {
   const response = await api('/list.php?c=list');
 
-  return response.data.meals.map(({ strCategory }) => ({
+  return response.data.meals.map(({ strCategory }: { strCategory:string}) => ({
     category: strCategory,
   }));
 };
@@ -89,5 +90,5 @@ export const getIngredientList = async () => {
 export const getAreaList = async () => {
   const response = await api('/list.php?a=list');
 
-  return response.data.meals.map(({ strArea }) => ({ area: strArea }));
+  return response.data.meals.map(({ strArea }: { strArea: string}) => ({ area: strArea }));
 };

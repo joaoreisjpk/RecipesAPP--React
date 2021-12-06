@@ -1,11 +1,12 @@
 import axios from 'axios';
+import { drinkAPIProps, DrinkObject } from '../interfaces';
 
-const renamingLargeNumberOfKeys = (list) => {
+const renamingLargeNumberOfKeys = (list: drinkAPIProps[]): DrinkObject[] => {
   if (!list) {
     global.alert(
       'Sinto muito, não encontramos nenhuma receita para esses filtros.',
     );
-    return [];
+    return [] as DrinkObject[];
   }
 
   const retorno = list.map((item) => {
@@ -35,7 +36,7 @@ const renamingLargeNumberOfKeys = (list) => {
   return retorno;
 };
 
-const renamingSmallNumberOfKeys = (list) => {
+const renamingSmallNumberOfKeys = (list: drinkAPIProps[]): DrinkObject[] => {
   if (!list) {
     global.alert(
       'Sinto muito, não encontramos nenhuma receita para esses filtros.',
@@ -54,13 +55,13 @@ export const api = axios.create({
   baseURL: 'https://www.thecocktaildb.com/api/json/v1/1',
 });
 
-export const drinkSmallAPI = async (param) => {
+export const drinkSmallAPI = async (param: string) => {
   const response = await api.get(param);
 
   return renamingSmallNumberOfKeys(response.data.drinks);
 };
 
-export const drinkAPI = async (param) => {
+export const drinkAPI = async (param: string): Promise<DrinkObject[]> => {
   const response = await api.get(param);
 
   return renamingLargeNumberOfKeys(response.data.drinks);
@@ -69,7 +70,7 @@ export const drinkAPI = async (param) => {
 export const getCategorylist = async () => {
   const response = await api.get('/list.php?c=list');
 
-  return response.data.drinks.map(({ strCategory }) => ({ category: strCategory }));
+  return response.data.drinks.map(({ strCategory }: { strCategory:string}) => ({ category: strCategory }));
 };
 
 export const getRandomDrink = async () => {
