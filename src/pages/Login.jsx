@@ -45,6 +45,7 @@ function Login() {
       <div className="meals">
         <span className="logo">LOGIN</span>
         <Input
+          label="e-mail"
           placeholder="Email"
           type="email"
           dataID="email-input"
@@ -59,12 +60,13 @@ function Login() {
           dataID="password-input"
           id="password-input"
           name="password"
+          label="senha"
           value={ login.password }
           onChange={ handleLogin }
         />
         <Link to="/comidas">
           <Button
-            text="Enter"
+            text="Entrar"
             dataID="login-submit-btn"
             id="login-submit-btn"
             disabled={ !verifyLogin() }

@@ -3,25 +3,11 @@ const fetchGetFoodByID = {
     {
       type: 'comida',
       alcoholicOrNot: '',
-      idMeal: '52968',
       id: '52968',
-      strMeal: 'Mbuzi Choma (Roasted Goat)',
       name: 'Mbuzi Choma (Roasted Goat)',
       strDrinkAlternate: null,
-      strCategory: 'Goat',
       category: 'Goat',
-      strArea: 'Kenyan',
       area: 'Kenyan',
-      strInstructions:
-        `1. Steps for the Meat: Roast meat over medium heat for 50 minutes and salt it
-         as you turn it. 2. Steps for Ugali: Bring the water and salt to a boil in a
-         heavy-bottomed saucepan. Stir in the cornmeal slowly, letting it fall through
-         the fingers of your hand. 3. Reduce heat to medium-low and continue stirring
-         regularly, smashing any lumps with a spoon, until the mush pulls away from
-         the sides of the pot and becomes very thick, about 10 minutes. 4.Remove from
-         heat and allow to cool. 5. Place the ugali into a large serving bowl. Wet your
-         hands with water, form a ball and serve. 6. Steps for Kachumbari: Mix the
-         tomatoes, onions, chili and coriander leaves in a bowl. 7. Serve and enjoy! `,
       instruction:
         `1. Steps for the Meat: Roast meat over medium heat for 50 minutes and salt it
         as you turn it. 2. Steps for Ugali: Bring the water and salt to a boil in a
@@ -32,8 +18,6 @@ const fetchGetFoodByID = {
         heat and allow to cool. 5. Place the ugali into a large serving bowl. Wet your
         hands with water, form a ball and serve. 6. Steps for Kachumbari: Mix the
         tomatoes, onions, chili and coriander leaves in a bowl. 7. Serve and enjoy! `,
-      strMealThumb:
-        'https://www.themealdb.com/images/media/meals/cuio7s1555492979.jpg',
       image:
         'https://www.themealdb.com/images/media/meals/cuio7s1555492979.jpg',
       tags: 'BBQ,Meat',

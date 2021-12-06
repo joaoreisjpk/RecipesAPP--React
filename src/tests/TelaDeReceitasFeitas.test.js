@@ -147,7 +147,6 @@ describe('Testando a tela de receitas feitas', () => {
     });
     expect(getCardImage(0).src).toBe(mockDoneRecipes[0].image);
     const anchor2 = screen.getAllByRole('link')[1];
-    console.log(anchor2.href, anchor.href);
     userEvent.click(anchor2);
     expect(anchor2.href).toBe(anchor.href);
     expect(anchor2.href).toContain(history.location.pathname);

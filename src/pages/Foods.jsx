@@ -6,9 +6,9 @@ import MyContext from '../context/MyContext';
 import Cards from '../components/Cards';
 import mealsByIngredient from '../helpers/mealsByIngredient';
 import {
-  getNome,
-  getFoodCategory,
+  foodAPI,
   getCategorylist,
+  foodSmallAPi,
   // getIngrediente,
 } from '../services/getFood';
 import Footer from '../components/Footer';
@@ -27,7 +27,7 @@ function Foods() {
         setSelectCategory('Ingrediente');
         // setRespostaFood(await getIngrediente(ingredient));
         setRespostaFood(mealsByIngredient);
-      } else setRespostaFood(await getNome(''));
+      } else setRespostaFood(await foodAPI('/search.php?s='));
     };
     const categoryAPI = async () => setCategories(await getCategorylist());
 
@@ -37,11 +37,11 @@ function Foods() {
 
   const handleClick = async ({ target: { innerText } }) => {
     if (innerText === selectCategory || innerText === 'All') {
-      setRespostaFood(await getNome(''));
+      setRespostaFood(await foodAPI('/search.php?s='));
       setSelectCategory('');
     } else {
       setSelectCategory(innerText);
-      setRespostaFood(await getFoodCategory(innerText));
+      setRespostaFood(await foodSmallAPi(`/filter.php?c=${innerText}`));
     }
   };
 

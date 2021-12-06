@@ -1,5 +1,6 @@
 import { screen, waitForElementToBeRemoved, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import axios from 'axios';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import App from '../App';
@@ -9,9 +10,9 @@ import oneDrink from './mocks/Drinks/oneDrink';
 import mockItemFilterByName from './mocks/Foods/fetchGetByName';
 import MockData from './mocks/NameMeatMock';
 
-const URL_INGREDIENTE = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
-const URL_NOME = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
-const URL_PRIMEIRALETRA = 'https://www.themealdb.com/api/json/v1/1/search.php?f=';
+const URL_INGREDIENTE = 'filter.php?i=';
+const URL_NOME = 'search.php?s=';
+const URL_PRIMEIRALETRA = 'search.php?f=';
 const URL_D_INGREDIENTE = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=';
 const URL_D_NOME = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 const URL_D_PRIMEIRALETRA = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=';
@@ -23,6 +24,8 @@ const getExecBtn = () => screen.queryByTestId('exec-search-btn');
 const getSearchButton = () => screen.queryByTestId('search-top-btn');
 const getSearchInput = () => screen.queryByTestId('search-input');
 
+/* axios.interceptors.request.
+ */
 const mockFetch = async () => {
   jest.spyOn(global, 'fetch')
     .mockImplementation(() => Promise.resolve({
@@ -68,6 +71,7 @@ describe('Testa se a barra de buscas possui os data-testid', () => {
     });
     userEvent.click(getExecBtn());
     expect(global.fetch).not.toHaveBeenCalledWith(`${URL_INGREDIENTE}Meat`);
+    console.log(global.fetch);
     expect(global.fetch).toHaveBeenCalledWith(`${URL_NOME}Meat`);
     expect(global.fetch).not.toHaveBeenCalledWith(`${URL_PRIMEIRALETRA}Meat`);
 

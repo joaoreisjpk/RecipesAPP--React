@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ButtonsFavoriteAndShare from '../components/ButtonsFavoriteAndShare';
 import { getMeasures, getIngredients } from '../helpers';
-import { getFoodById } from '../services/getFood';
+import { foodAPI } from '../services/getFood';
 import IngredientsInProgress from '../components/IngredientsInProgress';
 
 function InProgressFoodRecipe() {
@@ -11,6 +11,8 @@ function InProgressFoodRecipe() {
   const [disabled, setDisabled] = useState();
   const { image, name, instruction, category, type } = foodRecipeInProgress;
   const { idMeal } = useParams();
+
+  console.log(foodRecipeInProgress);
 
   const getInProgressRecipes = () => JSON
     .parse(localStorage.getItem('inProgressRecipes'));
@@ -39,7 +41,7 @@ function InProgressFoodRecipe() {
     if (!getCheckedIngredients()[idMeal]) setCheckedIngredients();
 
     const getFoodFromAPI = async () => {
-      setFoodRecipeInProgress(await getFoodById(idMeal));
+      setFoodRecipeInProgress((await foodAPI(`/lookup.php?i=${idMeal}`))[0]);
     };
     getFoodFromAPI();
   }, []);
