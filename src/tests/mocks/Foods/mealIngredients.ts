@@ -1,5 +1,5 @@
-import ingredient from '../../../../cypress/mocks/mealIngredients';
-
-const mealIngredients = ingredient;
+/* import ingredient from '../../../../cypress/mocks/mealIngredients';
+ */
+const mealIngredients = {};
 
 export default mealIngredients;

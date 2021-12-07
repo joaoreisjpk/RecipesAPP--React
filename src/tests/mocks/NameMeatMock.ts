@@ -1,5 +1,5 @@
-import meals from '../../../cypress/mocks/meals';
+/* import meals from '../../../cypress/mocks/meals'; */
 
-const MockData = meals;
+const MockData = {};
 
 export default MockData;
