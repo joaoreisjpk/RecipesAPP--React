@@ -11,6 +11,8 @@ import {
 } from '../services/getFood';
 import Footer from '../components/Footer';
 
+import '../styles/foodDrinksPage.scss';
+
 
 interface innerTextProps extends EventTarget {
   innerText: string;
@@ -51,17 +53,34 @@ function Foods() {
     }
   };
 
-  const fetchCategories = () => {
+  const fetchCategories = (): JSX.Element => {
     const allCategories = [{ category: 'All' }, ...categories];
-    return allCategories.map((item, index) => (
-      <button
-        key={ index }
-        data-testid={ `${item.category}-category-filter` }
-        type="button"
-        onClick={ handleClick }
-      >
-        {item.category}
-      </button>)).splice(0, SIX);
+    return (
+      <>
+        <div className="categorias">
+          { allCategories.map((item, index) => (
+            <button
+              key={ index }
+              data-testid={ `${item.category}-category-filter` }
+              type="button"
+              onClick={ handleClick }
+            >
+              {item.category}
+            </button>)).splice(0, 3)}
+        </div>
+        <div className="categorias">
+          { allCategories.map((item, index) => (
+            <button
+              key={ index }
+              data-testid={ `${item.category}-category-filter` }
+              type="button"
+              onClick={ handleClick }
+            >
+              {item.category}
+            </button>)).splice(3, 3)}
+        </div>
+      </>
+    );
   };
 
   if (respostaFood && respostaFood.length === 1 && !selectCategory) {
@@ -73,10 +92,9 @@ function Foods() {
   }
 
   return (
-    <div className="main-page">
-      <HeaderWithSearchIcon title="Foods" />
-      { categories && fetchCategories() }
-      <div id="card-container">
+    <div className="foodDrinksContainer">
+      <HeaderWithSearchIcon title="Foods" categories={() => fetchCategories()} />
+      <main>
         { respostaFood && respostaFood.map(({ name, image, id }, index) => (
           <Link key={ index } to={ `/comidas/${id}` }>
             <Cards
@@ -87,7 +105,7 @@ function Foods() {
             />
           </Link>
         )).splice(0, DOZE)}
-      </div>
+      </main>
       <Footer />
     </div>
   );

@@ -7,7 +7,7 @@ import mealIcon from '../images/mealIcon.svg';
 
 function Footer(): JSX.Element {
   return (
-    <footer style={ { position: 'fixed', bottom: '0px' } } data-testid="footer">
+    <footer data-testid="footer">
       <section id="container">
         <button
           type="button"

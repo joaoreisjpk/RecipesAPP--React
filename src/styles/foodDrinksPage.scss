@@ -1,0 +1,159 @@
+.foodDrinksContainer {
+  height: 100vh;
+
+  > * {
+    width: 85%;
+  }
+
+  header {
+    padding: 1rem;
+    width: 100%;
+    margin: auto;
+    justify-content: space-between;
+    background: var(--orange-300);
+
+    nav {
+      display: flex;
+      width: 90%;
+      margin: auto;
+      justify-content: space-between;
+
+      img, button {
+        color: transparent;
+        background-color: transparent;
+        border: 0;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        line-height: 35px;
+        display: flex;
+        align-items: flex-end;
+        color: #121214;
+      }
+    }
+
+  }
+
+  .searchContainer {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    gap: .6rem;
+    margin: auto;
+
+    > input {
+      margin: auto;
+      min-width: 100%;
+      padding: .5rem;
+      font-size: 1.5rem;
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      font-size: 1.4rem;
+
+      label {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+  
+        input {
+          margin-left: .2rem;
+          padding-top: 1rem;
+          color: var(--orange-700);
+          height: 1.3rem;
+          width: 1.3rem;
+          border: 1px solid #121214;
+          padding: .8rem;
+          border-radius: 10px;
+        }
+      }
+    }
+
+    button {
+      width: 100%;
+      padding: .7rem;
+      margin-top: .5rem;
+      background: var(--orange-400);
+      border-radius: 10px;
+      color: #FFF9F0;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 1.4rem;
+    }
+  }
+
+  .categorias {
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    margin-top: .5rem;
+    flex-wrap: wrap;
+
+    button {
+      padding: .7rem 1rem;
+      margin-top: .3rem;
+      background: var(--orange-400);
+      border-radius: 10px;
+      color: #FFF9F0;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 1.4rem;
+    }
+
+    button + button {
+      margin-left: 1rem;
+    }
+  }
+
+  main {
+    gap: 10px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-bottom: 5rem;
+
+    img {
+      width: 150px;
+      border-radius: 10px 10px 0 0;    
+    }
+
+    p {
+      background-color: #FEC98C;
+      margin-top: -3px;
+      padding: .3rem .8rem;
+      border-radius: 0px 0px 15px 15px;
+      text-align: center;
+      max-width: 150px;
+      color: #121214;
+      font-weight: 500;
+      font-size: 21px;
+    }
+
+  }
+
+  footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background: #FEC98C;
+    padding: 1rem;
+
+    section {
+      width: 90%;
+      margin: auto;
+      display: flex !important;
+      justify-content: space-between;
+
+      > * {
+        background-color: transparent;
+        border: 0;
+      }
+    }
+  }
+}

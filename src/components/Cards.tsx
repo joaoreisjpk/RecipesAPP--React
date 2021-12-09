@@ -8,21 +8,17 @@ interface CardsProps {
 
 function Cards({ thumbnail, name, index }: CardsProps): JSX.Element {
   return (
-    <div data-testid={ `${index}-recipe-card` } id="card-div">
+    <div data-testid={ `${index}-recipe-card` }>
       <img
-        id="card-img"
         src={ thumbnail }
         alt={ name }
         data-testid={
           `${index}-card-img`
         }
       />
-      <h3
-        data-testid={ `${index}-card-name` }
-        id="card-name"
-      >
+      <p data-testid={ `${index}-card-name` }>
         { name }
-      </h3>
+      </p>
     </div>
   );
 }
