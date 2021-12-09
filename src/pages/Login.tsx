@@ -6,7 +6,7 @@ import { InputHTMLAttributes } from 'react-router/node_modules/@types/react';
 
 
 interface innerTextProps extends EventTarget {
-  name: string;
+  id: string;
   value: string;
 }
 
@@ -18,8 +18,8 @@ interface handleLoginProps extends React.DetailedHTMLProps<InputHTMLAttributes<H
 function Login() {
   const { login, setLogin } = useContext(MyContext);
 
-  function handleLogin({ target: { name, value } }: handleLoginProps) {
-    setLogin({ ...login, [name]: value });
+  function handleLogin({ target: { id, value } }: handleLoginProps) {
+    setLogin({ ...login, [id]: value });
   }
 
   function verifyEmail() {
@@ -51,37 +51,39 @@ function Login() {
   }
 
   return (
-    <section>
+    <section className="loginContainer">
       <div>
         <span>LOGIN</span>
-        <label>E-mail</label>
-        <input
-          placeholder="Email"
-          type="email"
-          data-testid="email-input"
-          id="email-input"
-          name="email"
-          value={ login.email }
-          onChange={ handleLogin }
-        />
-        <label>Senha</label>
-        <input
-          placeholder="Password"
-          type="password"
-          data-testid="password-input"
-          id="password-input"
-          name="password"
-          value={ login.password }
-          onChange={ handleLogin }
-        />
+        <div>
+          <label>
+            E-mail
+            <input
+              placeholder="email@exemplo.com"
+              type="email"
+              data-testid="email-input"
+              id="email"
+              value={ login.email }
+              onChange={ handleLogin }
+            />
+          </label>
+          <label>
+            Senha
+            <input
+              placeholder="senha"
+              type="password"
+              data-testid="password-input"
+              id="password"
+              value={ login.password }
+              onChange={ handleLogin }
+            />
+          </label>
+        </div>
         <Link to="/comidas">
-          <Button
-            text="Entrar"
-            dataID="login-submit-btn"
-            id="login-submit-btn"
+          <button
+            data-testid="login-submit-btn"
             disabled={ !verifyLogin() }
             onClick={ handleClick }
-          />
+          >Entrar</button>
         </Link>
       </div>
     </section>
