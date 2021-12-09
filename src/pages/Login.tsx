@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 import MyContext from '../context/MyContext';
-import '../App.css';
 import { InputHTMLAttributes } from 'react-router/node_modules/@types/react';
 
 
@@ -52,9 +51,9 @@ function Login() {
   }
 
   return (
-    <section className="loginScreen">
-      <div className="meals">
-        <span className="logo">LOGIN</span>
+    <section>
+      <div>
+        <span>LOGIN</span>
         <label>E-mail</label>
         <input
           placeholder="Email"

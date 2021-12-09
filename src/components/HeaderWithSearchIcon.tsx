@@ -6,7 +6,6 @@ import MyContext from '../context/MyContext';
 
 import Button from './Button';
 
-import '../App.css';
 import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
 
