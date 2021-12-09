@@ -1,0 +1,121 @@
+.foodDrinksContainer {
+  height: 100vh;
+
+  .searchContainer {
+    width: 85%;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    gap: .6rem;
+    margin: auto;
+
+    
+
+    > input {
+      margin: auto;
+      min-width: 100%;
+      padding: .5rem;
+      font-size: 1.5rem;
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      font-size: 1.4rem;
+
+      label {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+  
+        input {
+          margin-left: .2rem;
+          padding-top: 1rem;
+          color: var(--orange-700);
+          height: 1.3rem;
+          width: 1.3rem;
+          border: 1px solid #121214;
+          padding: .8rem;
+          border-radius: 10px;
+        }
+      }
+    }
+
+    button {
+      width: 100%;
+      padding: .7rem;
+      margin-top: .5rem;
+      background: var(--orange-400);
+      border-radius: 10px;
+      color: #FFF9F0;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 1.4rem;
+    }
+  }
+
+  .categorias {
+    width: 85%;
+    margin: auto;
+    
+    div {
+      margin: auto;
+      justify-content: center;
+      display: flex;
+      margin-top: .5rem;
+      flex-wrap: wrap;
+  
+      button {
+        padding: .7rem 1rem;
+        margin-top: .3rem;
+        background: var(--orange-400);
+        border-radius: 10px;
+        color: #FFF9F0;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 1.4rem;
+      }
+  
+      button + button {
+        margin-left: 1rem;
+      }
+    }
+  }
+
+  main {
+    width: 85%;
+    gap: 1.5rem;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-bottom: 5rem;
+
+    img {
+      width: 150px;
+      border-radius: 10px 10px 0 0;    
+    }
+
+    .titleDiv {
+      min-height: 57px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: #FEC98C;
+      max-width: 150px;
+      border-radius: 0px 0px 15px 15px;
+      padding: .3rem .8rem;
+      margin-top: -3px;
+
+      p {
+        text-align: center;
+        color: #121214;
+        font-weight: 500;
+        font-size: 21px;
+      }
+    }
+
+  }
+}

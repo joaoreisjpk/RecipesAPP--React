@@ -1,0 +1,19 @@
+footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background: var(--orange-300);
+  padding: 1rem;
+
+  section {
+    width: 90%;
+    margin: auto;
+    display: flex !important;
+    justify-content: space-between;
+
+    > * {
+      background-color: transparent;
+      border: 0;
+    }
+  }
+}

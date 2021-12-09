@@ -11,6 +11,8 @@ import {
 } from '../services/getDrink';
 import Footer from '../components/Footer';
 
+import '../styles/foodDrinksPage.scss';
+
 interface innerTextProps extends EventTarget {
   innerText: string;
 }
@@ -52,16 +54,32 @@ function Drinks() {
 
   const fetchCategories = () => {
     const allCategories = [{ category: 'All' }, ...categories];
-    return allCategories.map((item, index) => (
-      <button
-        key={ index }
-        data-testid={ `${item.category}-category-filter` }
-        type="button"
-        onClick={ handleClick }
-      >
-        {item.category}
-      </button>
-    )).splice(0, SIX);
+    return (
+      <section className="categorias">
+        <div>
+          { allCategories.map((item, index) => (
+            <button
+              key={ index }
+              data-testid={ `${item.category}-category-filter` }
+              type="button"
+              onClick={ handleClick }
+            >
+              {item.category}
+            </button>)).splice(0, 3)}
+        </div>
+        <div>
+          { allCategories.map((item, index) => (
+            <button
+              key={ index }
+              data-testid={ `${item.category}-category-filter` }
+              type="button"
+              onClick={ handleClick }
+            >
+              {item.category}
+            </button>)).splice(3, 3)}
+        </div>
+      </section>
+    );
   };
 
   if (respostaDrink && respostaDrink.length === 1) {
@@ -69,10 +87,9 @@ function Drinks() {
   }
 
   return (
-    <div>
-      <HeaderWithSearchIcon title="Bebidas" />
-      { categories && fetchCategories() }
-      <div id="card-container">
+    <div className="foodDrinksContainer">
+      <HeaderWithSearchIcon title="Bebidas" categories={() => fetchCategories()} />
+      <main>
         { respostaDrink && respostaDrink
           .map(({ name, image, id }, index) => (
             <Link key={ index } to={ `/bebidas/${id}` }>
@@ -84,7 +101,7 @@ function Drinks() {
               />
             </Link>
           )).splice(0, DOZE)}
-      </div>
+      </main>
       <Footer />
     </div>
   );

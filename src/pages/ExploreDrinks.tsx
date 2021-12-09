@@ -5,6 +5,9 @@ import Header from '../components/Header';
 import { getRandomDrink } from '../services/getDrink';
 import Button from '../components/Button';
 
+import '../styles/foodDrinksExplorePage.scss';
+
+
 function ExploreDrinks() {
   const [idDrink, setIdDrink] = useState<string>();
   useEffect(() => {
@@ -15,16 +18,18 @@ function ExploreDrinks() {
   }, []);
 
   return (
-    <>
+    <section className="exploreFDContainer">
       <Header title="Explorar Bebidas" />
-      <Link to="/explorar/bebidas/ingredientes">
-        <Button text="Explorar Por Ingredientes" dataID="explore-by-ingredient" />
-      </Link>
-      <Link to={ `/bebidas/${idDrink}` }>
-        <Button text="Me Surpreenda!" dataID="explore-surprise" />
-      </Link>
+      <main>
+        <Link to="/explorar/bebidas/ingredientes">
+          <Button text="Explorar Por Ingredientes" dataID="explore-by-ingredient" />
+        </Link>
+        <Link to={ `/bebidas/${idDrink}` }>
+          <Button text="Me Surpreenda!" dataID="explore-surprise" />
+        </Link>
+      </main>
       <Footer />
-    </>
+    </section>
   );
 }
 

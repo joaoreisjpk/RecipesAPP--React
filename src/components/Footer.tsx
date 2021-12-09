@@ -5,9 +5,11 @@ import drinkIcon from '../images/drinkIcon.svg';
 import exploreIcon from '../images/exploreIcon.svg';
 import mealIcon from '../images/mealIcon.svg';
 
+import '../styles/footer.scss';
+
 function Footer(): JSX.Element {
   return (
-    <footer style={ { position: 'fixed', bottom: '0px' } } data-testid="footer">
+    <footer data-testid="footer">
       <section id="container">
         <button
           type="button"

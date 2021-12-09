@@ -1,0 +1,56 @@
+.foodsAreaContainer {
+  height: 100vh;
+
+  > div {
+    width: 85%;
+    padding: 2rem 0;
+    font-size: 1.5rem;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    select {
+      height: 3rem;
+      font-size: 1.5rem;
+      min-width: 15rem;
+      max-width: 100%;
+      border: 2px solid var(--orange-400);
+    }
+  }
+
+  main {
+    width: 85%;
+    gap: 1.5rem;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-bottom: 5rem;
+
+    img {
+      width: 150px;
+      border-radius: 10px 10px 0 0;    
+    }
+
+    .titleDiv {
+      min-height: 57px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: #FEC98C;
+      max-width: 150px;
+      border-radius: 0px 0px 15px 15px;
+      padding: .3rem .8rem;
+      margin-top: -3px;
+
+      p {
+        text-align: center;
+        color: #121214;
+        font-weight: 500;
+        font-size: 21px;
+      }
+    }
+
+  }
+}

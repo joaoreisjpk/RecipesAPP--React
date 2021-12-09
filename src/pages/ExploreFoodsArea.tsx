@@ -6,6 +6,8 @@ import HeaderWithSearchIcon from '../components/HeaderWithSearchIcon';
 import { FoodObject } from '../interfaces';
 import { getAreaList, foodSmallAPi, foodAPI } from '../services/getFood';
 
+import '../styles/foodAreaPage.scss';
+
 function ExploreFoodsArea() {
   const [areas, setAreas] = useState([]);
   const [foodList, setFoodList] = useState([] as FoodObject[]);
@@ -46,23 +48,26 @@ function ExploreFoodsArea() {
   );
 
   return (
-    <>
+    <section className="foodsAreaContainer">
       <HeaderWithSearchIcon title="Explorar Origem" />
+      <div>
+        <span>Região/País:</span>
+        {fetchAreaSelection()}
+      </div>
+      <main>
+        { foodList.map(({ name, image, id }, index) => (
+          <Link key={ index } to={ `/comidas/${id}` }>
+            <Cards
+              key={ index }
+              name={ name }
+              thumbnail={ image }
+              index={ index }
+            />
+          </Link>
+        )).splice(0, DOZE)}
+      </main>
       <Footer />
-
-      {fetchAreaSelection()}
-
-      { foodList.map(({ name, image, id }, index) => (
-        <Link key={ index } to={ `/comidas/${id}` }>
-          <Cards
-            key={ index }
-            name={ name }
-            thumbnail={ image }
-            index={ index }
-          />
-        </Link>
-      )).splice(0, DOZE)}
-    </>
+    </section>
   );
 }
 
