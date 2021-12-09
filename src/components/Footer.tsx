@@ -5,6 +5,8 @@ import drinkIcon from '../images/drinkIcon.svg';
 import exploreIcon from '../images/exploreIcon.svg';
 import mealIcon from '../images/mealIcon.svg';
 
+import '../styles/footer.scss';
+
 function Footer(): JSX.Element {
   return (
     <footer data-testid="footer">

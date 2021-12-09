@@ -16,9 +16,11 @@ function Cards({ thumbnail, name, index }: CardsProps): JSX.Element {
           `${index}-card-img`
         }
       />
-      <p data-testid={ `${index}-card-name` }>
-        { name }
-      </p>
+      <div className="titleDiv">
+        <p data-testid={ `${index}-card-name` }>
+          { name }
+        </p>
+      </div>
     </div>
   );
 }

@@ -55,8 +55,8 @@ function Drinks() {
   const fetchCategories = () => {
     const allCategories = [{ category: 'All' }, ...categories];
     return (
-      <>
-        <div className="categorias">
+      <section className="categorias">
+        <div>
           { allCategories.map((item, index) => (
             <button
               key={ index }
@@ -67,7 +67,7 @@ function Drinks() {
               {item.category}
             </button>)).splice(0, 3)}
         </div>
-        <div className="categorias">
+        <div>
           { allCategories.map((item, index) => (
             <button
               key={ index }
@@ -78,7 +78,7 @@ function Drinks() {
               {item.category}
             </button>)).splice(3, 3)}
         </div>
-      </>
+      </section>
     );
   };
 

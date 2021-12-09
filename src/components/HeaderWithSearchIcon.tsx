@@ -8,6 +8,7 @@ import Button from './Button';
 
 import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
+import '../styles/headerSearchIcon.scss';
 
 interface HeaderProps {
   title: string;

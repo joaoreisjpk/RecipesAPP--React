@@ -1,0 +1,32 @@
+header {
+  padding: 1rem;
+  width: 100%;
+  background: var(--orange-300);
+
+  nav {
+    display: flex;
+    width: 90%;
+    margin: auto;
+    justify-content: space-between;
+
+    img, button {
+      color: transparent;
+      background-color: transparent;
+      border: 0;
+    }
+
+    button {
+      width: 40px;
+      height: 40px;
+    }
+
+    h1 {
+      align-self: center;
+      font-size: 2rem;
+      margin: auto;
+      display: flex;
+      align-items: flex-end;
+      color: #121214;
+    }
+  }
+}

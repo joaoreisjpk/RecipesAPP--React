@@ -1,0 +1,28 @@
+.header {
+  padding: 1rem;
+  width: 100%;
+  margin: auto;
+  background: var(--orange-300);
+
+  nav {
+    display: flex;
+    width: 90%;
+    margin: auto;
+
+    img {
+      position: absolute;
+      color: transparent;
+      background-color: transparent;
+      border: 0;
+    }
+
+    h1 {
+      align-self: center;
+      display: flex;
+      margin: auto;
+      font-size: 2rem;
+      display: flex;
+      color: #121214;
+    }
+  }
+}
