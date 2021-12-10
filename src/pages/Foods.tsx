@@ -28,7 +28,6 @@ function Foods() {
   const [categories, setCategories] = useState([]);
   const [selectCategory, setSelectCategory] = useState('');
   const DOZE = 12;
-  const SIX = 6;
 
   useEffect(() => {
     const callAPI = async () => {

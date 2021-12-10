@@ -1,0 +1,57 @@
+.recipeContainer {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  main {
+    width: 85%;
+    gap: 1.5rem;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 7rem;
+
+    section {
+      span {
+        font-size: 2.5rem;
+      }
+
+      div {
+        margin: 1rem 0;
+        font-size: 1.5rem;
+
+        img {
+          width: 100%;
+          border-radius: 10px;    
+        }
+
+        button {
+          position: absolute;
+        }
+      }
+
+      h2 {
+        font-size: 2rem;
+        margin: 1rem 0;
+      }
+
+      > p {
+        font-size: 1.5rem;
+      }
+    }
+
+    a > button {
+      width: 260px;
+      padding: 1rem;
+      margin-top: .5rem;
+      background: var(--orange-400);
+      border-radius: 10px;
+      color: #FFF9F0;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+  }
+}

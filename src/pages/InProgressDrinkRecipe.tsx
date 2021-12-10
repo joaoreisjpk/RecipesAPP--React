@@ -6,6 +6,10 @@ import { getMeasures, getIngredients } from '../helpers';
 import { drinkAPI } from '../services/getDrink';
 import IngredientsInProgress from '../components/IngredientsInProgress';
 import { DrinkObject } from '../interfaces';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+
+import '../styles/inProgressPage.scss'
 
 function InProgressDrinkRecipe() {
   const [drinkRecipeInProgress, setDrinkRecipeInProgress] = useState({} as DrinkObject);
@@ -56,36 +60,47 @@ function InProgressDrinkRecipe() {
 
   function renderPage() {
     return (
-      <div>
-        <img data-testid="recipe-photo" src={ image } alt={ name } />
-        <h3 data-testid="recipe-title">{ name }</h3>
-        <h3 data-testid="recipe-category">{ category }</h3>
-        <ButtonsFavoriteAndShare
-          object={ { ...drinkRecipeInProgress, type: 'bebida' } }
-        />
-        <h3>Ingredientes</h3>
-        { getIngredients(drinkRecipeInProgress).map((ingrediente, index) => (
-          <IngredientsInProgress
-            key={ index }
-            index={ index }
-            ingrediente={ ingrediente }
-            measures={ getMeasures(drinkRecipeInProgress) }
-            id={ idDrink }
-            type={ type }
-            handleButton={ () => isDisabled() }
-          />
-        ))}
-        <section data-testid="instructions">{ instruction }</section>
-        <Link to="/receitas-feitas">
-          <button
-            disabled={ !disabled }
-            data-testid="finish-recipe-btn"
-            type="button"
-          >
-            Finalizar Receita
-          </button>
-        </Link>
-      </div>
+      <section className="inProgressContainer">
+        <Header title="Bebidas" />
+        <main>
+          <section>
+            <span data-testid="recipe-title">{ name } - </span>
+            <span data-testid="recipe-category">{ category }</span>
+            <div>
+              <img data-testid="recipe-photo" src={ image } alt={ name } />
+              <ButtonsFavoriteAndShare
+                object={ { ...drinkRecipeInProgress, type: 'bebida' } }
+              />
+            </div>
+          </section>
+          <h2>Instruções:</h2>
+          <p data-testid="instructions">{ instruction }</p>
+          <h2>Ingredientes: </h2>
+          <div>
+            { getIngredients(drinkRecipeInProgress).map((ingrediente, index) => (
+              <IngredientsInProgress
+                key={ index }
+                index={ index }
+                ingrediente={ ingrediente }
+                measures={ getMeasures(drinkRecipeInProgress) }
+                id={ idDrink }
+                type={ type }
+                handleButton={ () => isDisabled() }
+              />
+            ))}
+          </div>
+          <Link to="/receitas-feitas">
+            <button
+              disabled={ !disabled }
+              data-testid="finish-recipe-btn"
+              type="button"
+            >
+              Finalizar Receita
+            </button>
+          </Link>
+        </main>
+        <Footer />
+      </section>
     );
   }
 

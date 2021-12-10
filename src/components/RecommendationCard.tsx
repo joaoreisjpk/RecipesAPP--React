@@ -12,13 +12,13 @@ const RecommendationCard = ({ recipe, index, counter }: RecommendationCardProps)
   const { image, name } = recipe;
 
   const handleVisibility = () => {
-    if (counter === index || counter + 1 === index) return 'visible';
-    return 'hidden';
+    if (counter === index || counter + 1 === index) return 'block';
+    return 'none';
   };
 
   return (
     <section
-      style={ { visibility: handleVisibility() } }
+      style={ { display: handleVisibility() } }
       data-testid={ `${index}-recomendation-card` }
       className="recomendation-card"
     >
