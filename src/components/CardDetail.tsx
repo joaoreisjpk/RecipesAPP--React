@@ -42,35 +42,36 @@ const CardDetail = ({ itemRecomendation, object }: CardDetailProps): JSX.Element
 
   if (!getFavoriteList()) return <div>Carregando...</div>;
   return (
-    <div>
-      <span style={ { fontSize: '40px' } } data-testid="recipe-title">
+    <section>
+      <span  data-testid="recipe-title">
         {name}
         {' '}
         -
         {' '}
       </span>
-      <span style={ { fontSize: '40px' } } data-testid="recipe-category">
+      <span data-testid="recipe-category">
         {alcoholicOrNot || category}
       </span>
       <div>
         <img src={ image } alt={ name } data-testid="recipe-photo" />
+        <ButtonsFavoriteAndShare
+          object={ object }
+        />
       </div>
+      <h2>Instructions:</h2>
+
       <p data-testid="instructions">{instruction}</p>
 
-      <ButtonsFavoriteAndShare
-        object={ object }
-      />
-
-      <h3>Ingredientes</h3>
+      <h2>Ingredientes:</h2>
       { ingredients.map((ingrediente, index) => (
         <div data-testid={ `${index}-ingredient-name-and-measure` } key={ index }>
-          {`Ingrediente: ${ingrediente} - Medida: ${measures[index]}`}
+          {`º ${ingrediente} - ${measures[index]}`}
         </div>
       ))}
       <div>
         { !video ? null : <Video srcVideo={ video } />}
       </div>
-      <h3>Recomendações</h3>
+      <h2>Recomendations</h2>
       <button
         type="button"
         onClick={ () => handleClick(false) }
@@ -93,7 +94,7 @@ const CardDetail = ({ itemRecomendation, object }: CardDetailProps): JSX.Element
           counter={ counter }
         />
       )).slice(0, SIX) }
-    </div>
+    </section>
   );
 };
 

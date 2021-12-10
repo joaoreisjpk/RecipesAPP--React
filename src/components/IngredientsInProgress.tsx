@@ -63,29 +63,27 @@ function IngredientsInProgress({
   };
 
   return (
-    <div data-testid={ `${index}-ingredient-step` }>
-      <label
-        style={ checked ? { textDecoration: 'line-through' } : undefined }
-        htmlFor={ ingrediente }
-      >
-        { !checked ? (
+    <label
+      style={ checked ? { textDecoration: 'line-through' } : undefined }
+      htmlFor={ ingrediente }
+    >
+      { !checked ? (
+        <input
+          key="!checked"
+          type="checkbox"
+          id={ ingrediente }
+          onChange={ handleChange }
+        />)
+        : (
           <input
-            key="!checked"
+            key="checked"
             type="checkbox"
+            checked
             id={ ingrediente }
             onChange={ handleChange }
-          />)
-          : (
-            <input
-              key="checked"
-              type="checkbox"
-              checked
-              id={ ingrediente }
-              onChange={ handleChange }
-            />)}
-        <span>{ `Ingrediente: ${ingrediente} - Medida: ${measures[index]}` }</span>
-      </label>
-    </div>
+          />)}
+      <span>{ `Ingrediente: ${ingrediente} - Medida: ${measures[index]}` }</span>
+    </label>
   );
 }
 

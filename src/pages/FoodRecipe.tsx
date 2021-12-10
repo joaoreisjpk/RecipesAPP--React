@@ -3,8 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { foodAPI } from '../services/getFood';
 import { drinkAPI } from '../services/getDrink';
-import CardDetail from '../components/CardDetail';
 import { DrinkObject, FoodObject } from '../interfaces';
+
+import CardDetail from '../components/CardDetail';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+
+import '../styles/recipePage.scss';
 
 function FoodRecipe() {
   const [itemDetail, setItemDetail] = useState<FoodObject>();
@@ -38,21 +43,24 @@ function FoodRecipe() {
 
   if (!itemDetail) return <span>Carregando...</span>;
   return (
-    <div>
-      <CardDetail
-        object={ itemDetail }
-        itemRecomendation={ itemRecomendation }
-      />
-      <Link to={ `/comidas/${idMeal}/in-progress` }>
-        <button
-          style={ { position: 'fixed', bottom: '0px' } }
-          data-testid="start-recipe-btn"
-          type="button"
-        >
-          {handleButtonText() ? 'Continuar Receita' : 'Iniciar Receita'}
-        </button>
-      </Link>
-    </div>
+    <section className="recipeContainer">
+      <Header title="Bebidas" />
+      <main>
+        <CardDetail
+          object={ itemDetail }
+          itemRecomendation={ itemRecomendation }
+        />
+        <Link to={ `/comidas/${idMeal}/in-progress` }>
+          <button
+            data-testid="start-recipe-btn"
+            type="button"
+          >
+            {handleButtonText() ? 'Continuar Receita' : 'Iniciar Receita'}
+          </button>
+        </Link>
+      </main>
+      <Footer />
+   </section>
   );
 }
 

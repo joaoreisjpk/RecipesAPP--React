@@ -35,7 +35,7 @@ const ButtonsFavoriteAndShare = ({ object, handleUpdate, idShare, idFavorite }: 
   };
 
   return (
-    <div>
+    <>
       <button type="button" onClick={ handleCopy }>
         <img
           src={ shareIcon }
@@ -62,7 +62,7 @@ const ButtonsFavoriteAndShare = ({ object, handleUpdate, idShare, idFavorite }: 
 
       { copiado && <p>Link copiado!</p>}
 
-    </div>
+    </>
   );
 };
 
