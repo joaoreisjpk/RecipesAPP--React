@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../components/Button';
 import MyContext from '../context/MyContext';
 import { InputHTMLAttributes } from 'react-router/node_modules/@types/react';
 
