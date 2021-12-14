@@ -14,9 +14,7 @@ Uso de API externas como...
   - A  [API CocktailDB](https://thecocktaildb.com/api.php)
   - A  [API MealDB](https://www.themealdb.com/api.php)
   
-Uso do Jest e RTL
-
-Uso do compilador SASS
+Uso do Jest e RTL, SASS, ContextAPI, Axios
 
 Refatorar a aplicação diversas vezes, adicionando diferentes features
 
@@ -35,8 +33,8 @@ Refatorar a aplicação diversas vezes, adicionando diferentes features
 -Refatorar a aplicaçã diversas vezes fazendo uso de diferentes branchs </br>
 
 # Como a aplicação foi refatorada
-Essa aplicação, por ser a maior que já desenvolvi, resolvi refatora-la com todos os conhecimentos que adquiri fora da Trybe, para além de consolidar esses mesmos conhecimentos,
-tornar a aplicação mais interessante e atualizada.
+Essa aplicação, por ser a maior que já desenvolvi, resolvi refatora-la com todos os conhecimentos que adquiri fora da Trybe, para além de consolidar esses mesmos conhecimentos, tornar a aplicação mais interessante e atualizada.
+###### infelizmente os testes só funcionam na aplicação original, futuramente irei consertar isso.
 
 ### Ordenação das branchs:
 - 1º Branch `aplicação original`: a aplicação no estado de como entreguei para Trybe
