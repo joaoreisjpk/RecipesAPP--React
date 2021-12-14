@@ -1,6 +1,6 @@
 # RecipesApp 🚀
 
-### Esse projeto foi refatorado diversas vezes, inicialmente foi um projeto da Trybe, mas pelas constantes mudanças considero hoje como um projeto meu. Mais abaixo terá um guia da progressão das refatorações, com suas devidas Branchs
+### Esse projeto foi refatorado diversas vezes. Inicialmente era um projeto da Trybe, mas pelas constantes mudanças considero hoje como um projeto meu. Mais abaixo terá um guia da progressão das refatorações, com suas devidas Branchs
 
 [Link para o Site](https://recipes-app-lemon.vercel.app/)
 
