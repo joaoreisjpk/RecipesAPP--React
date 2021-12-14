@@ -11,11 +11,13 @@
 [React] Aplication </br>
 Gerenciamento de estado com [ContexAPI] </br>
 Uso de API externas como...
-  - A [API CocktailDB](https://thecocktaildb.com/api.php)
-  - A [API MealDB](https://www.themealdb.com/api.php)
+  - A  [API CocktailDB](https://thecocktaildb.com/api.php)
+  - A  [API MealDB](https://www.themealdb.com/api.php)
   
 Uso do Jest e RTL
+
 Uso do compilador SASS
+
 Refatorar a aplicação diversas vezes, adicionando diferentes features
 
 # Habilidades desenvolvidas.
