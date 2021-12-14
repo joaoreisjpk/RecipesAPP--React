@@ -1,6 +1,6 @@
 # RecipesApp 🚀
 
-### Esse projeto foi refatorado diversas vezes. Inicialmente era um projeto da Trybe, mas pelas constantes mudanças considero hoje como um projeto meu. Mais abaixo terá um guia da progressão das refatorações, com suas devidas Branchs
+### Esse projeto foi refatorado diversas vezes. Inicialmente era um projeto da Trybe, mas pelas constantes mudanças considero hoje como um projeto meu. Mais abaixo terá um guia da progressão das refatorações, com suas devidas Branchs.
 
 [Link para o Site](https://recipes-app-lemon.vercel.app/)
 
@@ -38,7 +38,7 @@ Refatorar a aplicação diversas vezes, adicionando diferentes features
 Essa aplicação, por ser a maior que já desenvolvi, resolvi refatora-la com todos os conhecimentos que adquiri fora da Trybe, para além de consolidar esses mesmos conhecimentos,
 tornar a aplicação mais interessante e atualizada.
 
-### Ordenaçã das branchs:
+### Ordenação das branchs:
 - 1º Branch `aplicação original`: a aplicação no estado de como entreguei para Trybe
 - 2º Branch `adicionando-axios-e-otimizando-a-aplicacao`: refatorei conforme o próprio nome da branch
 - 3º Branch `transicicao-de-javascript-para-typescript`: refatorei conforme o próprio nome da branch
