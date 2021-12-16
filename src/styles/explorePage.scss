@@ -6,19 +6,21 @@
   main {
     flex: 1;
     display: flex;
-    gap: 3rem;
+    gap: 1rem;
     margin-top: -6rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     button {
-      width: 260px;
-      padding: 1rem;
-      margin-top: .5rem;
-      background: var(--orange-400);
+      width: 100%;
+      min-width: 250px;
+      padding: .6rem 1.1rem;
+      margin-top: .3rem;
+      background: transparent;
       border-radius: 10px;
-      color: #FFF9F0;
+      border: 2px solid var(--orange-600);
+      color: var(--orange-600);
       font-style: normal;
       font-weight: bold;
       font-size: 1.5rem;

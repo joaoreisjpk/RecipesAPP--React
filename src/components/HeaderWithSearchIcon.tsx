@@ -12,7 +12,7 @@ import '../styles/headerSearchIcon.scss';
 
 interface HeaderProps {
   title: string;
-  categories?: () => JSX.Element
+  categories?: () => JSX.Element;
 }
 
 function Header({ title, categories }: HeaderProps) {
@@ -44,85 +44,86 @@ function Header({ title, categories }: HeaderProps) {
 
   function renderSearchContainer() {
     return (
-      <div className="searchContainer">
+      <div className='searchContainer'>
         <input
-          type="text"
-          data-testid="search-input"
-          placeholder="Buscar receita"
-          value={ searchValue }
-          onChange={ (e) => setSearchValue(e.target.value) }
+          type='text'
+          data-testid='search-input'
+          placeholder='Buscar receita'
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
         />
         <div>
-          <label htmlFor="ingredient-radio">
+          <label htmlFor='ingredient-radio'>
             Ingrediente
             <input
-              data-testid="ingredient-search-radio"
-              type="radio"
-              checked={radioValue === "ingredient-radio"}
-              id="ingredient-radio"
-              name="endpoint"
-              onChange={ (e) => setRadioValue(e.target.id) }
+              data-testid='ingredient-search-radio'
+              type='radio'
+              checked={radioValue === 'ingredient-radio'}
+              id='ingredient-radio'
+              name='endpoint'
+              onChange={(e) => setRadioValue(e.target.id)}
             />
           </label>
-          <label htmlFor="name-radio">
+          <label htmlFor='name-radio'>
             Nome
             <input
-              data-testid="name-search-radio"
-              type="radio"
-              name="endpoint"
-              id="name-radio"
-              checked={radioValue === "name-radio"}
-              onChange={ (e) => setRadioValue(e.target.id) }
+              data-testid='name-search-radio'
+              type='radio'
+              name='endpoint'
+              id='name-radio'
+              checked={radioValue === 'name-radio'}
+              onChange={(e) => setRadioValue(e.target.id)}
             />
           </label>
-          <label htmlFor="first-letter-radio">
+          <label htmlFor='first-letter-radio'>
             Primeira letra
             <input
-              data-testid="first-letter-search-radio"
-              type="radio"
-              name="endpoint"
-              id="first-letter-radio"
-              checked={radioValue === "first-letter-radio"}
-              onChange={ (e) => setRadioValue(e.target.id) }
+              data-testid='first-letter-search-radio'
+              type='radio'
+              name='endpoint'
+              id='first-letter-radio'
+              checked={radioValue === 'first-letter-radio'}
+              onChange={(e) => setRadioValue(e.target.id)}
             />
           </label>
         </div>
         <Button
-          text="Buscar"
-          dataID="exec-search-btn"
-          id="exec-search-btn"
-          onClick={ validatePage }
+          text='Buscar'
+          dataID='exec-search-btn'
+          id='exec-search-btn'
+          onClick={validatePage}
         />
-    </div>
+      </div>
     );
   }
   const location = useLocation();
-  const validatePage = location.pathname === '/comidas'
-    ? handleSearchInput
-    : handleSearchInputDrink;
+  const validatePage =
+    location.pathname === '/comidas'
+      ? handleSearchInput
+      : handleSearchInputDrink;
 
   return (
     <>
       <header>
         <nav>
-          <Link to="/perfil">
+          <Link to='/perfil'>
             <img
-              src={ profileIcon }
-              data-testid="profile-top-btn"
-              id="profile-top-btn"
-              alt="Profile Icon"
+              src={profileIcon}
+              data-testid='profile-top-btn'
+              id='profile-top-btn'
+              alt='Profile Icon'
             />
           </Link>
-          <h1 data-testid="page-title">{title}</h1>
+          <h1 data-testid='page-title'>{title}</h1>
           <button
-            type="button"
-            onClick={ () => setShowSearchBar(!showSearchBar) }
-            id="search-top-btn"
+            type='button'
+            onClick={() => setShowSearchBar(!showSearchBar)}
+            id='search-top-btn'
           >
             <img
-              src={ searchIcon }
-              data-testid="search-top-btn"
-              alt="Search Icon"
+              src={searchIcon}
+              data-testid='search-top-btn'
+              alt='Search Icon'
             />
           </button>
         </nav>

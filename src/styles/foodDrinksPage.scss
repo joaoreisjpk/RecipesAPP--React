@@ -2,120 +2,169 @@
   height: 100vh;
 
   .searchContainer {
-    width: 85%;
+    width: 90%;
+    max-width: 1100px;
     align-self: center;
     display: flex;
     flex-direction: column;
     padding: 1rem 0;
-    gap: .6rem;
+    gap: 0.6rem;
     margin: auto;
 
-    
-
     > input {
-      margin: auto;
       min-width: 100%;
-      padding: .5rem;
-      font-size: 1.5rem;
+      padding: 0.6rem;
+      font-size: 1.1rem;
+      border: 2px solid var(--orange-700);
+      border-radius: 10px;
     }
 
     div {
       display: flex;
       align-items: center;
       justify-content: space-around;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
+      min-width: 100%;
 
       label {
         display: flex;
         align-items: center;
         justify-content: space-around;
-  
+
         input {
-          margin-left: .2rem;
+          margin-left: 0.2rem;
           padding-top: 1rem;
           color: var(--orange-700);
           height: 1.3rem;
           width: 1.3rem;
           border: 1px solid #121214;
-          padding: .8rem;
-          border-radius: 10px;
+          padding: 0.8rem;
         }
       }
     }
 
     button {
       width: 100%;
-      padding: .7rem;
-      margin-top: .5rem;
-      background: var(--orange-400);
+      padding: 0.4rem 0.8rem;
+      margin-top: 0.3rem;
+      background: transparent;
       border-radius: 10px;
-      color: #FFF9F0;
+      border: 2px solid var(--orange-600);
+      color: var(--orange-600);
       font-style: normal;
       font-weight: bold;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
     }
   }
 
   .categorias {
-    width: 85%;
+    width: 90%;
+    max-width: 1100px;
     margin: auto;
-    
+
     div {
       margin: auto;
       justify-content: center;
       display: flex;
-      margin-top: .5rem;
+      margin-top: 0.5rem;
       flex-wrap: wrap;
-  
+
       button {
-        padding: .7rem 1rem;
-        margin-top: .3rem;
-        background: var(--orange-400);
+        width: 6rem;
+        padding: 0.4rem 0.5rem;
+        margin-top: 0.3rem;
+        background: transparent;
         border-radius: 10px;
-        color: #FFF9F0;
+        border: 2px solid var(--orange-600);
+        color: var(--orange-600);
         font-style: normal;
         font-weight: bold;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
       }
-  
+
       button + button {
-        margin-left: 1rem;
+        margin-left: 0.4rem;
       }
     }
   }
 
   main {
-    width: 85%;
+    width: 90%;
+    max-width: 1100px;
     gap: 1.5rem;
     margin: 20px auto;
     display: flex;
-    justify-content: space-between;
+    flex: 1 1;
+    justify-content: center;
     flex-wrap: wrap;
     padding-bottom: 5rem;
 
-    img {
-      width: 150px;
-      border-radius: 10px 10px 0 0;    
-    }
+    div {
+      max-width: 200px;
+      min-width: 150px;
 
-    .titleDiv {
-      min-height: 57px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background-color: #FEC98C;
-      max-width: 150px;
-      border-radius: 0px 0px 15px 15px;
-      padding: .3rem .8rem;
-      margin-top: -3px;
+      img {
+        width: 100%;
+        border-radius: 10px 10px 0 0;
+      }
 
-      p {
-        text-align: center;
-        color: #121214;
-        font-weight: 500;
-        font-size: 21px;
+      .titleDiv {
+        min-height: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: #fec98c;
+        width: 100%;
+        border-radius: 0px 0px 15px 15px;
+        padding: 0.3rem 0.8rem;
+        margin-top: -5px;
+
+        p {
+          text-align: center;
+          color: #121214;
+          font-weight: 500;
+          font-size: 1.2rem;
+        }
       }
     }
+  }
 
+  @media (min-width: 480px) {
+    .categorias {
+      display: flex;
+      justify-content: center;
+
+      div {
+        margin: 1rem 0;
+
+        button, button + button {
+          width: 8rem;
+          padding: 0.4rem 0.8rem;
+          font-size: 1.3rem;
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .searchContainer {
+      flex-direction: row;
+      justify-content: center;
+      gap: 2rem;
+
+      > input {
+        min-width: 170px;
+        max-width: 300px;
+      }
+
+      div {
+        min-width: 370px;
+      }
+
+      button {
+        max-width: 200px;
+      }
+    }
   }
 }
