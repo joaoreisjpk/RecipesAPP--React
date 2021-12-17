@@ -4,15 +4,10 @@ import { Link, Redirect } from 'react-router-dom';
 import HeaderWithSearchIcon from '../components/HeaderWithSearchIcon';
 import MyContext from '../context/MyContext';
 import Cards from '../components/Cards';
-import {
-  foodAPI,
-  getCategorylist,
-  foodSmallAPi,
-} from '../services/getFood';
+import { foodAPI, getCategorylist, foodSmallAPi } from '../services/getFood';
 import Footer from '../components/Footer';
 
 import '../styles/foodDrinksPage.scss';
-
 
 interface innerTextProps extends EventTarget {
   innerText: string;
@@ -27,7 +22,7 @@ function Foods() {
   const { ingredient } = useContext(MyContext);
   const [categories, setCategories] = useState([]);
   const [selectCategory, setSelectCategory] = useState('');
-  const DOZE = 12;
+  const TRINTA = 30;
 
   useEffect(() => {
     const callAPI = async () => {
@@ -55,55 +50,52 @@ function Foods() {
   const fetchCategories = (): JSX.Element => {
     const allCategories = [{ category: 'All' }, ...categories];
     return (
-      <section className="categorias">
+      <section className='categorias'>
         <div>
-          { allCategories.map((item, index) => (
-            <button
-              key={ index }
-              data-testid={ `${item.category}-category-filter` }
-              type="button"
-              onClick={ handleClick }
-            >
-              {item.category}
-            </button>)).splice(0, 3)}
-        </div>
-        <div>
-          { allCategories.map((item, index) => (
-            <button
-              key={ index }
-              data-testid={ `${item.category}-category-filter` }
-              type="button"
-              onClick={ handleClick }
-            >
-              {item.category}
-            </button>)).splice(3, 3)}
+          {!!categories.length ? (
+            allCategories
+              .map((item, index) => (
+                <button
+                  key={index}
+                  data-testid={`${item.category}-category-filter`}
+                  type='button'
+                  onClick={handleClick}
+                >
+                  {item.category}
+                </button>
+              ))
+              .splice(0, 6)
+          ) : (
+            <h1>Carregando...</h1>
+          )}
         </div>
       </section>
     );
   };
 
   if (respostaFood && respostaFood.length === 1 && !selectCategory) {
-    return <Redirect to={ `/comidas/${respostaFood[0].id}` } />;
+    return <Redirect to={`/comidas/${respostaFood[0].id}`} />;
   }
 
   if (respostaFood === null) {
-    global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    global.alert(
+      'Sinto muito, não encontramos nenhuma receita para esses filtros.'
+    );
   }
-
   return (
-    <div className="foodDrinksContainer">
-      <HeaderWithSearchIcon title="Foods" categories={() => fetchCategories()} />
+    <div className='foodDrinksContainer'>
+      <HeaderWithSearchIcon
+        title='Foods'
+        categories={() => fetchCategories()}
+      />
       <main>
-        { respostaFood && respostaFood.map(({ name, image, id }, index) => (
-          <Link key={ index } to={ `/comidas/${id}` }>
-            <Cards
-              key={ index }
-              name={ name }
-              thumbnail={ image }
-              index={ index }
-            />
-          </Link>
-        )).splice(0, DOZE)}
+        {respostaFood
+          .map(({ name, image, id }, index) => (
+            <Link key={index} to={`/comidas/${id}`}>
+              <Cards key={index} name={name} thumbnail={image} index={index} />
+            </Link>
+          ))
+          .splice(0, TRINTA)}
       </main>
       <Footer />
     </div>

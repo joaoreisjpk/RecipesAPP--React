@@ -22,7 +22,7 @@ export const getMeasures = (object: FoodObject | DrinkObject | any) => {
   return arrayMeasures;
 };
 
-export const getFavoriteList = () => JSON.parse(localStorage.getItem('favoriteRecipes') || '{}');
+export const getFavoriteList = () => JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
 
 export const setFavoriteList = (item: FoodObject[] | DrinkObject[]) => (
   localStorage.setItem('favoriteRecipes', JSON.stringify(item))
