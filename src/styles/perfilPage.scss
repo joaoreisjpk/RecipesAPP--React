@@ -13,7 +13,7 @@
     align-items: center;
 
     h1 {
-      margin-bottom: .5rem;
+      margin-bottom: 0.5rem;
       font-size: 1.5rem;
     }
 
@@ -22,16 +22,20 @@
     }
 
     button {
-      width: 230px;
-      padding: .5rem;
-      margin-top: .5rem;
-      background: var(--orange-400);
+      min-width: 250px;
+      padding: 0.6rem 1.1rem;
+      margin-top: 0.3rem;
+      background: transparent;
       border-radius: 10px;
-      color: #FFF9F0;
+      border: 2px solid var(--orange-600);
+      color: var(--orange-600);
       font-style: normal;
       font-weight: bold;
       font-size: 1.3rem;
     }
+    div {
+      display: flex;
+      gap: .5rem;
+    }
   }
-
 }

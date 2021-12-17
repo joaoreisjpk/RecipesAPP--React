@@ -15,7 +15,7 @@ interface HeaderProps {
   categories?: () => JSX.Element;
 }
 
-function Header({ title, categories }: HeaderProps) {
+function HeaderWithSearchIcon({ title, categories }: HeaderProps) {
   const { setRespostaDrink, setRespostaFood } = useContext(MyContext);
   const INGREDIENT_RADIO = 'ingredient-radio';
   const [showSearchBar, setShowSearchBar] = useState(false);
@@ -135,4 +135,4 @@ function Header({ title, categories }: HeaderProps) {
   );
 }
 
-export default Header;
+export default HeaderWithSearchIcon;

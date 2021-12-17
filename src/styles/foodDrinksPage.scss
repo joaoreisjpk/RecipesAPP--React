@@ -15,7 +15,7 @@
       min-width: 100%;
       padding: 0.6rem;
       font-size: 1.1rem;
-      border: 2px solid var(--orange-700);
+      border: 2px solid var(--orange-600);
       border-radius: 10px;
     }
 
@@ -66,8 +66,9 @@
       margin: auto;
       justify-content: center;
       display: flex;
-      margin-top: 0.5rem;
+      gap: .5rem;
       flex-wrap: wrap;
+      margin: 1rem 0;
 
       button {
         width: 6rem;
@@ -81,10 +82,6 @@
         font-weight: bold;
         font-size: 1.2rem;
       }
-
-      button + button {
-        margin-left: 0.4rem;
-      }
     }
   }
 
@@ -94,7 +91,6 @@
     gap: 1.5rem;
     margin: 20px auto;
     display: flex;
-    flex: 1 1;
     justify-content: center;
     flex-wrap: wrap;
     padding-bottom: 5rem;
@@ -135,13 +131,10 @@
       justify-content: center;
 
       div {
-        margin: 1rem 0;
-
         button, button + button {
           width: 8rem;
           padding: 0.4rem 0.8rem;
           font-size: 1.3rem;
-          margin-left: 1rem;
         }
       }
     }

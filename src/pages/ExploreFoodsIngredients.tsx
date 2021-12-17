@@ -11,7 +11,7 @@ import '../styles/exploreIngredientsPage.scss';
 function ExploreFoodsIngredients() {
   const { setIngredient, setRespostaFood } = useContext(MyContext);
   const [ingredientList, setIngredientList] = useState([]);
-  const DOZE = 12;
+  const TRINTA = 30;
 
   useEffect(() => {
     const fetchAPI = async () => {
@@ -29,11 +29,11 @@ function ExploreFoodsIngredients() {
     <section className="exploreIngContainer">
       <Header title="Explorar Ingredientes" />
       <main>
-        { ingredientList.splice(0, DOZE).map(({ strIngredient }, index) => (
+        { ingredientList.splice(0, TRINTA).map(({ strIngredient }, index) => (
           <Link to="/comidas/" key={ index }>
             <button type="button" onClick={ () => handleIngredient(strIngredient) }>
               <div data-testid={ `${index}-ingredient-card` }>
-                <h2 data-testid={ `${index}-card-name` }>{strIngredient}</h2>
+                <h3 data-testid={ `${index}-card-name` }>{strIngredient}</h3>
                 <img
                   src={ `https://www.themealdb.com/images/ingredients/${strIngredient}-Small.png` }
                   alt=""
