@@ -10,7 +10,7 @@ import '../styles/exploreIngredientsPage.scss';
 function ExploreFoodsIngredients() {
   const { setIngredient, setRespostaDrink } = useContext(MyContext);
   const [ingredientList, setIngredientList] = useState([]);
-  const DOZE = 12;
+  const TRINTA = 30;
 
   useEffect(() => {
     setRespostaDrink([]);
@@ -28,7 +28,7 @@ function ExploreFoodsIngredients() {
     <section className="exploreIngContainer">
       <Header title="Explorar Ingredientes" />
       <main>
-        {ingredientList.splice(0, DOZE).map(({ strIngredient1 }, index) => (
+        {ingredientList.splice(0, TRINTA).map(({ strIngredient1 }, index) => (
           <Link to="/bebidas/" key={ index }>
             <button type="button" onClick={ () => handleIngredient(strIngredient1) }>
               <div data-testid={ `${index}-ingredient-card` }>
@@ -43,6 +43,7 @@ function ExploreFoodsIngredients() {
           </Link>
         ))}
       </main>
+      <div>''</div>
       <Footer />
     </section>
   );

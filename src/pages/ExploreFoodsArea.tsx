@@ -12,7 +12,7 @@ function ExploreFoodsArea() {
   const [areas, setAreas] = useState([]);
   const [foodList, setFoodList] = useState([] as FoodObject[]);
 
-  const DOZE = 12;
+  const TRINTA = 30;
 
   useEffect(() => {
     const callAPI = async () => {
@@ -64,7 +64,7 @@ function ExploreFoodsArea() {
               index={ index }
             />
           </Link>
-        )).splice(0, DOZE)}
+        )).splice(0, TRINTA)}
       </main>
       <Footer />
     </section>

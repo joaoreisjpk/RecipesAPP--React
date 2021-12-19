@@ -4,17 +4,13 @@ import { Link, Redirect } from 'react-router-dom';
 import HeaderWithSearchIcon from '../components/HeaderWithSearchIcon';
 import MyContext from '../context/MyContext';
 import Cards from '../components/Cards';
-import {
-  drinkAPI,
-  getCategorylist,
-  drinkSmallAPI,
-} from '../services/getDrink';
+import { drinkAPI, getCategorylist, drinkSmallAPI } from '../services/getDrink';
 import Footer from '../components/Footer';
 
 import '../styles/foodDrinksPage.scss';
 
 interface innerTextProps extends EventTarget {
-  innerText: string;
+  name: string;
 }
 
 interface handleClickProps extends React.MouseEvent<HTMLButtonElement> {
@@ -26,7 +22,18 @@ function Drinks() {
   const { ingredient } = useContext(MyContext);
   const [categories, setCategories] = useState([]);
   const [selectCategory, setSelectCategory] = useState('');
-  const DOZE = 12;
+  const TRINTA = 30;
+
+  function reName(name: string): string {
+    if (name === 'Ordinary Drink') {
+      return 'Ordinary';
+    } else if (name.includes('Milk')) {
+      return 'Milk';
+    } else if (name.includes('Other')) {
+      return 'Other';
+    }
+    return name;
+  }
 
   useEffect(() => {
     const callAPI = async () => {
@@ -41,65 +48,64 @@ function Drinks() {
     categoryAPI();
   }, []);
 
-  const handleClick = async ({ target: { innerText } }: handleClickProps) => {
-    if (innerText === selectCategory || innerText === 'All') {
+  const handleClick = async ({ target: { name } }: handleClickProps) => {
+    if (name === selectCategory || name === 'All') {
       setRespostaDrink(await drinkAPI('/search.php?s='));
       setSelectCategory('');
     } else {
-      setSelectCategory(innerText);
-      setRespostaDrink(await drinkSmallAPI(`/filter.php?c=${innerText}`));
+      setSelectCategory(name);
+      setRespostaDrink(await drinkSmallAPI(`/filter.php?c=${name}`));
     }
   };
 
   const fetchCategories = () => {
     const allCategories = [{ category: 'All' }, ...categories];
     return (
-      <section className="categorias">
+      <section className='categorias'>
         <div>
-          { allCategories.map((item, index) => (
-            <button
-              key={ index }
-              data-testid={ `${item.category}-category-filter` }
-              type="button"
-              onClick={ handleClick }
-            >
-              {item.category}
-            </button>)).splice(0, 3)}
-        </div>
-        <div>
-          { allCategories.map((item, index) => (
-            <button
-              key={ index }
-              data-testid={ `${item.category}-category-filter` }
-              type="button"
-              onClick={ handleClick }
-            >
-              {item.category}
-            </button>)).splice(3, 3)}
+          {!!categories.length ? (
+            allCategories
+              .map((item, index) => {
+                const name = reName(item.category);
+                return (
+                  <button
+                    key={index}
+                    data-testid={`${item.category}-category-filter`}
+                    type='button'
+                    name={item.category}
+                    onClick={handleClick}
+                  >
+                    {name}
+                  </button>
+                );
+              })
+              .splice(0, 6)
+          ) : (
+            <h1>Carregando...</h1>
+          )}
         </div>
       </section>
     );
   };
 
   if (respostaDrink && respostaDrink.length === 1) {
-    return <Redirect to={ `/bebidas/${respostaDrink[0].id}` } />;
+    return <Redirect to={`/bebidas/${respostaDrink[0].id}`} />;
   }
 
   return (
-    <div className="foodDrinksContainer">
-      <HeaderWithSearchIcon title="Bebidas" categories={() => fetchCategories()} />
+    <div className='foodDrinksContainer'>
+      <HeaderWithSearchIcon
+        title='Bebidas'
+        categories={() => fetchCategories()}
+      />
       <main>
-        { respostaDrink && respostaDrink
+        {respostaDrink
           .map(({ name, image, id }, index) => (
-            <Link key={ index } to={ `/bebidas/${id}` }>
-              <Cards
-                key={ index }
-                name={ name }
-                thumbnail={ image }
-                index={ index }
-              />
+            <Link key={index} to={`/bebidas/${id}`}>
+              <Cards key={index} name={name} thumbnail={image} index={index} />
             </Link>
-          )).splice(0, DOZE)}
+          ))
+          .splice(0, TRINTA)}
       </main>
       <Footer />
     </div>
