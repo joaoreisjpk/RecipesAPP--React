@@ -1,50 +1,70 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import ButtonsFavoriteAndShare from '../../../../components/ButtonsFavoriteAndShare';
-import { getMeasures, getIngredients } from '../../../../helpers';
+import { getMeasures, getIngredients, handleDone } from '../../../../helpers';
 import { drinkAPI } from '../../../../services/getDrink';
 import IngredientsInProgress from '../../../../components/IngredientsInProgress';
 import { DrinkObject } from '../../../../interfaces';
 import Header from '../../../../components/Header';
 import Footer from '../../../../components/Footer';
 
-import './main.scss'
+import './main.scss';
 
 function InProgressDrinkRecipe() {
-  const [drinkRecipeInProgress, setDrinkRecipeInProgress] = useState({} as DrinkObject);
+  const [drinkRecipeInProgress, setDrinkRecipeInProgress] = useState(
+    {} as DrinkObject
+  );
   const [disabled, setDisabled] = useState<Boolean>();
   const { image, name, instruction, category, type } = drinkRecipeInProgress;
-  const { idDrink } = useParams<{idDrink?: string | any}>();
+  const { idDrink } = useParams<{ idDrink?: string | any }>();
+  const { push } = useHistory();
 
-  const getInProgressRecipes = () => JSON
-    .parse(localStorage.getItem('inProgressRecipes') || '{}');
+  const getInProgressRecipes = () =>
+    JSON.parse(localStorage.getItem('inProgressRecipes') || '{}');
 
-  const getCheckedIngredients = () => (JSON.parse(
-    localStorage.getItem('inProgressRecipes') || '{}',
-  )).cocktails;
+  const getCheckedIngredients = () =>
+    JSON.parse(localStorage.getItem('inProgressRecipes') || '{}').cocktails;
 
   async function saveDrinkIngredientsAtLocalStorage() {
-    localStorage.setItem('drinkIngredients', JSON.stringify(
-      getIngredients((await drinkAPI(`/lookup.php?i=${idDrink}`))[0]),
-    ));
+    localStorage.setItem(
+      'drinkIngredients',
+      JSON.stringify(
+        getIngredients((await drinkAPI(`/lookup.php?i=${idDrink}`))[0])
+      )
+    );
   }
 
-  const setCheckedIngredients = () => localStorage.setItem('inProgressRecipes',
-    JSON.stringify({ ...getInProgressRecipes(),
-      cocktails: { ...getCheckedIngredients(), [idDrink]: [] } }));
+  const setCheckedIngredients = () =>
+    localStorage.setItem(
+      'inProgressRecipes',
+      JSON.stringify({
+        ...getInProgressRecipes(),
+        cocktails: { ...getCheckedIngredients(), [idDrink]: [] },
+      })
+    );
 
   const isDisabled = () => {
-    setDisabled(getIngredients(drinkRecipeInProgress)
-      .length === getCheckedIngredients()[idDrink].length);
+    setDisabled(
+      getIngredients(drinkRecipeInProgress).length ===
+        getCheckedIngredients()[idDrink].length
+    );
   };
+
+  function handleClick() {
+    handleDone(drinkRecipeInProgress);
+    push('/receitas-feitas');
+  }
 
   useEffect(() => {
     if (!getInProgressRecipes()) {
-      localStorage.setItem('inProgressRecipes', JSON.stringify({
-        cocktails: {},
-        meals: {},
-      }));
+      localStorage.setItem(
+        'inProgressRecipes',
+        JSON.stringify({
+          cocktails: {},
+          meals: {},
+        })
+      );
     }
     const getDrinkFromAPI = async () => {
       saveDrinkIngredientsAtLocalStorage();
@@ -60,53 +80,50 @@ function InProgressDrinkRecipe() {
 
   function renderPage() {
     return (
-      <section className="inProgressContainer">
-        <Header title="Bebidas" />
+      <section className='inProgressContainer'>
+        <Header title='Bebidas' />
         <main>
           <section>
-            <span data-testid="recipe-title">{ name } - </span>
-            <span data-testid="recipe-category">{ category }</span>
+            <span data-testid='recipe-title'>{name} - </span>
+            <span data-testid='recipe-category'>{category}</span>
             <div>
-              <img data-testid="recipe-photo" src={ image } alt={ name } />
+              <img data-testid='recipe-photo' src={image} alt={name} />
               <ButtonsFavoriteAndShare
-                object={ { ...drinkRecipeInProgress, type: 'bebida' } }
+                object={{ ...drinkRecipeInProgress, type: 'bebida' }}
               />
             </div>
           </section>
           <h2>Instruções:</h2>
-          <p data-testid="instructions">{ instruction }</p>
+          <p data-testid='instructions'>{instruction}</p>
           <h2>Ingredientes: </h2>
           <div>
-            { getIngredients(drinkRecipeInProgress).map((ingrediente, index) => (
+            {getIngredients(drinkRecipeInProgress).map((ingrediente, index) => (
               <IngredientsInProgress
-                key={ index }
-                index={ index }
-                ingrediente={ ingrediente }
-                measures={ getMeasures(drinkRecipeInProgress) }
-                id={ idDrink }
-                type={ type }
-                handleButton={ () => isDisabled() }
+                key={index}
+                index={index}
+                ingrediente={ingrediente}
+                measures={getMeasures(drinkRecipeInProgress)}
+                id={idDrink}
+                type={type}
+                handleButton={() => isDisabled()}
               />
             ))}
           </div>
-          <Link to="/receitas-feitas">
-            <button
-              disabled={ !disabled }
-              data-testid="finish-recipe-btn"
-              type="button"
-            >
-              Finalizar Receita
-            </button>
-          </Link>
+          <button
+            disabled={!disabled}
+            data-testid='finish-recipe-btn'
+            type='button'
+            onClick={handleClick}
+          >
+            Finalizar Receita
+          </button>
         </main>
         <Footer />
       </section>
     );
   }
 
-  return (
-    drinkRecipeInProgress && renderPage()
-  );
+  return drinkRecipeInProgress && renderPage();
 }
 
 export default InProgressDrinkRecipe;

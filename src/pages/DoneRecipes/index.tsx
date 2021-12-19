@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CopyButton from '../../components/CopyButton';
+import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import {
   getDoneList,
@@ -102,6 +103,7 @@ function DoneRecipes() {
         All
       </button>
       { fetchDoneList() }
+      <Footer />
     </>
   );
 }

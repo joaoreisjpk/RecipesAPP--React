@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 
-import { getMeasures, getIngredients } from '../../../../helpers';
+import { getMeasures, getIngredients, getDoneList, handleDone } from '../../../../helpers';
 import { foodAPI } from '../../../../services/getFood';
 import { FoodObject } from '../../../../interfaces';
 
@@ -18,8 +18,10 @@ function InProgressFoodRecipe() {
     {} as FoodObject
   );
   const [disabled, setDisabled] = useState<Boolean>();
-  const { image, name, instruction, category, type } = foodRecipeInProgress;
+  const { image, name, instruction, category, type, area, tags } =
+    foodRecipeInProgress;
   const { idMeal } = useParams<{ idMeal: string }>();
+  const { push } = useHistory();
 
   const getInProgressRecipes = () =>
     JSON.parse(localStorage.getItem('inProgressRecipes') || '');
@@ -41,6 +43,11 @@ function InProgressFoodRecipe() {
       getIngredients(foodRecipeInProgress).length ===
         getCheckedIngredients()[idMeal].length
     );
+
+  function handleClick() {
+    handleDone(foodRecipeInProgress);
+    push('/receitas-feitas');
+  }
 
   useEffect(() => {
     if (!getInProgressRecipes()) {
@@ -96,15 +103,14 @@ function InProgressFoodRecipe() {
               />
             ))}
           </div>
-          <Link to='/receitas-feitas'>
-            <button
-              disabled={!disabled}
-              data-testid='finish-recipe-btn'
-              type='button'
-            >
-              Finalizar Receita
-            </button>
-          </Link>
+          <button
+            disabled={!disabled}
+            data-testid='finish-recipe-btn'
+            type='button'
+            onClick={handleClick}
+          >
+            Finalizar Receita
+          </button>
         </main>
         <Footer />
       </section>
