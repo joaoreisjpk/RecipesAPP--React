@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import CopyButton from '../components/CopyButton';
-import Header from '../components/Header';
+import CopyButton from '../../components/CopyButton';
+import Header from '../../components/Header';
 import {
   getDoneList,
-} from '../helpers';
-import { DrinkObject } from '../interfaces';
+} from '../../helpers';
+import { DrinkObject } from '../../interfaces';
 
 function DoneRecipes() {
   const [doneList, setDoneList] = useState([] as DrinkObject[]);

@@ -4,7 +4,6 @@ import Switcher from './components/Switcher';
 import Provider from './context/Provider';
 
 import './global.scss';
-import './styles/loginPage.scss';
 
 export default class App extends React.Component {
   render() {

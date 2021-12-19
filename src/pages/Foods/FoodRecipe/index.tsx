@@ -1,20 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { drinkAPI } from '../services/getDrink';
-import { foodAPI } from '../services/getFood';
-import { DrinkObject, FoodObject } from '../interfaces';
+import { foodAPI } from '../../../services/getFood';
+import { drinkAPI } from '../../../services/getDrink';
+import { DrinkObject, FoodObject } from '../../../interfaces';
 
-import CardDetail from '../components/CardDetail';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
+import CardDetail from '../../../components/CardDetail';
+import Footer from '../../../components/Footer';
+import Header from '../../../components/Header';
 
-import '../styles/recipePage.scss';
+import './main.scss';
 
-function DrinkRecipe() {
-  const [itemDetail, setItemDetail] = useState<DrinkObject>();
-  const [itemRecomendation, setItemRecomendation] = useState([] as FoodObject[]);
-  const { idDrink } = useParams<{idDrink?: string}>();
+function FoodRecipe() {
+  const [itemDetail, setItemDetail] = useState<FoodObject>();
+  const [itemRecomendation, setItemRecomendation] = useState([] as DrinkObject[]);
+  const { idMeal } = useParams<{idMeal?: string}>();
 
   const keyInProgressRecipesFromLS = () => JSON
     .parse(localStorage.getItem('inProgressRecipes') || '');
@@ -27,17 +27,17 @@ function DrinkRecipe() {
       }));
     }
     const callAPI = async () => {
-      setItemDetail((await drinkAPI(`/lookup.php?i=${idDrink}`))[0]);
-      setItemRecomendation(await foodAPI('/search.php?s='));
+      setItemDetail((await foodAPI(`/lookup.php?i=${idMeal}`))[0]);
+      setItemRecomendation(await drinkAPI('/search.php?s='));
     };
     callAPI();
   }, []);
 
   function handleButtonText() {
     const getStorage = JSON.parse(localStorage.getItem('inProgressRecipes') || '');
-    if (!getStorage && !getStorage.cocktails) return false;
-    const drinkKeys = Object.keys(getStorage.cocktails);
-    const validate = drinkKeys.some((id) => id === idDrink);
+    if (!getStorage && !getStorage.meals) return false;
+    const mealKeys = Object.keys(getStorage.meals);
+    const validate = mealKeys.some((id) => id === idMeal);
     return validate;
   }
 
@@ -50,7 +50,7 @@ function DrinkRecipe() {
           object={ itemDetail }
           itemRecomendation={ itemRecomendation }
         />
-        <Link to={ `/bebidas/${idDrink}/in-progress` }>
+        <Link to={ `/comidas/${idMeal}/in-progress` }>
           <button
             data-testid="start-recipe-btn"
             type="button"
@@ -60,8 +60,8 @@ function DrinkRecipe() {
         </Link>
       </main>
       <Footer />
-    </section>
+   </section>
   );
 }
 
-export default DrinkRecipe;
+export default FoodRecipe;

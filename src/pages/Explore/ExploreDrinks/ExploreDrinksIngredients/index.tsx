@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import MyContext from '../context/MyContext';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { getIngredientList } from '../services/getDrink';
+import MyContext from '../../../../context/MyContext';
+import Header from '../../../../components/Header';
+import Footer from '../../../../components/Footer';
+import { getIngredientList } from '../../../../services/getDrink';
 
-import '../styles/exploreIngredientsPage.scss';
+import './main.scss';
 
-function ExploreFoodsIngredients() {
+function ExploreDrinksIngredients() {
   const { setIngredient, setRespostaDrink } = useContext(MyContext);
   const [ingredientList, setIngredientList] = useState([]);
   const TRINTA = 30;
@@ -49,4 +49,4 @@ function ExploreFoodsIngredients() {
   );
 }
 
-export default ExploreFoodsIngredients;
+export default ExploreDrinksIngredients;

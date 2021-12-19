@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ButtonsFavoriteAndShare from '../components/ButtonsFavoriteAndShare';
-import Header from '../components/Header';
+import ButtonsFavoriteAndShare from '../../components/ButtonsFavoriteAndShare';
+import Header from '../../components/Header';
 import {
   getFavoriteList,
-} from '../helpers';
-import { DrinkObject } from '../interfaces';
+} from '../../helpers';
+import { DrinkObject } from '../../interfaces';
 
 function FavoriteRecipes() {
   const [favoriteList, setFavoriteList] = useState([] as DrinkObject[]);

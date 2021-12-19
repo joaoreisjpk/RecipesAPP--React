@@ -1,15 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import ButtonsFavoriteAndShare from '../components/ButtonsFavoriteAndShare';
-import { getMeasures, getIngredients } from '../helpers';
-import { drinkAPI } from '../services/getDrink';
-import IngredientsInProgress from '../components/IngredientsInProgress';
-import { DrinkObject } from '../interfaces';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import ButtonsFavoriteAndShare from '../../../../components/ButtonsFavoriteAndShare';
+import { getMeasures, getIngredients } from '../../../../helpers';
+import { drinkAPI } from '../../../../services/getDrink';
+import IngredientsInProgress from '../../../../components/IngredientsInProgress';
+import { DrinkObject } from '../../../../interfaces';
+import Header from '../../../../components/Header';
+import Footer from '../../../../components/Footer';
 
-import '../styles/inProgressPage.scss'
+import './main.scss'
 
 function InProgressDrinkRecipe() {
   const [drinkRecipeInProgress, setDrinkRecipeInProgress] = useState({} as DrinkObject);
