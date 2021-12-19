@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import profileIcon from '../images/profileIcon.svg';
+import profileIcon from '../../images/profileIcon.svg';
 
-import '../styles/header.scss';
+import './main.scss';
 
 interface HeaderProps {
   title: string;

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import Button from '../components/Button';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import Button from '../../components/Button';
 
-import '../styles/explorePage.scss';
+import './main.scss';
 
 function Explore() {
   return (

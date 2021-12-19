@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import HeaderWithSearchIcon from '../components/HeaderWithSearchIcon';
-import MyContext from '../context/MyContext';
-import Cards from '../components/Cards';
-import { drinkAPI, getCategorylist, drinkSmallAPI } from '../services/getDrink';
-import Footer from '../components/Footer';
+import HeaderWithSearchIcon from '../../components/HeaderWithSearchIcon';
+import MyContext from '../../context/MyContext';
+import Cards from '../../components/Cards';
+import { drinkAPI, getCategorylist, drinkSmallAPI } from '../../services/getDrink';
+import Footer from '../../components/Footer';
 
-import '../styles/foodDrinksPage.scss';
+import './main.scss';
 
 interface innerTextProps extends EventTarget {
   name: string;

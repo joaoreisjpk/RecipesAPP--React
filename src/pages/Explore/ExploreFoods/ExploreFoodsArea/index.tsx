@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Cards from '../components/Cards';
-import Footer from '../components/Footer';
-import HeaderWithSearchIcon from '../components/HeaderWithSearchIcon';
-import { FoodObject } from '../interfaces';
-import { getAreaList, foodSmallAPi, foodAPI } from '../services/getFood';
+import Cards from '../../../../components/Cards';
+import Footer from '../../../../components/Footer';
+import HeaderWithSearchIcon from '../../../../components/HeaderWithSearchIcon';
+import { FoodObject } from '../../../../interfaces';
+import { getAreaList, foodSmallAPi, foodAPI } from '../../../../services/getFood';
 
-import '../styles/foodAreaPage.scss';
+import './main.scss';
 
 function ExploreFoodsArea() {
   const [areas, setAreas] = useState([]);

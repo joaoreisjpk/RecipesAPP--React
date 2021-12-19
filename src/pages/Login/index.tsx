@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import MyContext from '../context/MyContext';
+import MyContext from '../../context/MyContext';
 import { InputHTMLAttributes } from 'react-router/node_modules/@types/react';
 
+import './main.scss';
 
 interface innerTextProps extends EventTarget {
   id: string;

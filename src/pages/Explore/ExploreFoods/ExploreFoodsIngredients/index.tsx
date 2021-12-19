@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import MyContext from '../context/MyContext';
-import { getIngredientList } from '../services/getFood';
+import MyContext from '../../../../context/MyContext';
+import { getIngredientList } from '../../../../services/getFood';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from '../../../../components/Header';
+import Footer from '../../../../components/Footer';
 
-import '../styles/exploreIngredientsPage.scss';
+import './main.scss';
 
 function ExploreFoodsIngredients() {
   const { setIngredient, setRespostaFood } = useContext(MyContext);

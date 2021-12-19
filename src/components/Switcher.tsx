@@ -3,20 +3,20 @@ import { Route, Switch } from 'react-router-dom';
 import Login from '../pages/Login';
 import Foods from '../pages/Foods';
 import Drinks from '../pages/Drinks';
-import FoodRecipe from '../pages/FoodRecipe';
-import InProgressFoodRecipe from '../pages/InProgressFoodRecipe';
-import InProgressDrinkRecipe from '../pages/InProgressDrinkRecipe';
-import DrinkRecipe from '../pages/DrinkRecipe';
+import FoodRecipe from '../pages/Foods/FoodRecipe';
+import InProgressFoodRecipe from '../pages/Foods/FoodRecipe/InProgressFoodRecipe';
+import InProgressDrinkRecipe from '../pages/Drinks/DrinkRecipe/InProgressDrinkRecipe';
+import DrinkRecipe from '../pages/Drinks/DrinkRecipe';
 import Explore from '../pages/Explore';
-import ExploreFoods from '../pages/ExploreFoods';
-import ExploreDrinks from '../pages/ExploreDrinks';
-import ExploreFoodsIngredients from '../pages/ExploreFoodsIngredients';
-import ExploreDrinksIngredients from '../pages/ExploreDrinksIngredients';
-import ExploreFoodsArea from '../pages/ExploreFoodsArea';
+import ExploreFoods from '../pages/Explore/ExploreFoods';
+import ExploreDrinks from '../pages/Explore/ExploreDrinks';
+import ExploreFoodsIngredients from '../pages/Explore/ExploreFoods/ExploreFoodsIngredients';
+import ExploreDrinksIngredients from '../pages/Explore/ExploreDrinks/ExploreDrinksIngredients';
+import ExploreFoodsArea from '../pages/Explore/ExploreFoods/ExploreFoodsArea';
 import Perfil from '../pages/Perfil';
 import DoneRecipes from '../pages/DoneRecipes';
 import FavoriteRecipes from '../pages/FavoriteRecipes';
-import ExploreDrinksArea from '../pages/ExploreDrinksArea';
+import ExploreDrinksArea from '../pages/Explore/ExploreDrinks/ExploreDrinksArea';
 
 class Switcher extends Component {
   render(): JSX.Element {

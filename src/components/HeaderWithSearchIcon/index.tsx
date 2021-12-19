@@ -1,14 +1,14 @@
 import React, { useState, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { foodSmallAPi, foodAPI } from '../services/getFood';
-import { drinkSmallAPI, drinkAPI } from '../services/getDrink';
-import MyContext from '../context/MyContext';
+import { foodSmallAPi, foodAPI } from '../../services/getFood';
+import { drinkSmallAPI, drinkAPI } from '../../services/getDrink';
+import MyContext from '../../context/MyContext';
 
-import Button from './Button';
+import Button from '../Button';
 
-import searchIcon from '../images/searchIcon.svg';
-import profileIcon from '../images/profileIcon.svg';
-import '../styles/headerSearchIcon.scss';
+import searchIcon from '../../images/searchIcon.svg';
+import profileIcon from '../../images/profileIcon.svg';
+import './main.scss';
 
 interface HeaderProps {
   title: string;
