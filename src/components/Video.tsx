@@ -11,8 +11,6 @@ function Video({ srcVideo }: VideoProps) {
       data-testid="video"
       src={ videoURL }
       title="teste"
-      width="320"
-      height="220"
       frameBorder="0"
       allowFullScreen
     />

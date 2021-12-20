@@ -1,4 +1,4 @@
-.inProgressContainer {
+/* .inProgressContainer {
   height: 100vh;
   display: flex;
   align-items: center;
@@ -63,15 +63,16 @@
     }
 
     div + button {
-      width: 260px;
-      padding: 1rem;
-      margin-top: .5rem;
-      background: var(--orange-400);
+      min-width: 250px;
+      padding: .6rem 1.1rem;
+      margin-top: .3rem;
+      background: transparent;
       border-radius: 10px;
-      color: #FFF9F0;
+      border: 2px solid var(--orange-600);
+      color: var(--orange-600);
       font-style: normal;
       font-weight: bold;
       font-size: 1.5rem;
     }
   }
-}
+} */

@@ -82,7 +82,7 @@ function IngredientsInProgress({
             id={ ingrediente }
             onChange={ handleChange }
           />)}
-      <span>{ `Ingrediente: ${ingrediente} - Medida: ${measures[index]}` }</span>
+      <span>{ `${ingrediente} - Medida: ${measures[index]}` }</span>
     </label>
   );
 }

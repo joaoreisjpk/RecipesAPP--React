@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import ButtonsFavoriteAndShare from '../../../../components/ButtonsFavoriteAndShare';
 import { getMeasures, getIngredients, handleDone } from '../../../../helpers';
 import { drinkAPI } from '../../../../services/getDrink';
@@ -83,7 +83,7 @@ function InProgressDrinkRecipe() {
       <section className='inProgressContainer'>
         <Header title='Bebidas' />
         <main>
-          <section>
+          <div>
             <span data-testid='recipe-title'>{name} - </span>
             <span data-testid='recipe-category'>{category}</span>
             <div>
@@ -92,22 +92,26 @@ function InProgressDrinkRecipe() {
                 object={{ ...drinkRecipeInProgress, type: 'bebida' }}
               />
             </div>
-          </section>
-          <h2>Instruções:</h2>
-          <p data-testid='instructions'>{instruction}</p>
-          <h2>Ingredientes: </h2>
+          </div>
           <div>
-            {getIngredients(drinkRecipeInProgress).map((ingrediente, index) => (
-              <IngredientsInProgress
-                key={index}
-                index={index}
-                ingrediente={ingrediente}
-                measures={getMeasures(drinkRecipeInProgress)}
-                id={idDrink}
-                type={type}
-                handleButton={() => isDisabled()}
-              />
-            ))}
+            <h2>Instruções:</h2>
+            <p data-testid='instructions'>{instruction}</p>
+          </div>
+          <div>
+            <h2>Ingredientes: </h2>
+            <div className='ingredientsList'>
+              {getIngredients(drinkRecipeInProgress).map((ingrediente, index) => (
+                <IngredientsInProgress
+                  key={index}
+                  index={index}
+                  ingrediente={ingrediente}
+                  measures={getMeasures(drinkRecipeInProgress)}
+                  id={idDrink}
+                  type={type}
+                  handleButton={() => isDisabled()}
+                />
+              ))}
+            </div>
           </div>
           <button
             disabled={!disabled}

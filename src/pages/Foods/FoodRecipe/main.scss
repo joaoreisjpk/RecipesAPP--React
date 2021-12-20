@@ -5,50 +5,23 @@
   flex-direction: column;
 
   main {
-    width: 85%;
+    width: 90%;
     gap: 1.5rem;
+    max-width: 1200px;
     margin: 20px auto;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     padding-bottom: 7rem;
 
-    section {
-      span {
-        font-size: 2.5rem;
-      }
-
-      div {
-        margin: 1rem 0;
-        font-size: 1.5rem;
-
-        img {
-          width: 100%;
-          border-radius: 10px;    
-        }
-
-        button {
-          position: absolute;
-        }
-      }
-
-      h2 {
-        font-size: 2rem;
-        margin: 1rem 0;
-      }
-
-      > p {
-        font-size: 1.5rem;
-      }
-    }
-
     a > button {
-      width: 260px;
-      padding: 1rem;
-      margin-top: .5rem;
-      background: var(--orange-400);
+      min-width: 250px;
+      padding: 0.6rem 1.1rem;
+      margin-top: 0.3rem;
+      background: transparent;
       border-radius: 10px;
-      color: #FFF9F0;
+      border: 2px solid var(--orange-600);
+      color: var(--orange-600);
       font-style: normal;
       font-weight: bold;
       font-size: 1.5rem;
