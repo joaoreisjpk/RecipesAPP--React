@@ -1,0 +1,39 @@
+.foodsAreaContainer {
+  height: 100vh;
+
+  > div {
+    width: 90%;
+    max-width: 1200px;
+    padding: 2rem 0;
+    font-size: 1.5rem;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+
+    select {
+      height: 2rem;
+      font-size: 1.2rem;
+      min-width: 15rem;
+      max-width: 100%;
+      border: 2px solid var(--orange-600);
+    }
+  }
+
+  main {
+    width: 90%;
+    max-width: 1100px;
+    gap: 1.5rem;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 5rem;
+
+    img {
+      max-width: 200px;
+      border-radius: 10px 10px 0 0;    
+    }
+  }
+}

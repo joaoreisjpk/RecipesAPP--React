@@ -1,61 +1,34 @@
-# RecipesApp 🚀
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-### Esse projeto foi refatorado diversas vezes. Inicialmente era um projeto da Trybe, mas pelas constantes mudanças considero hoje como um projeto meu. Mais abaixo terá um guia da progressão das refatorações, com suas devidas Branchs.
+## Getting Started
 
-[Link para o Site](https://recipes-app-lemon.vercel.app/)
+First, run the development server:
 
-![plot](./public/recipesPreview.png)
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-## Tech em uso
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-[React] Aplication </br>
-Gerenciamento de estado com [ContexAPI] </br>
-Uso de API externas como...
-  - A  [API CocktailDB](https://thecocktaildb.com/api.php)
-  - A  [API MealDB](https://www.themealdb.com/api.php)
-  
-Uso do Jest e RTL, SASS, ContextAPI, Axios
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-Refatorar a aplicação diversas vezes, adicionando diferentes features
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-# Habilidades desenvolvidas.
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
--Criar um contexto para gerenciar a aplicação num todo </br>
+## Learn More
 
--Fazer uso do ReactRouter para lhidar com as diferentes páginas do app em SPA </br>
+To learn more about Next.js, take a look at the following resources:
 
--Fazer uso dos componentes funcionais e seus diferentes Hooks </br>
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
--Cobrir 90% da aplicação com testes unitário usando Jest e RTL </br>
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
--Fazer uso do SASS para compilar e facilitar a estilização com CSS </br>
+## Deploy on Vercel
 
--Refatorar a aplicaçã diversas vezes fazendo uso de diferentes branchs </br>
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-# Como a aplicação foi refatorada
-Essa aplicação, por ser a maior que já desenvolvi, resolvi refatora-la com todos os conhecimentos que adquiri fora da Trybe, para além de consolidar esses mesmos conhecimentos, tornar a aplicação mais interessante e atualizada.
-###### infelizmente os testes só funcionam na aplicação original, futuramente irei consertar isso.
-
-### Ordenação das branchs:
-- 1º Branch `aplicação original`: a aplicação no estado de como entreguei para Trybe
-- 2º Branch `adicionando-axios-e-otimizando-a-aplicacao`: refatorei conforme o próprio nome da branch
-- 3º Branch `transicicao-de-javascript-para-typescript`: refatorei conforme o próprio nome da branch
-- 4º Branch `estilizando-o-app-com-SASS`: refatorei conforme o próprio nome da branch
-
-
-
-# O que foi desenvolvido.
-
-Um Aplicativo de receitas, onde é possível procurar tanto por receitas de comidas quanto de bebida. Depois de efetuar o login será carregado a tela inicial, onde é
-possível pesquisar por um nome específico, fazendo uso da SearchBar ou selecionar uma categoria específica, fazendo assim uma filtragem
-Na sessão `exporar` o usuário pode escolher por diferentes ingredientes, regiões ou até mesmo escolher vir uma receita randomica.
-Todas as receitas podem ser favoritadas, sendo assim possível serem vistas na tab de favoritas, que se localiza no perfil do usuário.
-Caso seja decido fazer uma receita, pode-se inicia-la, primeiro clicando em qualquer card e indo pra página de detalhes da mesma. Durante a realização da receita pode-se
-ir riscando os passos que já foram feitos, e uma vez terminado a receita é possível finaliza-la, o que automagicamente a adiciona para lista de receitas feitas.
-
-  - Logar no site e carregar uma lista de comidas, onde pode-se pesquisar um nome específico ou escolher uma categoria
-  - Clicar em um card de comida e bebida, onde será mostrado os detalhes da receita e o passo a passo de como faze-la
-  - Se uma receita for iniciado pode-se ir riscando os passos que já foram feitos, e uma vez a receita finalizada, é possível reencontra-la na lista de receitas feitas, que pode ser encontrada no perfil do usuário
-  - Toda receita tem um ícone para favoritar e para copiar o link da mesma.
-  - A pagina de exploração carrega diferentes ingredientes e pode-se selecionar uma comida pela sua região, ou fazer o site escolher uma receita aleatória.
-  - No perfil deve aparecer o email cadastrado além da sua lista de favoritos e de receitas feitas.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

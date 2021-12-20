@@ -11,7 +11,8 @@ import Video from '../Video';
 import ButtonsFavoriteAndShare from '../ButtonsFavoriteAndShare';
 import { DrinkObject, FoodObject } from '../../interfaces';
 
-import './main.scss';
+import styles from './main.module.scss';
+import Image from 'next/image';
 
 interface CardDetailProps {
   itemRecomendation: FoodObject[] | DrinkObject[];
@@ -47,12 +48,12 @@ const CardDetail = ({
 
   if (!getFavoriteList()) return <div>Carregando...</div>;
   return (
-    <section className='cardDetailContainer'>
+    <section className={styles.cardDetailContainer}>
       <div>
         <span data-testid='recipe-title'>{name} - </span>
         <span data-testid='recipe-category'>{alcoholicOrNot || category}</span>
         <div>
-          <img src={image} alt={name} data-testid='recipe-photo' />
+          <Image src={image} alt={name} data-testid='recipe-photo' />
           <ButtonsFavoriteAndShare object={object} />
         </div>
       </div>
@@ -70,7 +71,7 @@ const CardDetail = ({
         ))}
       </div>
       <div>{!video ? null : <Video srcVideo={video} />}</div>
-      <div className='recomendationCads'>
+      <div className={styles.recomendationCads}>
         <h2>Recomendations</h2>
         <button
           type='button'

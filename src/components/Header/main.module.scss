@@ -1,0 +1,36 @@
+.header {
+  padding: .5rem 0;
+  width: 100%;
+  background: var(--orange-300);
+  border-bottom: 2px solid var(--orange-700);
+
+  nav {
+    display: flex;
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+
+    button {
+      position: absolute;
+    }
+    
+    img, button {
+      top: 11px;
+      color: transparent;
+      background-color: transparent;
+      border: 0;
+      width: 30px;
+      height: 30px;
+    }
+
+    h1 {
+      align-self: center;
+      display: flex;
+      margin: auto;
+      padding-left: -30px;
+      font-size: 2rem;
+      display: flex;
+      color: #121214;
+    }
+  }
+}

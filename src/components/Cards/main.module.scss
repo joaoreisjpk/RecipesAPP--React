@@ -1,0 +1,18 @@
+.titleDiv {
+  min-height: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fec98c;
+  width: 100%;
+  border-radius: 0px 0px 15px 15px;
+  padding: 0.3rem 0.8rem;
+  margin-top: -5px;
+
+  p {
+    text-align: center;
+    color: #121214;
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
+}

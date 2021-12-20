@@ -1,23 +1,24 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import drinkIcon from '../../images/drinkIcon.svg';
 import exploreIcon from '../../images/exploreIcon.svg';
 import mealIcon from '../../images/mealIcon.svg';
 
-import './main.scss';
+import styles from './main.module.scss';
 
 function Footer(): JSX.Element {
   return (
-    <footer data-testid="footer">
+    <footer data-testid="footer" className={styles.footer}>
       <section id="container">
         <button
           type="button"
           data-testid="drinks-bottom-btn"
           id="drinks-bottom-btn"
         >
-          <Link to="/bebidas">
-            <img src={ drinkIcon } alt="Drink Icon" />
+          <Link href="/bebidas" passHref>
+            <Image src={ drinkIcon } alt="Drink Icon" />
           </Link>
         </button>
         <button
@@ -25,8 +26,8 @@ function Footer(): JSX.Element {
           data-testid="explore-bottom-btn"
           id="explore-bottom-btn"
         >
-          <Link to="/explorar">
-            <img src={ exploreIcon } alt="Explore Icon" />
+          <Link href="/explorar" passHref>
+            <Image src={ exploreIcon } alt="Explore Icon" />
           </Link>
         </button>
         <button
@@ -34,8 +35,8 @@ function Footer(): JSX.Element {
           data-testid="food-bottom-btn"
           id="food-bottom-btn"
         >
-          <Link to="/comidas">
-            <img src={ mealIcon } alt="Meal Icon" />
+          <Link href="/comidas" passHref>
+            <Image src={ mealIcon } alt="Meal Icon" />
           </Link>
         </button>
       </section>
