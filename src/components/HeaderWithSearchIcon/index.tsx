@@ -11,6 +11,7 @@ import styles from './main.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import FetchCategories from '../FetchCategories';
 
 interface HeaderProps {
   title: string;
@@ -131,7 +132,7 @@ function HeaderWithSearchIcon({ title, categories }: HeaderProps) {
         </nav>
       </header>
       <>
-        {showSearchBar ? renderSearchContainer() : categories && categories()}
+        {showSearchBar ? renderSearchContainer() : <FetchCategories />}
       </>
     </>
   );

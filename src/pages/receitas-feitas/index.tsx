@@ -6,7 +6,7 @@ import Header from '../../components/Header';
 import { getDoneList } from '../../helpers';
 import { DrinkObject } from '../../interfaces';
 
-import './main.scss';
+import styles from './main.module.scss';
 
 function DoneRecipes() {
   const [doneList, setDoneList] = useState([] as DrinkObject[]);
@@ -95,7 +95,7 @@ function DoneRecipes() {
       });
 
   return (
-    <section className='doneContainer'>
+    <section className={styles.doneContainer}>
       <Header title='Receitas Feitas' />
       <nav>
         <div>

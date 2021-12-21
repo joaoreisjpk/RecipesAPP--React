@@ -1,39 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Button from '../../components/Button';
 
-import styles from './main.module.scss'
+import styles from './main.module.scss';
 import Link from 'next/link';
 
 function Perfil() {
-  let email = '';
-  const user = JSON.parse(localStorage.getItem('user') || '');
+  const [email, setEmail] = useState('');
 
-  if (user) {
-    email = user.email;
-  }
+  useEffect(() => {
+    setEmail(JSON.parse(localStorage.getItem('user') || ''));
+  }, []);
 
   return (
     <section className={styles.perfilContainer}>
-      <Header title="Perfil" />
+      <Header title='Perfil' />
       <main>
         <div>
           <h1>Usuário:</h1>
-          <h2 data-testid="profile-email">{email}</h2>
+          <h2 data-testid='profile-email'>{email}</h2>
         </div>
-        <Link passHref href="/receitas-feitas">
-          <Button dataID="profile-done-btn" text="Receitas Feitas" />
+        <Link passHref href='/receitas-feitas'>
+          <Button dataID='profile-done-btn' text='Receitas Feitas' />
         </Link>
-        <Link passHref href="/receitas-favoritas">
-          <Button dataID="profile-favorite-btn" text="Receitas Favoritas" />
+        <Link passHref href='/receitas-favoritas'>
+          <Button dataID='profile-favorite-btn' text='Receitas Favoritas' />
         </Link>
-        <Link passHref href="/">
+        <Link passHref href='/'>
           <Button
-            dataID="profile-logout-btn"
-            text="Sair"
-            onClick={ () => localStorage.clear() }
+            dataID='profile-logout-btn'
+            text='Sair'
+            onClick={() => localStorage.clear()}
           />
         </Link>
       </main>
