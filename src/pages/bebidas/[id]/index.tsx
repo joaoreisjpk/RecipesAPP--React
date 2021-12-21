@@ -21,8 +21,13 @@ function DrinkRecipe({itemDetail, recomendationList}: RecipeProps) {
   const [isValidated, setIsValidated] = useState(false);
   
   useEffect(() => {
-    const keyInProgressRecipesFromLS = () =>
-      JSON.parse(localStorage.getItem('inProgressRecipes') || '');
+    const keyInProgressRecipesFromLS = () => {
+      try {
+        return JSON.parse(localStorage.getItem('inProgressRecipes') || '');
+      } catch {
+        return '';
+      }
+    };
       
     if (!keyInProgressRecipesFromLS()) {
       localStorage.setItem(
