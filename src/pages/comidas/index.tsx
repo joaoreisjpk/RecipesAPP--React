@@ -38,7 +38,9 @@ function Foods() {
         {respostaFood
           .map(({ name, image, id }, index) => (
             <Link key={id} href={`/comidas/${id}`} passHref>
-              <Cards name={name} thumbnail={image} index={index} />
+              <a href="">
+                <Cards name={name} thumbnail={image} index={index} />
+              </a>
             </Link>
           ))
           .splice(0, TRINTA)}

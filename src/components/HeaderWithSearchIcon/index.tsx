@@ -1,17 +1,17 @@
 import React, { useState, useContext } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+
+import FetchCategories from '../FetchCategories';
 import { foodSmallAPi, foodAPI } from '../../services/getFood';
 import { drinkSmallAPI, drinkAPI } from '../../services/getDrink';
 import MyContext from '../../context/MyContext';
-
 import Button from '../Button';
 
 import searchIcon from '../../images/searchIcon.svg';
 import profileIcon from '../../images/profileIcon.svg';
 import styles from './main.module.scss';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import FetchCategories from '../FetchCategories';
 
 interface HeaderProps {
   title: string;
@@ -110,12 +110,14 @@ function HeaderWithSearchIcon({ title, categories }: HeaderProps) {
       <header className={styles.header}>
         <nav>
           <Link href='/perfil' passHref>
-            <Image
-              src={profileIcon}
-              data-testid='profile-top-btn'
-              id='profile-top-btn'
-              alt='Profile Icon'
-            />
+            <a href="">
+              <Image
+                src={profileIcon}
+                data-testid='profile-top-btn'
+                id='profile-top-btn'
+                alt='Profile Icon'
+              />
+            </a>
           </Link>
           <h1 data-testid='page-title'>{title}</h1>
           <button

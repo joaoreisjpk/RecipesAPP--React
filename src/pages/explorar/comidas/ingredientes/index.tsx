@@ -1,25 +1,25 @@
 import React, { useState, useEffect, useContext } from 'react';
 import MyContext from '../../../../context/MyContext';
-import { getIngredientList } from '../../../../services/getFood';
+import { api, getIngredientList } from '../../../../services/getFood';
 
 import Header from '../../../../components/Header';
 import Footer from '../../../../components/Footer';
 
 import styles from './main.module.scss';
 import Link from 'next/link';
+import { GetStaticProps } from 'next';
 
-function ExploreFoodsIngredients() {
+interface ingredientsProps {
+  strIngredient: string
+}
+
+function ExploreFoodsIngredients({ingredients} : { ingredients: ingredientsProps[]}) {
   const { setIngredient, setRespostaFood } = useContext(MyContext);
-  const [ingredientList, setIngredientList] = useState([]);
   const TRINTA = 30;
 
   useEffect(() => {
-    const fetchAPI = async () => {
-      setRespostaFood([]);
-      setIngredientList(await getIngredientList());
-    };
-    fetchAPI();
-  }, [setRespostaFood]);
+    return () => setRespostaFood([]);
+  }, []);
 
   const handleIngredient = (param: string) => {
     setIngredient(param);
@@ -29,7 +29,7 @@ function ExploreFoodsIngredients() {
     <section className={styles.exploreIngContainer}>
       <Header title="Explorar Ingredientes" />
       <main>
-        { ingredientList.splice(0, TRINTA).map(({ strIngredient }, index) => (
+        { ingredients.splice(0, TRINTA).map(({ strIngredient }, index) => (
           <Link passHref href="/comidas/" key={ index }>
             <button type="button" onClick={ () => handleIngredient(strIngredient) }>
               <div data-testid={ `${index}-ingredient-card` }>
@@ -50,3 +50,18 @@ function ExploreFoodsIngredients() {
 }
 
 export default ExploreFoodsIngredients;
+
+
+export const getStaticProps: GetStaticProps = async () => {
+  const getIngredientList = async () => {
+    const response = await api.get('/list.php?i=list');
+    return response.data.meals;
+  };
+
+  return {
+    props: {
+      ingredients: await getIngredientList(),
+    },
+    redirect: 60 * 60 * 24 * 30, // 1 mês
+  };
+};

@@ -46,14 +46,13 @@ const CardDetail = ({
     }
   }, []);
 
-  if (!getFavoriteList()) return <div>Carregando...</div>;
   return (
     <section className={styles.cardDetailContainer}>
       <div>
         <span data-testid='recipe-title'>{name} - </span>
         <span data-testid='recipe-category'>{alcoholicOrNot || category}</span>
         <div>
-          <Image src={image} alt={name} data-testid='recipe-photo' />
+          <Image width={400} height={400} src={image} alt={name} data-testid='recipe-photo' />
           <ButtonsFavoriteAndShare object={object} />
         </div>
       </div>

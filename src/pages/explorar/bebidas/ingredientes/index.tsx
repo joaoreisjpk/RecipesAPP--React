@@ -8,7 +8,15 @@ import styles from './main.module.scss';
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
 
-export default function ExploreDrinksIngredients({ ingredientsAPI }) {
+interface ingredientsProps {
+  strIngredient1: string;
+}
+
+export default function ExploreDrinksIngredients({
+  ingredients,
+}: {
+  ingredients: ingredientsProps[];
+}) {
   const { setIngredient, setRespostaDrink } = useContext(MyContext);
   const TRINTA = 30;
 
@@ -24,24 +32,23 @@ export default function ExploreDrinksIngredients({ ingredientsAPI }) {
     <section className={styles.exploreIngContainer}>
       <Header title='Explorar Ingredientes' />
       <main>
-        {ingredientsAPI &&
-          ingredientsAPI.splice(0, TRINTA).map(({ strIngredient1 }, index) => (
-            <Link passHref href='/bebidas/' key={strIngredient1}>
-              <button
-                type='button'
-                onClick={() => handleIngredient(strIngredient1)}
-              >
-                <div data-testid={`${index}-ingredient-card`}>
-                  <h3 data-testid={`${index}-card-name`}>{strIngredient1}</h3>
-                  <img
-                    src={`https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png`}
-                    alt=''
-                    data-testid={`${index}-card-img`}
-                  />
-                </div>
-              </button>
-            </Link>
-          ))}
+        {ingredients.splice(0, TRINTA).map(({ strIngredient1 }, index) => (
+          <Link passHref href='/bebidas/' key={strIngredient1}>
+            <button
+              type='button'
+              onClick={() => handleIngredient(strIngredient1)}
+            >
+              <div data-testid={`${index}-ingredient-card`}>
+                <h3 data-testid={`${index}-card-name`}>{strIngredient1}</h3>
+                <img
+                  src={`https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png`}
+                  alt=''
+                  data-testid={`${index}-card-img`}
+                />
+              </div>
+            </button>
+          </Link>
+        ))}
       </main>
       <div>a</div>
       <Footer />
@@ -57,8 +64,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      ingredientsAPI: await getIngredientList(),
+      ingredients: await getIngredientList(),
     },
-    redirect: 60 * 30, // 30 minutos
+    redirect: 60 * 60 * 24 * 30, // 1 mês
   };
 };

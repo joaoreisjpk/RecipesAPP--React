@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import HeaderWithSearchIcon from '../../components/HeaderWithSearchIcon';
 import MyContext from '../../context/MyContext';
 import Cards from '../../components/Cards';
@@ -27,19 +27,19 @@ function Drinks() {
   }, []);
 
   if (respostaDrink && respostaDrink.length === 1) {
-    return push(`/comidas/${respostaDrink[0].id}`)
+    return push(`/comidas/${respostaDrink[0].id}`);
   }
 
   return (
     <div className={styles.foodDrinksContainer}>
-      <HeaderWithSearchIcon
-        title='Bebidas'
-      />
+      <HeaderWithSearchIcon title='Bebidas' />
       <main>
         {respostaDrink
           .map(({ name, image, id }, index) => (
-            <Link key={id} passHref href={`/bebidas/${id}`}>
-              <Cards name={name} thumbnail={image} index={index} />
+            <Link key={id} href={`/bebidas/${id}`}>
+              <a href='#'>
+                <Cards name={name} thumbnail={image} index={index} />
+              </a>
             </Link>
           ))
           .splice(0, TRINTA)}
