@@ -1,0 +1,144 @@
+.foodDrinksContainer {
+  height: 100vh;
+
+  .searchContainer {
+    width: 90%;
+    max-width: 1200px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    gap: 0.6rem;
+    margin: auto;
+
+    > input {
+      min-width: 100%;
+      padding: 0.6rem;
+      font-size: 1.1rem;
+      border: 2px solid var(--orange-600);
+      border-radius: 10px;
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      font-size: 1.2rem;
+      min-width: 100%;
+
+      label {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        input {
+          margin-left: 0.2rem;
+          padding-top: 1rem;
+          color: var(--orange-700);
+          height: 1.3rem;
+          width: 1.3rem;
+          border: 1px solid #121214;
+          padding: 0.8rem;
+        }
+      }
+    }
+
+    button {
+      width: 100%;
+      padding: 0.4rem 0.8rem;
+      margin-top: 0.3rem;
+      background: transparent;
+      border-radius: 10px;
+      border: 2px solid var(--orange-600);
+      color: var(--orange-600);
+      font-style: normal;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+  }
+
+  .categorias {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+
+    div {
+      margin: auto;
+      justify-content: center;
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+
+      button {
+        width: 6rem;
+        padding: 0.4rem 0.5rem;
+        margin-top: 0.3rem;
+        background: transparent;
+        border-radius: 10px;
+        border: 2px solid var(--orange-600);
+        color: var(--orange-600);
+        font-style: normal;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  main {
+    width: 90%;
+    max-width: 1100px;
+    gap: 1.5rem;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 5rem;
+
+    div {
+      max-width: 200px;
+      min-width: 150px;
+
+      img {
+        width: 100%;
+        border-radius: 10px 10px 0 0;
+      }
+    }
+  }
+
+  @media (min-width: 480px) {
+    .categorias {
+      display: flex;
+      justify-content: center;
+
+      div {
+        button, button + button {
+          width: 8rem;
+          padding: 0.4rem 0.8rem;
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .searchContainer {
+      flex-direction: row;
+      justify-content: center;
+      gap: 2rem;
+
+      > input {
+        min-width: 170px;
+        max-width: 300px;
+      }
+
+      div {
+        min-width: 370px;
+      }
+
+      button {
+        max-width: 200px;
+      }
+    }
+  }
+}

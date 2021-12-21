@@ -1,0 +1,28 @@
+.exploreContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+  main {
+    flex: 1;
+    display: flex;
+    gap: 1rem;
+    margin-top: -6rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      min-width: 250px;
+      padding: .6rem 1.1rem;
+      margin-top: .3rem;
+      background: transparent;
+      border-radius: 10px;
+      border: 2px solid var(--orange-600);
+      color: var(--orange-600);
+      font-style: normal;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+  }
+}

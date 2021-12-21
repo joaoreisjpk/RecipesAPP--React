@@ -1,14 +1,17 @@
 import React, { useState, useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+
+import FetchCategories from '../FetchCategories';
 import { foodSmallAPi, foodAPI } from '../../services/getFood';
 import { drinkSmallAPI, drinkAPI } from '../../services/getDrink';
 import MyContext from '../../context/MyContext';
-
 import Button from '../Button';
 
 import searchIcon from '../../images/searchIcon.svg';
 import profileIcon from '../../images/profileIcon.svg';
-import './main.scss';
+import styles from './main.module.scss';
 
 interface HeaderProps {
   title: string;
@@ -21,6 +24,7 @@ function HeaderWithSearchIcon({ title, categories }: HeaderProps) {
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [radioValue, setRadioValue] = useState(INGREDIENT_RADIO);
   const [searchValue, setSearchValue] = useState('');
+  const { pathname } = useRouter();
 
   const handleSearchInput = async () => {
     if (radioValue === INGREDIENT_RADIO) {
@@ -44,7 +48,7 @@ function HeaderWithSearchIcon({ title, categories }: HeaderProps) {
 
   function renderSearchContainer() {
     return (
-      <div className='searchContainer'>
+      <div className={styles.searchContainer}>
         <input
           type='text'
           data-testid='search-input'
@@ -96,23 +100,24 @@ function HeaderWithSearchIcon({ title, categories }: HeaderProps) {
       </div>
     );
   }
-  const location = useLocation();
   const validatePage =
-    location.pathname === '/comidas'
+  pathname === '/comidas'
       ? handleSearchInput
       : handleSearchInputDrink;
 
   return (
     <>
-      <header>
+      <header className={styles.header}>
         <nav>
-          <Link to='/perfil'>
-            <img
-              src={profileIcon}
-              data-testid='profile-top-btn'
-              id='profile-top-btn'
-              alt='Profile Icon'
-            />
+          <Link href='/perfil' passHref>
+            <a href="">
+              <Image
+                src={profileIcon}
+                data-testid='profile-top-btn'
+                id='profile-top-btn'
+                alt='Profile Icon'
+              />
+            </a>
           </Link>
           <h1 data-testid='page-title'>{title}</h1>
           <button
@@ -120,7 +125,7 @@ function HeaderWithSearchIcon({ title, categories }: HeaderProps) {
             onClick={() => setShowSearchBar(!showSearchBar)}
             id='search-top-btn'
           >
-            <img
+            <Image
               src={searchIcon}
               data-testid='search-top-btn'
               alt='Search Icon'
@@ -129,7 +134,7 @@ function HeaderWithSearchIcon({ title, categories }: HeaderProps) {
         </nav>
       </header>
       <>
-        {showSearchBar ? renderSearchContainer() : categories && categories()}
+        {showSearchBar ? renderSearchContainer() : <FetchCategories />}
       </>
     </>
   );
