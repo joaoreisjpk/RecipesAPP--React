@@ -1,6 +1,10 @@
 import { createContext } from 'react';
 import { DrinkObject, FoodObject } from '../interfaces';
 
+interface categoriesProps {
+  category: string,
+}
+
 interface contextProvider {
   login: {
     email: string;
@@ -20,6 +24,9 @@ interface contextProvider {
 
   ingredient: string;
   setIngredient: React.Dispatch<React.SetStateAction<string>>;
+
+  foodCategories: categoriesProps[],
+  drinkCategories: categoriesProps[],
 }
 
 const MyContext = createContext({} as contextProvider);

@@ -48,7 +48,7 @@ function HeaderWithSearchIcon({ title, categories }: HeaderProps) {
 
   function renderSearchContainer() {
     return (
-      <div className={styles.header}>
+      <div className={styles.searchContainer}>
         <input
           type='text'
           data-testid='search-input'
