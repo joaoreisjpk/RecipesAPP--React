@@ -13,10 +13,6 @@ interface handleClickProps extends React.MouseEvent<HTMLButtonElement> {
   target: innerTextProps;
 }
 
-interface categoriesProps {
-  category: string;
-}
-
 export default function FetchCategories() {
   const { setRespostaDrink, setRespostaFood, foodCategories, drinkCategories } =
     useContext(MyContext);
