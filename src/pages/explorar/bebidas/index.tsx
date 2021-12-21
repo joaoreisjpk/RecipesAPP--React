@@ -21,11 +21,11 @@ function ExploreDrinks() {
     <section className={styles.exploreFDContainer}>
       <Header title="Explorar Bebidas" />
       <main>
-        <Link passHref href="/explorar/bebidas/ingredientes">
-          <Button text="Explorar Por Ingredientes" dataID="explore-by-ingredient" />
+        <Link href="/explorar/bebidas/ingredientes">
+          <a href="#"><Button text="Explorar Por Ingredientes" dataID="explore-by-ingredient" /></a>
         </Link>
-        <Link passHref href={ `/bebidas/${idDrink}` }>
-          <Button text="Me Surpreenda!" dataID="explore-surprise" />
+        <Link href={ `/bebidas/${idDrink}` }>
+          <a href="#"><Button text="Me Surpreenda!" dataID="explore-surprise" /></a>
         </Link>
       </main>
       <Footer />

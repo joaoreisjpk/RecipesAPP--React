@@ -11,11 +11,11 @@ function Explore() {
     <section className={styles.exploreContainer}>
       <Header title="Explorar" />
       <main>
-        <Link passHref href="/explorar/comidas">
-          <Button dataID="explore-food" text="Explorar Comidas" />
+        <Link href="/explorar/comidas">
+          <a href="#"><Button dataID="explore-food" text="Explorar Comidas" /></a>
         </Link>
-        <Link passHref href="/explorar/bebidas">
-          <Button dataID="explore-drinks" text="Explorar Bebidas" />
+        <Link href="/explorar/bebidas">
+          <a href="#"><Button dataID="explore-drinks" text="Explorar Bebidas" /></a>
         </Link>
       </main>
       <Footer />

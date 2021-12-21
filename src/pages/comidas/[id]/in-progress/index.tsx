@@ -54,7 +54,7 @@ export default function Main({ ingredients, itemDetails }: InProgressProps) {
   }, []);
 
   const isDisabled = () => {
-    setDisabled(ingredients.length === storagedRecipe[id].length);
+    setDisabled(ingredients.length === storagedRecipe[id]?.length);
   };
 
   function handleClick() {

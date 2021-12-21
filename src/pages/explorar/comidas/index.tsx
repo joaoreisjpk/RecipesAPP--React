@@ -18,16 +18,28 @@ function ExploreFoods() {
 
   return (
     <section className={styles.exploreFDContainer}>
-      <Header title="Explorar Comidas" />
+      <Header title='Explorar Comidas' />
       <main>
-        <Link passHref href="/explorar/comidas/ingredientes">
-          <Button text="Explorar Por Ingredientes" dataID="explore-by-ingredient" />
+        <Link href='/explorar/comidas/ingredientes'>
+          <a href='#'>
+            <Button
+              text='Explorar Por Ingredientes'
+              dataID='explore-by-ingredient'
+            />
+          </a>
         </Link>
-        <Link passHref href="/explorar/comidas/area">
-          <Button text="Explorar Por Local de Origem" dataID="explore-by-area" />
+        <Link href='/explorar/comidas/area'>
+          <a href='#'>
+            <Button
+              text='Explorar Por Local de Origem'
+              dataID='explore-by-area'
+            />
+          </a>
         </Link>
-        <Link passHref href={ `/comidas/${idMeal}` }>
-          <Button text="Me Surpreenda!" dataID="explore-surprise" />
+        <Link href={`/comidas/${idMeal}`}>
+          <a href='#'>
+            <Button text='Me Surpreenda!' dataID='explore-surprise' />
+          </a>
         </Link>
       </main>
       <Footer />

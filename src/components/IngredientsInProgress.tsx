@@ -21,13 +21,18 @@ function IngredientsInProgress({
   const { push } = useRouter();
   const [checked, setChecked] = useState(true);
 
-  const keyInProgress = (): any => JSON.parse(localStorage.getItem('inProgressRecipes') || '{}');
+  const defaultValue = {
+    cocktails: {},
+    meals: {},
+  };
+
+  const keyInProgress = (): any => JSON.parse(localStorage.getItem('inProgressRecipes') || `${defaultValue}`);
 
   useEffect(() => {
     try {
       setChecked(type === 'bebida'
-        ? keyInProgress().cocktails[id].some((ingredient: number) => ingredient === index)
-        : keyInProgress().meals[id].some((ingredient: number) => ingredient === index));
+        ? keyInProgress().cocktails[id]?.some((ingredient: number) => ingredient === index)
+        : keyInProgress().meals[id]?.some((ingredient: number) => ingredient === index));
     } catch {
       push(`/${type}s/${id}`);
     }

@@ -22,18 +22,24 @@ function Perfil() {
           <h1>Usuário:</h1>
           <h2 data-testid='profile-email'>{email}</h2>
         </div>
-        <Link passHref href='/receitas-feitas'>
-          <Button dataID='profile-done-btn' text='Receitas Feitas' />
+        <Link href='/receitas-feitas'>
+          <a href='#'>
+            <Button dataID='profile-done-btn' text='Receitas Feitas' />
+          </a>
         </Link>
         <Link passHref href='/receitas-favoritas'>
-          <Button dataID='profile-favorite-btn' text='Receitas Favoritas' />
+          <a href='#'>
+            <Button dataID='profile-favorite-btn' text='Receitas Favoritas' />
+          </a>
         </Link>
         <Link passHref href='/'>
-          <Button
-            dataID='profile-logout-btn'
-            text='Sair'
-            onClick={() => localStorage.clear()}
-          />
+          <a href="#">
+            <Button
+              dataID='profile-logout-btn'
+              text='Sair'
+              onClick={() => localStorage.clear()}
+            />
+          </a>
         </Link>
       </main>
       <Footer />

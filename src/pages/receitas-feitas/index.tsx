@@ -37,16 +37,20 @@ function DoneRecipes() {
         if (item.type === 'comida') {
           return (
             <div key={index}>
-              <Link passHref href={`/comidas/${item.id}`}>
-                <img
-                  width='200px'
-                  src={item.image}
-                  alt='comida'
-                  data-testid={`${index}-horizontal-image`}
-                />
+              <Link href={`/comidas/${item.id}`}>
+                <a href="#">
+                  <img
+                    width='200px'
+                    src={item.image}
+                    alt='comida'
+                    data-testid={`${index}-horizontal-image`}
+                  />
+                </a>
               </Link>
-              <Link passHref href={`/comidas/${item.id}`}>
-                <h2 data-testid={`${index}-horizontal-name`}>{item.name}</h2>
+              <Link href={`/comidas/${item.id}`}>
+                <a href="#">
+                  <h2 data-testid={`${index}-horizontal-name`}>{item.name}</h2>
+                </a>
               </Link>
               <div>{item.category}</div>
               <div data-testid={`${index}-horizontal-top-text`}>
@@ -66,16 +70,20 @@ function DoneRecipes() {
         }
         return (
           <div key={index}>
-            <Link passHref href={`/bebidas/${item.id}`}>
-              <img
-                width='200px'
-                src={item.image}
-                alt='bebida'
-                data-testid={`${index}-horizontal-image`}
-              />
+            <Link href={`/bebidas/${item.id}`}>
+              <a href="#">
+                <img
+                  width='200px'
+                  src={item.image}
+                  alt='bebida'
+                  data-testid={`${index}-horizontal-image`}
+                />
+              </a>
             </Link>
-            <Link passHref href={`/bebidas/${item.id}`}>
-              <h2 data-testid={`${index}-horizontal-name`}>{item.name}</h2>
+            <Link href={`/bebidas/${item.id}`}>
+              <a href="#">
+                <h2 data-testid={`${index}-horizontal-name`}>{item.name}</h2>
+              </a>
             </Link>
             <div data-testid={`${index}-horizontal-top-text`}>
               {item.alcoholicOrNot}

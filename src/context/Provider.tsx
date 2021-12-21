@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { DrinkObject, FoodObject } from '../interfaces';
 import { getCategorylist } from '../services/getDrink';
@@ -53,9 +52,5 @@ function Provider({ children }: ProviderProps) {
     </MyContext.Provider>
   );
 }
-
-Provider.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export default Provider;
