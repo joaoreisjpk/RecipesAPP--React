@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
-import RecommendationCard from '../RecommendationCard';
+import RecommendationCard from './RecommendationCard';
 import {
   getMeasures,
   getIngredients,
   getFavoriteList,
   setFavoriteList,
 } from '../../helpers';
-import Video from '../Video';
+import Video from './Video';
 import ButtonsFavoriteAndShare from '../ButtonsFavoriteAndShare';
 import { DrinkObject, FoodObject } from '../../interfaces';
 

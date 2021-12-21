@@ -76,7 +76,7 @@ export default function Main({ ingredients, itemDetails }: InProgressProps) {
           <div>
             <img data-testid='recipe-photo' src={image} alt={name} />
             <ButtonsFavoriteAndShare
-              object={{ ...itemDetails, type: 'bebida' }}
+              object={{ ...itemDetails }}
             />
           </div>
         </div>

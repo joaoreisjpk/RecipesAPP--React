@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FoodObject, DrinkObject } from '../interfaces'
+import { FoodObject, DrinkObject } from '../../interfaces'
 
 interface RecommendationCardProps {
   recipe: FoodObject | DrinkObject;

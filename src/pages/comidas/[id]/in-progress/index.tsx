@@ -2,19 +2,19 @@
 import React, { useEffect, useState } from 'react';
 import ButtonsFavoriteAndShare from '../../../../components/ButtonsFavoriteAndShare';
 import { getMeasures, getIngredients, handleDone } from '../../../../helpers';
-import { drinkAPI } from '../../../../services/getDrink';
 import IngredientsInProgress from '../../../../components/IngredientsInProgress';
-import { DrinkObject } from '../../../../interfaces';
+import { FoodObject } from '../../../../interfaces';
 import Header from '../../../../components/Header';
 import Footer from '../../../../components/Footer';
 
 import styles from './main.module.scss';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
+import { foodAPI } from '../../../../services/getFood';
 
 interface InProgressProps {
   ingredients: string[];
-  itemDetails: DrinkObject;
+  itemDetails: FoodObject;
 }
 
 export default function Main({ ingredients, itemDetails }: InProgressProps) {
@@ -22,17 +22,17 @@ export default function Main({ ingredients, itemDetails }: InProgressProps) {
   const [disabled, setDisabled] = useState<Boolean>();
   const { push } = useRouter();
   const defaultValue = {
-    cocktails: { [id]: [] },
-    meals: {},
+    cocktails: {},
+    meals: {[id]: []},
   };
-  const [storagedRecipe, setStoragedRecipe] = useState(defaultValue.cocktails);
+  const [storagedRecipe, setStoragedRecipe] = useState(defaultValue.meals);
 
   const setCheckedIngredients = (storage) =>
     localStorage.setItem(
       'inProgressRecipes',
       JSON.stringify({
         ...storage,
-        cocktails: { ...storage.cocktails, [id]: [] },
+        meals: { ...storage.meals, [id]: [] },
       })
     );
 
@@ -41,9 +41,9 @@ export default function Main({ ingredients, itemDetails }: InProgressProps) {
 
     try {
       storage = JSON.parse(localStorage.getItem('inProgressRecipes'));
-      setStoragedRecipe(storage.cocktails);
+      setStoragedRecipe(storage.meals);
 
-      if (!storage.cocktails[id]) {
+      if (!storage.meals[id]) {
         setCheckedIngredients(storage);
       }
     } catch {
@@ -68,7 +68,7 @@ export default function Main({ ingredients, itemDetails }: InProgressProps) {
 
   return (
     <section className={styles.inProgressContainer}>
-      <Header title='Bebidas' />
+      <Header title='Comidas' />
       <main>
         <div>
           <span data-testid='recipe-title'>{name} - </span>
@@ -76,7 +76,7 @@ export default function Main({ ingredients, itemDetails }: InProgressProps) {
           <div>
             <img data-testid='recipe-photo' src={image} alt={name} />
             <ButtonsFavoriteAndShare
-              object={{ ...itemDetails, type: 'bebida' }}
+              object={{ ...itemDetails }}
             />
           </div>
         </div>
@@ -124,7 +124,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { id } = params;
 
-  const fetchIngredients = await drinkAPI(`/lookup.php?i=${id}`);
+  const fetchIngredients = await foodAPI(`/lookup.php?i=${id}`);
   const ingredients = getIngredients(fetchIngredients[0]);
 
   return {
