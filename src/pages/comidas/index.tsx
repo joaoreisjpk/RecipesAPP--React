@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import HeaderWithSearchIcon from '../../components/HeaderWithSearchIcon';
 import MyContext from '../../context/MyContext';
 import Cards from '../../components/Cards';
-import { foodAPI, getCategorylist, foodSmallAPi } from '../../services/getFood';
+import { foodAPI, foodSmallAPi } from '../../services/getFood';
 import Footer from '../../components/Footer';
 
 import styles from './main.module.scss';

@@ -11,7 +11,7 @@ function Perfil() {
   const [email, setEmail] = useState('');
 
   useEffect(() => {
-    setEmail(JSON.parse(localStorage.getItem('user') || ''));
+    setEmail(JSON.parse(localStorage.getItem('user') || '{ email: ""}').email);
   }, []);
 
   return (

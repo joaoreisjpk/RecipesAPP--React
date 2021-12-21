@@ -1,24 +1,20 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import MyContext from '../../../../context/MyContext';
 import Header from '../../../../components/Header';
 import Footer from '../../../../components/Footer';
-import { getIngredientList } from '../../../../services/getDrink';
+import { api } from '../../../../services/getDrink';
 
 import styles from './main.module.scss';
 import Link from 'next/link';
+import { GetStaticProps } from 'next';
 
-function ExploreDrinksIngredients() {
+export default function ExploreDrinksIngredients({ ingredientsAPI }) {
   const { setIngredient, setRespostaDrink } = useContext(MyContext);
-  const [ingredientList, setIngredientList] = useState([]);
   const TRINTA = 30;
 
   useEffect(() => {
-    setRespostaDrink([]);
-    const fetchAPI = async () => {
-      setIngredientList(await getIngredientList());
-    };
-    fetchAPI();
-  }, [setRespostaDrink]);
+    return () => setRespostaDrink([]);
+  }, []);
 
   const handleIngredient = (param: string) => {
     setIngredient(param);
@@ -26,27 +22,43 @@ function ExploreDrinksIngredients() {
 
   return (
     <section className={styles.exploreIngContainer}>
-      <Header title="Explorar Ingredientes" />
+      <Header title='Explorar Ingredientes' />
       <main>
-        {ingredientList.splice(0, TRINTA).map(({ strIngredient1 }, index) => (
-          <Link passHref href="/bebidas/" key={ index }>
-            <button type="button" onClick={ () => handleIngredient(strIngredient1) }>
-              <div data-testid={ `${index}-ingredient-card` }>
-                <h3 data-testid={ `${index}-card-name` }>{strIngredient1}</h3>
-                <img
-                  src={ `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png` }
-                  alt=""
-                  data-testid={ `${index}-card-img` }
-                />
-              </div>
-            </button>
-          </Link>
-        ))}
+        {ingredientsAPI &&
+          ingredientsAPI.splice(0, TRINTA).map(({ strIngredient1 }, index) => (
+            <Link passHref href='/bebidas/' key={strIngredient1}>
+              <button
+                type='button'
+                onClick={() => handleIngredient(strIngredient1)}
+              >
+                <div data-testid={`${index}-ingredient-card`}>
+                  <h3 data-testid={`${index}-card-name`}>{strIngredient1}</h3>
+                  <img
+                    src={`https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png`}
+                    alt=''
+                    data-testid={`${index}-card-img`}
+                  />
+                </div>
+              </button>
+            </Link>
+          ))}
       </main>
-      <div> </div>
+      <div>a</div>
       <Footer />
     </section>
   );
 }
 
-export default ExploreDrinksIngredients;
+export const getStaticProps: GetStaticProps = async () => {
+  const getIngredientList = async () => {
+    const response = await api.get('/list.php?i=list');
+    return response.data.drinks;
+  };
+
+  return {
+    props: {
+      ingredientsAPI: await getIngredientList(),
+    },
+    redirect: 60 * 30, // 30 minutos
+  };
+};

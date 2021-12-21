@@ -17,8 +17,10 @@ function Footer(): JSX.Element {
           data-testid="drinks-bottom-btn"
           id="drinks-bottom-btn"
         >
-          <Link href="/bebidas" passHref>
-            <Image src={ drinkIcon } alt="Drink Icon" />
+          <Link href="/bebidas">
+            <a href="#">
+              <Image src={ drinkIcon } alt="Drink Icon" />
+            </a>
           </Link>
         </button>
         <button
@@ -26,8 +28,10 @@ function Footer(): JSX.Element {
           data-testid="explore-bottom-btn"
           id="explore-bottom-btn"
         >
-          <Link href="/explorar" passHref>
-            <Image src={ exploreIcon } alt="Explore Icon" />
+          <Link href="/explorar">
+            <a href="#">
+              <Image src={ exploreIcon } alt="Explore Icon" />
+            </a>
           </Link>
         </button>
         <button
@@ -35,8 +39,10 @@ function Footer(): JSX.Element {
           data-testid="food-bottom-btn"
           id="food-bottom-btn"
         >
-          <Link href="/comidas" passHref>
-            <Image src={ mealIcon } alt="Meal Icon" />
+          <Link href="/comidas">
+            <a href="#">
+              <Image src={ mealIcon } alt="Meal Icon" />
+            </a>
           </Link>
         </button>
       </section>
