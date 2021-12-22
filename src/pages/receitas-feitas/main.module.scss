@@ -1,0 +1,38 @@
+.doneContainer {
+  display: flex;
+  flex-direction: column;
+
+  nav {
+    margin: auto;
+
+    div {
+      button {
+        width: 10rem;
+        padding: 0.4rem 0.5rem;
+        margin-top: 1.5rem;
+        margin-left: 1rem;
+        background: transparent;
+        border-radius: 10px;
+        border: 2px solid var(--orange-600);
+        color: var(--orange-600);
+        font-style: normal;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  main {
+    width: 90%;
+    gap: 2rem;
+    margin: 2rem auto 5rem;
+    max-width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    img {
+      border-radius: 10px;
+    }
+  }
+}

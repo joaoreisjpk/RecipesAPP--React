@@ -1,0 +1,136 @@
+.inProgressContainer {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  main {
+    width: 90%;
+    gap: 1.5rem;
+    margin: 20px auto;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 7rem;
+
+    > div:nth-child(1) {
+      div {
+        margin-top: 1rem;
+      }
+    }
+
+    > div {
+      font-size: 1.3rem;
+      line-height: 2rem;
+      margin-top: 1rem;
+
+      > span {
+        font-size: 2rem;
+      }
+
+      img {
+        border-radius: 10px;
+        width: 100%;
+      }
+
+      .ingredientsList {
+        label {
+          display: flex;
+          align-items: center;
+          margin-bottom: 0.5rem;
+
+          input {
+            height: 1.3rem;
+            width: 1.3rem;
+          }
+
+          span {
+            margin-left: 0.7rem;
+          }
+        }
+      }
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin: 1rem 0;
+    }
+
+    > p {
+      font-size: 1.3rem;
+    }
+
+    section {
+      span {
+        font-size: 2.3rem;
+      }
+
+      div {
+        margin: 1rem 0;
+        font-size: 1.3rem;
+
+        img {
+          width: 100%;
+          border-radius: 10px;
+        }
+
+        button {
+          position: absolute;
+        }
+      }
+    }
+
+    div + button {
+      min-width: 250px;
+      padding: 0.6rem 1.1rem;
+      margin-top: 0.3rem;
+      background: transparent;
+      border-radius: 10px;
+      border: 2px solid var(--orange-600);
+      color: var(--orange-600);
+      font-style: normal;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    
+    @media (min-width: 768px) {
+      display: flex;
+      justify-content: space-between;
+
+
+      > div:nth-child(1) {
+        margin-top: 1rem;
+        width: 33%;
+        height: Min(42vw, 430px);
+      }
+
+      > div:nth-child(2) {
+        margin-top: 3rem;
+        width: 58%;
+        
+        p {
+          height: Min(42vw, 350px);
+          overflow: scroll;
+          overflow-x: hidden;
+        }
+      }
+
+      > div:nth-child(3) {
+        width: 100%;
+
+        button {
+          margin-top: 1.5rem;
+        }
+      }
+
+      .ingredientsList {
+        display: flex;
+        flex-wrap: wrap;
+        label {
+          width: 400px;
+        }
+      }
+    }
+  }
+}

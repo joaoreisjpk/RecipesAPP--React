@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 
 interface IngredientsInProgressProps {
@@ -17,14 +18,24 @@ function IngredientsInProgress({
   id,
   type,
   handleButton }: IngredientsInProgressProps) {
+  const { push } = useRouter();
   const [checked, setChecked] = useState(true);
 
-  const keyInProgress = (): any => JSON.parse(localStorage.getItem('inProgressRecipes') || '{}');
+  const defaultValue = {
+    cocktails: {},
+    meals: {},
+  };
+
+  const keyInProgress = (): any => JSON.parse(localStorage.getItem('inProgressRecipes') || `${defaultValue}`);
 
   useEffect(() => {
-    setChecked(type === 'bebida'
-      ? keyInProgress().cocktails[id].some((ingredient: number) => ingredient === index)
-      : keyInProgress().meals[id].some((ingredient: number) => ingredient === index));
+    try {
+      setChecked(type === 'bebida'
+        ? keyInProgress().cocktails[id]?.some((ingredient: number) => ingredient === index)
+        : keyInProgress().meals[id]?.some((ingredient: number) => ingredient === index));
+    } catch {
+      push(`/${type}s/${id}`);
+    }
   }, []);
 
   function addIngredientInLocalStorage() {
@@ -82,7 +93,7 @@ function IngredientsInProgress({
             id={ ingrediente }
             onChange={ handleChange }
           />)}
-      <span>{ `Ingrediente: ${ingrediente} - Medida: ${measures[index]}` }</span>
+      <span>{ `${ingrediente} - Medida: ${measures[index]}` }</span>
     </label>
   );
 }

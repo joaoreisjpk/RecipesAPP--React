@@ -4,6 +4,7 @@ import { isFavorite, handleFavorite } from '../helpers';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import Image from 'next/image';
 
 interface ButtonsProps {
   object: any;
@@ -12,15 +13,20 @@ interface ButtonsProps {
   idFavorite?: string;
 }
 
-const ButtonsFavoriteAndShare = ({ object, handleUpdate, idShare, idFavorite }: ButtonsProps): JSX.Element => {
+const ButtonsFavoriteAndShare = ({
+  object,
+  handleUpdate,
+  idShare,
+  idFavorite,
+}: ButtonsProps): JSX.Element => {
   const { id, title, type } = object;
-  
+
   const [copiado, setCopiado] = useState(false);
-  const [favorited, setFavorited] = useState(isFavorite(id));
+  const [favorited, setFavorited] = useState(false);
 
   useEffect(() => {
     setFavorited(isFavorite(id));
-  }, [id]);
+  }, []);
 
   const handleClick = () => {
     setFavorited(!favorited);
@@ -29,39 +35,39 @@ const ButtonsFavoriteAndShare = ({ object, handleUpdate, idShare, idFavorite }: 
   };
 
   const handleCopy = () => {
-    window.navigator.clipboard.writeText(`http://localhost:3000/${type}s/${id}`)
+    window.navigator.clipboard
+      .writeText(`http://localhost:3000/${type}s/${id}`)
       .catch((error) => `Doidera Manobrow${error}`);
     setCopiado(true);
   };
 
   return (
     <>
-      <button type="button" onClick={ handleCopy }>
-        <img
-          src={ shareIcon }
-          alt={ title }
-          data-testid={ idShare || 'share-btn' }
+      <button type='button' onClick={handleCopy}>
+        <Image
+          src={shareIcon}
+          alt={title}
+          data-testid={idShare || 'share-btn'}
         />
       </button>
 
-      <button type="button" onClick={ handleClick }>
-        { favorited
-          ? (
-            <img
-              src={ blackHeartIcon }
-              alt={ title }
-              data-testid={ idFavorite || 'favorite-btn' }
-            />)
-          : (
-            <img
-              src={ whiteHeartIcon }
-              alt={ title }
-              data-testid={ idFavorite || 'favorite-btn' }
-            />)}
+      <button type='button' onClick={handleClick}>
+        {favorited ? (
+          <Image
+            src={blackHeartIcon}
+            alt={title}
+            data-testid={idFavorite || 'favorite-btn'}
+          />
+        ) : (
+          <Image
+            src={whiteHeartIcon}
+            alt={title}
+            data-testid={idFavorite || 'favorite-btn'}
+          />
+        )}
       </button>
 
-      { copiado && <p>Link copiado!</p>}
-
+      {copiado && <p>Link copiado!</p>}
     </>
   );
 };
