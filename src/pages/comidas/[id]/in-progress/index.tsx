@@ -54,7 +54,15 @@ export default function Main({ ingredients, itemDetails }: InProgressProps) {
   }, []);
 
   const isDisabled = () => {
-    setDisabled(ingredients.length === storagedRecipe[id]?.length);
+    let storage;
+
+    try {
+      storage = JSON.parse(localStorage.getItem('inProgressRecipes'));   
+      setDisabled(ingredients.length === storage.meals[id]?.length);
+    } catch {
+      localStorage.setItem('inProgressRecipes', JSON.stringify(defaultValue));
+      setDisabled(false);
+    }
   };
 
   function handleClick() {
