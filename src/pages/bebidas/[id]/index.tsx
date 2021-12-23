@@ -83,5 +83,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       itemDetail: itemDetail[0],
       recomendationList,
     },
+    redirect: 60 * 60 * 24 * 30, // 1 mês
   };
 };

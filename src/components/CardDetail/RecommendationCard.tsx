@@ -4,21 +4,14 @@ import { FoodObject, DrinkObject } from '../../interfaces'
 
 interface RecommendationCardProps {
   recipe: FoodObject | DrinkObject;
-  counter: number;
   index: number;
 }
 
-const RecommendationCard = ({ recipe, index, counter }: RecommendationCardProps) => {
+const RecommendationCard = ({ recipe, index }: RecommendationCardProps) => {
   const { image, name } = recipe;
-
-  const handleVisibility = () => {
-    if (counter === index || counter + 1 === index) return 'block';
-    return 'none';
-  };
 
   return (
     <section
-      style={ { display: handleVisibility() } }
       data-testid={ `${index}-recomendation-card` }
       className="recomendation-card"
     >

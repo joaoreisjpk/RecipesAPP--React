@@ -13,6 +13,7 @@ import { DrinkObject, FoodObject } from '../../interfaces';
 
 import styles from './main.module.scss';
 import Image from 'next/image';
+import { Main } from '../Swiper';
 
 interface CardDetailProps {
   itemRecomendation: FoodObject[] | DrinkObject[];
@@ -71,31 +72,9 @@ const CardDetail = ({
       </div>
       <div>{!video ? null : <Video srcVideo={video} />}</div>
       <div className={styles.recomendationCads}>
-        <h2>Recomendations</h2>
-        <button
-          type='button'
-          onClick={() => handleClick(false)}
-          disabled={!counter}
-        >
-          {'<'}
-        </button>
-        <button
-          type='button'
-          onClick={() => handleClick(true)}
-          disabled={counter === 2 + 2 + 1}
-        >
-          {'>'}
-        </button>
-        {itemRecomendation
-          .map((item, index) => (
-            <RecommendationCard
-              key={index}
-              recipe={item}
-              index={index}
-              counter={counter}
-            />
-          ))
-          .slice(0, SIX)}
+        <div className={styles.swiper}>
+          <Main itemList={itemRecomendation} />
+        </div>
       </div>
     </section>
   );

@@ -49,12 +49,12 @@ function FoodRecipe({ itemDetail, recomendationList }: RecipeProps) {
   if (!itemDetail) return <span>Carregando...</span>;
   return (
     <section className={styles.recipeContainer}>
-      <Header title='Bebidas' />
+      <Header title='Comidas' />
       <main>
         <CardDetail object={itemDetail} itemRecomendation={recomendationList} />
         <Link passHref href={`/comidas/${itemDetail.id}/in-progress`}>
           <button data-testid='start-recipe-btn' type='button'>
-            {setIsValidated ? 'Continuar Receita' : 'Iniciar Receita'}
+            {isValidated ? 'Continuar Receita' : 'Iniciar Receita'}
           </button>
         </Link>
       </main>
@@ -83,5 +83,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       itemDetail: itemDetail[0],
       recomendationList,
     },
+    redirect: 60 * 60 * 24 * 30, // 1 mês
   };
 };
