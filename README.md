@@ -1,34 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### TrybeLibre
 
-## Getting Started
+Desafio do curso de FullStack Developer da TRYBE https://www.betrybe.com/
+Esse site site foi totalmente reconstruido, sendo transformado de:
+ - JavaScript -> TypeScript
+ - ReactJS -> NextJs
+ - CSS -> SCSS
+ - Fetch -> Axios
 
-First, run the development server:
+[Link para o Site](https://recipes-app-lemon.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+![plot](./src/images/recipesPreview.png)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech em uso
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+[React] / [NextJS] Aplication </br>
+Gerenciamento de estado com [Function Components] </br>
+Uso de API externas como...
+  - A [The Meal DB](https://www.themealdb.com/api.php)
+  - A [The Cocktail DB](https://www.thecocktaildb.com/api.php)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Uso da Biblioteca do compilador SASS para estilização
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+  *Testes
+    - [Linter] para controle da qualidade do codigo.
+    - [Jest] com execução de testes por requisito
 
-## Learn More
+# Habilidades desenvolvidas.
 
-To learn more about Next.js, take a look at the following resources:
+-Componentizar o site em diversos arquivos menores </br>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-Criar hooks personalizados </br>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+-Cobrir o 90% do aplicativo com testes (apenas na branch `original`)</br>
 
-## Deploy on Vercel
+-Fazer uso do type-script para tornar o código mais confiável </br>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+-Fazer uso do ReactRouter para gerenciar a aplicação baseada em SPA (antes da mudança de React -> Next)</br>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-Fazer uso das propriedades getStaticPaths e getStaticProps do NextJS </br>
+
+-Tornar o site 100% responsivo, usando o método mobile first </br>
+
+# Branchs.
+
+#### Cada branch significa uma parte da refatoração do código
+-1º `Branch Original` -> código original sem nenhuma alteração (feita pra entregar pra Trybe) </br>
+
+-2º `adicionando-axios-e-otimizando-a-aplicacao` -> alterando de fetch para axios </br>
+
+-3º `transicicao-de-javascript-para-typescript` -> alterando de JS -> TS</br>
+
+-4º `refatorando-para-nextjs` -> alterando de React -> Next </br>
+
+-`estilizando-o-app-com-SASS` -> branch independente focada para estilização do projeto</br>
+
+
+# O que foi desenvolvido.
+
+Um site de receitas, no qual se pode pesquisar tanto coquitéis quanto pratos de comida, nele você primeiramente vai logar seu usuário, e entrando na pagina principal, várias receitas de comida irão aparecer. Nessa tela é possível filtrar os itens por categorias ou pesquisar alguma receita pelo nome, seja o do ingrediente, da própria receita ou com uma letra específica. Na página de coquitéis tem-se as mesmas features, sendo possível acessa-lo pelo menu infeior, clicando em seu ícone. Na página principal é possível clciar num item, para redirecioná-lo para a tela de detalhemento da receita, onde é possível favorita-la e também inicia-la. Na pagina o usuário poderá exporar por ingredientes, por área ou então pegar uma receita aleatório. No perfil, que fica no ícone da barra superior esquerda, é possível acessar sua lista de favoritas e sua lista de receitas feitas.
+
+  - Entrar no site e ver um Searchbar em conjunto de uma lista de categorias e uma lista de receitas.
+  - É possível clicar nos cards e ver suas receitas, podendo também iniciá-las.
+  - O usuário poderá favoritar e copiar o link de cada receita.
+  - O usuário terá uma pagina de explorar, onde será possível categorizar as receitas por ingredientes, area ou então escolher uma receita aleatória.
+  - Na página de perfil é possível acessar a página de receitas feitas e favoritas.
