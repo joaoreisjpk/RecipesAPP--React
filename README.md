@@ -1,6 +1,6 @@
 ### TrybeLibre
 
-Desafio do curso de FullStack Developer da TRYBE https://www.betrybe.com/
+Desafio do curso de FullStack Developer da TRYBE https://www.betrybe.com/ </br>
 Esse site site foi totalmente reconstruido, sendo transformado de:
  - JavaScript -> TypeScript
  - ReactJS -> NextJs
