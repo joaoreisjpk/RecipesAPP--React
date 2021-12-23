@@ -60,6 +60,7 @@ Uso da Biblioteca do compilador SASS para estilização
 Para usar a aplicação, é necessário usar a sequência de comandos abaixo:
 
 ```
+git clone git@github.com:joaoreisjpk/RecipesAPP--React.git
 yarn
 yarn dev
 ```
