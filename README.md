@@ -25,7 +25,7 @@ Uso da Biblioteca do compilador SASS para estilização
     - [Linter] para controle da qualidade do codigo.
     - [Jest] com execução de testes por requisito
 
-# Habilidades desenvolvidas.
+## Habilidades desenvolvidas.
 
 -Componentizar o site em diversos arquivos menores </br>
 
@@ -41,7 +41,7 @@ Uso da Biblioteca do compilador SASS para estilização
 
 -Tornar o site 100% responsivo, usando o método mobile first </br>
 
-# Branchs.
+## Branchs.
 
 #### Cada branch significa uma parte da refatoração do código
 -1º `Branch Original` -> código original sem nenhuma alteração (feita pra entregar pra Trybe) </br>
@@ -53,6 +53,16 @@ Uso da Biblioteca do compilador SASS para estilização
 -4º `refatorando-para-nextjs` -> alterando de React -> Next </br>
 
 -`estilizando-o-app-com-SASS` -> branch independente focada para estilização do projeto</br>
+
+
+## Como fazer a aplicação rodar
+
+Para usar a aplicação, é necessário usar a sequência de comandos abaixo:
+
+```
+yarn
+yarn dev
+```
 
 
 # O que foi desenvolvido.
