@@ -2,10 +2,11 @@
   position: fixed;
   width: 100%;
   bottom: 0;
-  background: var(--orange-300);
+  background: var(--background);
   padding: .4rem;
   border-top: 2px solid var(--orange-700);
-
+  z-index: 2;
+  
   section {
     width: 90%;
     max-width: 400px;
@@ -14,7 +15,7 @@
     justify-content: space-between;
 
     img {
-      width: 35px;
+      width: 35px !important;
     }
 
     > * {
